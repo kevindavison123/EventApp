@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 public class MainPage extends AppCompatActivity {
 
@@ -11,6 +12,12 @@ public class MainPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+
+        /*
+         Layout creator, adds three buttons per line, if it can.
+         A button is associated with a text file from the database.
+         The event is fetched from the database, a button is created, and the link is made.
+         */
     }
 
     @Override
@@ -34,4 +41,11 @@ public class MainPage extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+//    private LinearLayout makeLinearLayout()
+//    {
+//        LinearLayout linearLayout = new LinearLayout(this);
+//        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+//
+//    }
 }
