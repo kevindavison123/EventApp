@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
+    android:weightSum="3"
     tools:context=".EventApp"
     >
 
@@ -12,6 +13,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_gravity="center_horizontal"
+    android:layout_weight="1"
     android:weightSum="1">
 
 <ImageButton
@@ -43,6 +45,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_gravity="center_horizontal"
+    android:layout_weight="1"
     android:weightSum="1">
 <ImageButton
     android:id="@+id/event3"
@@ -76,6 +79,7 @@
     android:orientation="horizontal"
     android:weightSum="1"
     android:layout_gravity="center_horizontal"
+    android:layout_weight="1"
     >
     <ImageButton
         android:id="@+id/event5"
