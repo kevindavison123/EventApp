@@ -25,7 +25,7 @@
     android:cropToPadding="true"
     android:scaleType="fitStart"
     android:layout_weight="0.5"
-    android:src="@drawable/americanultra"/>
+    android:src="@drawable/uncle2"/>
 <ImageButton
     android:id="@+id/event2"
     android:layout_width="fill_parent"
@@ -56,7 +56,7 @@
     android:cropToPadding="true"
     android:scaleType="fitStart"
     android:layout_weight="0.5"
-    android:src="@drawable/compton"/>
+    android:src="@drawable/uncle2"/>
 <ImageButton
     android:id="@+id/event4"
     android:layout_width="fill_parent"
@@ -66,7 +66,7 @@
     android:cropToPadding="true"
     android:scaleType="fitEnd"
     android:layout_weight="0.5"
-    android:src="@drawable/antman" />
+    android:src="@drawable/uncle2" />
 
 
 
@@ -90,7 +90,7 @@
         android:cropToPadding="true"
         android:scaleType="fitStart"
         android:layout_weight="0.5"
-        android:src="@drawable/jurrasic"/>
+        android:src="@drawable/uncle2"/>
     <ImageButton
         android:id="@+id/event6"
         android:layout_width="fill_parent"
@@ -100,7 +100,7 @@
         android:cropToPadding="true"
         android:scaleType="fitEnd"
         android:layout_weight="0.5"
-        android:src="@drawable/insideout" />
+        android:src="@drawable/uncle2" />
 </LinearLayout>
 
 </LinearLayout>
