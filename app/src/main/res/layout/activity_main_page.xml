@@ -25,7 +25,8 @@
     android:cropToPadding="true"
     android:scaleType="fitStart"
     android:layout_weight="0.5"
-    android:src="@drawable/uncle2"/>
+    android:src="@drawable/uncle2"
+    android:onClick="onUserClickConcept"/>
 <ImageButton
     android:id="@+id/event2"
     android:layout_width="fill_parent"

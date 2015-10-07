@@ -1,13 +1,21 @@
 package com.dan.team.eventapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class MainPage extends AppCompatActivity {
+
+    Button uncleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +52,18 @@ public class MainPage extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /* Demonstrates what happens when the user clicks an image button.
+     * This is for demonstration purposes. The full implementation will
+     * be dynamically generated and use fragments but for demonstration
+     * it is just an image in another activity.
+     */
+    public void onUserClickConcept(View view) {
+        Intent intent = new Intent(MainPage.this, ConceptPageView.class);
+        MainPage.this.startActivity(intent);
+    }
+
+
+    /* Method for dynamically making a linear layout? Kevin?*/
 //    private LinearLayout makeLinearLayout()
 //    {
 //        LinearLayout linearLayout = new LinearLayout(this);
