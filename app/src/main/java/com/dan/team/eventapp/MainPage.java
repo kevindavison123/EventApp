@@ -15,8 +15,6 @@ import android.widget.Toast;
 
 public class MainPage extends AppCompatActivity {
 
-    Button uncleButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +25,6 @@ public class MainPage extends AppCompatActivity {
          A button is associated with a text file from the database.
          The event is fetched from the database, a button is created, and the link is made.
          */
-//        LinearLayout newLinear = makeLinearLayout();
     }
 
     @Override
@@ -63,12 +60,5 @@ public class MainPage extends AppCompatActivity {
     }
 
 
-    /* Method for dynamically making a linear layout? Kevin?*/
-//    private LinearLayout makeLinearLayout()
-//    {
-//        LinearLayout linearLayout = new LinearLayout(this);
-//        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-//        linearLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT));
-//        return linearLayout;
-//    }
+
 }
