@@ -75,6 +75,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Upload Picture" />
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit Event"
+            android:layout_gravity="center"/>
     </LinearLayout>
 </ScrollView>
 
