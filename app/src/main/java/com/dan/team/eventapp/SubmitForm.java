@@ -20,6 +20,7 @@ public class SubmitForm extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
         setContentView(R.layout.activity_submit_form);
         uploadImage = (ImageView) findViewById(R.id.imgView);
         buttonLoadImage =(Button) findViewById(R.id.loadImageButton);

@@ -45,8 +45,19 @@ public class MainPage extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        if(id == R.id.adding_button)
+        {
+            addEvent();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addEvent()
+    {
+        Intent intent = new Intent(MainPage.this, SubmitForm.class);
+        MainPage.this.startActivity(intent);
     }
 
     /* Demonstrates what happens when the user clicks an image button.
