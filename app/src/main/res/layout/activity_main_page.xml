@@ -46,7 +46,7 @@
                 android:cropToPadding="true"
                 android:scaleType="fitStart"
                 android:layout_weight="0.5"
-                android:src="@drawable/antman"
+                android:src="@drawable/uncle2"
                 android:onClick="onUserClickConcept"/>
             <ImageButton
                 android:id="@+id/event4"
@@ -57,7 +57,7 @@
                 android:cropToPadding="true"
                 android:scaleType="fitEnd"
                 android:layout_weight="0.5"
-                android:src="@drawable/compton" />
+                android:src="@drawable/uncle2" />
         </TableRow>
         <TableRow
             android:id="@+id/row3"
@@ -140,104 +140,5 @@
 
 
     </TableLayout>
-<!--
-android:weightSum="3"
 
-<LinearLayout
-    android:id="@+id/LinearLayout1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_gravity="center_horizontal"
-    android:layout_weight="1"
-    android:weightSum="1">
-
-<ImageButton
-    android:id="@+id/event1"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_gravity="left"
-    android:adjustViewBounds="true"
-    android:cropToPadding="true"
-    android:scaleType="fitStart"
-    android:layout_weight="0.5"
-    android:src="@drawable/uncle2"
-    android:onClick="onUserClickConcept"/>
-<ImageButton
-    android:id="@+id/event2"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_gravity="right"
-    android:adjustViewBounds="true"
-    android:cropToPadding="true"
-    android:scaleType="fitEnd"
-    android:layout_weight="0.5"
-    android:src="@drawable/uncle2" />
-
-</LinearLayout>
-
-<LinearLayout
-    android:id="@+id/LinearLayout2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_gravity="center_horizontal"
-    android:layout_weight="1"
-    android:weightSum="1">
-<ImageButton
-    android:id="@+id/event3"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_gravity="left"
-    android:adjustViewBounds="true"
-    android:cropToPadding="true"
-    android:scaleType="fitStart"
-    android:layout_weight="0.5"
-    android:src="@drawable/uncle2"/>
-<ImageButton
-    android:id="@+id/event4"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_gravity="right"
-    android:adjustViewBounds="true"
-    android:cropToPadding="true"
-    android:scaleType="fitEnd"
-    android:layout_weight="0.5"
-    android:src="@drawable/uncle2" />
-
-
-
-</LinearLayout>
-
-<LinearLayout
-    android:id="@+id/LinearLayout3"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:weightSum="1"
-    android:layout_gravity="center_horizontal"
-    android:layout_weight="1"
-    >
-    <ImageButton
-        android:id="@+id/event5"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="left"
-        android:adjustViewBounds="true"
-        android:cropToPadding="true"
-        android:scaleType="fitStart"
-        android:layout_weight="0.5"
-        android:src="@drawable/uncle2"/>
-    <ImageButton
-        android:id="@+id/event6"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="right"
-        android:adjustViewBounds="true"
-        android:cropToPadding="true"
-        android:scaleType="fitEnd"
-        android:layout_weight="0.5"
-        android:src="@drawable/uncle2" />
-</LinearLayout>
--->
 </ScrollView>
