@@ -81,10 +81,17 @@
             android:text="Upload Picture" />
         <Button
             android:id="@+id/submitButton"
+<<<<<<< HEAD
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Submit" />
+=======
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit Event"
+            android:layout_gravity="center"/>
+>>>>>>> 3c547fa9b26ff3559186f5b921a5a6eab9a86c8b
     </LinearLayout>
 </ScrollView>
 
