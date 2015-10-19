@@ -42,7 +42,7 @@
 
         <DatePicker
         android:layout_width="wrap_content"
-        android:layout_height="130dp"
+        android:layout_height="wrap_content"
         android:id="@+id/datePicker"
         android:calendarViewShown="false"
         android:spinnersShown="true"
@@ -56,15 +56,16 @@
 
         <TimePicker
         android:layout_width="wrap_content"
-        android:layout_height="104dp"
+        android:layout_height="wrap_content"
         android:id="@+id/timePicker"
        android:timePickerMode="spinner" />
 
-    <EditText
+        <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
+        android:hint="Give us more details!"
         android:id="@+id/editText" />
 
 
@@ -78,6 +79,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Upload Picture" />
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit" />
     </LinearLayout>
 </ScrollView>
 
