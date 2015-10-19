@@ -37,7 +37,7 @@ public class SubmitForm extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode,Intent data)
     {
-        super.onActivityResult(requestCode,resultCode,data);
+        super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data)
         {
             Uri selectedImage = data.getData();
@@ -63,7 +63,17 @@ public class SubmitForm extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
+        if(id == R.id.back_button)
+        {
+            back();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void back()
+    {
+        Intent intent = new Intent(SubmitForm.this, MainPage.class);
+        SubmitForm.this.startActivity(intent);
     }
 }
