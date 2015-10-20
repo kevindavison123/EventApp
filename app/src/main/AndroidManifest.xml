@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainPage"
-            android:label="@string/app_name" >
+            android:label="@string/titleForApp" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
