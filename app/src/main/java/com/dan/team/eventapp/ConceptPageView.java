@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+/* this is for demonstrating what a click on an image tile should do. This is a concept,
+ * the final should be dynamic and probably a fragment. */
 public class ConceptPageView extends AppCompatActivity {
 
     @Override
