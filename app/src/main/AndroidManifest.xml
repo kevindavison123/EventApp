@@ -37,7 +37,7 @@
             android:label="@string/title_activity_login_main" >
         </activity>
         <activity
-            android:name=".registration"
+            android:name=".Registration"
             android:label="@string/title_activity_registration" >
         </activity>
         <activity
