@@ -6,6 +6,7 @@ package com.dan.team.eventapp.library;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.json.JSONObject;
 
@@ -40,13 +41,13 @@ public class UserFunctions {
     public JSONObject loginUser(String email, String password) throws IOException {
         // Building Parameters
 
-        ContentValues values = new ContentValues();
+        HashMap<String, String> values = new HashMap<>();
         values.put("tag", login_tag);
         values.put("email", email);
         values.put("password", password);
 
 
-        JSONObject json = jsonParser.getJSONFromUrl(loginURL, );
+        JSONObject json = jsonParser.makeHttpRequest(loginURL,"GET", values);
         return json;
     }
 
@@ -55,12 +56,11 @@ public class UserFunctions {
      **/
 
     public JSONObject chgPass(String newpas, String email){
-        List params = new ArrayList();
-        params.add(new BasicNameValuePair("tag", chgpass_tag));
-
-        params.add(new BasicNameValuePair("newpas", newpas));
-        params.add(new BasicNameValuePair("email", email));
-        JSONObject json = jsonParser.getJSONFromUrl(chgpassURL, params);
+        HashMap<String, String> values = new HashMap<>();
+        values.put("tag", chgpass_tag);
+        values.put("newpass", newpas);
+        values.put("email", email);
+        JSONObject json = jsonParser.makeHttpRequest(chgpassURL, "POST", values);
         return json;
     }
 
@@ -69,10 +69,11 @@ public class UserFunctions {
      **/
 
     public JSONObject forPass(String forgotpassword){
-        List params = new ArrayList();
-        params.add(new BasicNameValuePair("tag", forpass_tag));
-        params.add(new BasicNameValuePair("forgotpassword", forgotpassword));
-        JSONObject json = jsonParser.getJSONFromUrl(forpassURL, params);
+        HashMap<String, String> values = new HashMap<>();
+        values.put("tag", forpass_tag);
+        values.put("forgotpassword", forgotpassword);
+
+        JSONObject json = jsonParser.makeHttpRequest(forpassURL, "GET", values);
         return json;
     }
 
@@ -81,14 +82,15 @@ public class UserFunctions {
      **/
     public JSONObject registerUser(String fname, String lname, String email, String uname, String password){
         // Building Parameters
-        List params = new ArrayList();
-        params.add(new BasicNameValuePair("tag", register_tag));
-        params.add(new BasicNameValuePair("fname", fname));
-        params.add(new BasicNameValuePair("lname", lname));
-        params.add(new BasicNameValuePair("email", email));
-        params.add(new BasicNameValuePair("uname", uname));
-        params.add(new BasicNameValuePair("password", password));
-        JSONObject json = jsonParser.getJSONFromUrl(registerURL,params);
+        HashMap<String, String> values = new HashMap<>();
+        values.put("tag", register_tag);
+        values.put("fname", fname);
+        values.put("lname", lname);
+        values.put("email", email);
+        values.put("uname", uname);
+        values.put("password", password);
+
+        JSONObject json = jsonParser.makeHttpRequest(registerURL, "POST", values);
         return json;
     }
 
