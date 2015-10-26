@@ -15,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Kevin on 10/24/2015.
@@ -30,7 +31,7 @@ public class JsonParser
 
     }
 
-    public JSONObject getJSONFromUrl(String url, List params) throws IOException {
+    public JSONObject getJSONFromUrl(String url, Map<String, String> params) throws IOException {
         // Making HTTP request
         URL openUrl = new URL(url);
         HttpURLConnection urlConnection = (HttpURLConnection) openUrl.openConnection();
