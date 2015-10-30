@@ -80,14 +80,13 @@ public class UserFunctions {
     /**
      * Function to  Register
      **/
-    public JSONObject registerUser(String fname, String lname, String email, String uname, String password){
+    public JSONObject registerUser(String fname, String lname, String email, String password){
         // Building Parameters
         HashMap<String, String> values = new HashMap<>();
         values.put("tag", register_tag);
         values.put("fname", fname);
         values.put("lname", lname);
         values.put("email", email);
-        values.put("uname", uname);
         values.put("password", password);
 
         JSONObject json = jsonParser.makeHttpRequest(registerURL, "POST", values);

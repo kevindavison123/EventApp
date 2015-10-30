@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,6 +51,11 @@ public class MainPage extends AppCompatActivity {
             addEvent();
             return true;
         }
+        if(id == R.id.login_button)
+        {
+            loginPage();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -57,6 +63,12 @@ public class MainPage extends AppCompatActivity {
     public void addEvent()
     {
         Intent intent = new Intent(MainPage.this, SubmitForm.class);
+        MainPage.this.startActivity(intent);
+    }
+
+    public void loginPage()
+    {
+        Intent intent = new Intent(MainPage.this, LoginMain.class);
         MainPage.this.startActivity(intent);
     }
 

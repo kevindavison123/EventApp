@@ -40,7 +40,7 @@ public class LoginMain extends Activity {
         forgotpassButton = (Button) findViewById(R.id.forgotPass);
         loginErrorMessage = (TextView) findViewById(R.id.loginErrorMessage);
 
-        forgotpassButton.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent forgetIntent = new Intent(v.getContext(),Registration.class);
@@ -52,7 +52,7 @@ public class LoginMain extends Activity {
             {
                 if((!inputUsername.getText().toString().equals("")) && (!inputPassword.getText().toString().equals("")))
                 {
-                  // netAsync(view);
+                    Toast.makeText(getApplicationContext(),"implement later! ", Toast.LENGTH_SHORT).show();
                 }
                 else if(inputUsername.getText().toString().equals(""))
                 {
@@ -71,7 +71,7 @@ public class LoginMain extends Activity {
 
     }
 
-    
+
 
 
 
