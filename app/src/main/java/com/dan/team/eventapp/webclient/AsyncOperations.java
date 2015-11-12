@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dan.team.eventapp.MainPage;
+import com.dan.team.eventapp.App;
 import com.loopj.android.http.*;
 
 import org.json.JSONArray;
@@ -25,9 +25,9 @@ import cz.msebera.android.httpclient.entity.StringEntity;
  * Created by Kevin on 10/28/2015.
  */
 public class AsyncOperations {
-    private static final String FORM_URL = "http://10.0.3.2:8080/";
+    private static final String FORM_URL = "http://10.0.2.2:8080/";
     private AsyncHttpClient client = new AsyncHttpClient();
-    private static Context context = MainPage.getContext();
+    private Context context = App.getContext();
 
     public void postJSON(JSONObject jsonObject, String url) {
         String restUrl = FORM_URL + url;
