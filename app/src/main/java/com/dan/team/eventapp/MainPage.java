@@ -46,16 +46,6 @@ public class MainPage extends AppCompatActivity {
         pager.setAdapter(adapter);
         tabs.setupWithViewPager(pager);
 
-
-//        // Get the ViewPager and set it's PagerAdapter so that it can display items
-//        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-//        viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(),
-//                MainPage.this));
-//
-//        // Give the TabLayout the ViewPager
-//        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-//        tabLayout.setupWithViewPager(viewPager);
-
     }
 
 
@@ -102,8 +92,6 @@ public class MainPage extends AppCompatActivity {
         Intent intent = new Intent(MainPage.this, LoginPage.class);
         MainPage.this.startActivity(intent);
     }
-
-
 
 
 
