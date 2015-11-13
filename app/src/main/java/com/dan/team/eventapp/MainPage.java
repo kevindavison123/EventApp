@@ -47,6 +47,10 @@ public class MainPage extends AppCompatActivity {
         pager.setAdapter(adapter);
         tabs.setupWithViewPager(pager);
 
+//        pager.setAdapter(adapter);
+//        tabs.setupWithViewPager(pager);
+
+
     }
 
 
