@@ -2,6 +2,9 @@ package com.dan.team.eventapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,21 +14,50 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
+import android.view.View;
 
 public class MainPage extends AppCompatActivity {
+
+    private Toolbar toolbar;                              // Declaring the Toolbar Object
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
 
-        /*
-         Layout creator, adds three buttons per line, if it can.
-         A button is associated with a text file from the database.
-         The event is fetched from the database, a button is created, and the link is made.
-         */
+        toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
+        setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
+        TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        toolbarTitle.setTypeface(Typeface.SERIF);
+
+
+        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager());
+
+        pager.setAdapter(adapter);
+        tabs.setupWithViewPager(pager);
+
+
+//        // Get the ViewPager and set it's PagerAdapter so that it can display items
+//        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+//        viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(),
+//                MainPage.this));
+//
+//        // Give the TabLayout the ViewPager
+//        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+//        tabLayout.setupWithViewPager(viewPager);
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,6 +82,11 @@ public class MainPage extends AppCompatActivity {
             addEvent();
             return true;
         }
+        if(id == R.id.login_button)
+        {
+            login();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -59,6 +96,16 @@ public class MainPage extends AppCompatActivity {
         Intent intent = new Intent(MainPage.this, SubmitForm.class);
         MainPage.this.startActivity(intent);
     }
+
+    public void login()
+    {
+        Intent intent = new Intent(MainPage.this, LoginPage.class);
+        MainPage.this.startActivity(intent);
+    }
+
+
+
+
 
     /* Demonstrates what happens when the user clicks an image button.
      * This is for demonstration purposes. The full implementation will
@@ -70,6 +117,5 @@ public class MainPage extends AppCompatActivity {
         MainPage.this.startActivity(intent);
     }
 
-
-
 }
+

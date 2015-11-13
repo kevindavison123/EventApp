@@ -15,16 +15,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class SubmitForm extends AppCompatActivity {
+public class LoginPage extends AppCompatActivity {
 
-    Button buttonLoadImage;
-    ImageView uploadImage;
-    private static int RESULT_LOAD_IMAGE = 1;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        setContentView(R.layout.activity_submit_form);
+        setContentView(R.layout.activity_login_page);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
         setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
@@ -33,36 +32,16 @@ public class SubmitForm extends AppCompatActivity {
         // Not needed for some reason getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
-
-        uploadImage = (ImageView) findViewById(R.id.imgView);
-        buttonLoadImage =(Button) findViewById(R.id.loadImageButton);
-        buttonLoadImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(i, RESULT_LOAD_IMAGE);
-            }
-        });
-
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode,Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data)
-        {
-            Uri selectedImage = data.getData();
-            uploadImage.setImageURI(selectedImage);
-        }
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_submit_form, menu);
+        getMenuInflater().inflate(R.menu.menu_login_page, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -91,14 +70,14 @@ public class SubmitForm extends AppCompatActivity {
 
     public void addEvent()
     {
-        Intent intent = new Intent(SubmitForm.this, SubmitForm.class);
-        SubmitForm.this.startActivity(intent);
+        Intent intent = new Intent(LoginPage.this, SubmitForm.class);
+        LoginPage.this.startActivity(intent);
     }
 
     public void login()
     {
-        Intent intent = new Intent(SubmitForm.this, LoginPage.class);
-        SubmitForm.this.startActivity(intent);
+        Intent intent = new Intent(LoginPage.this, LoginPage.class);
+        LoginPage.this.startActivity(intent);
     }
 
 }
