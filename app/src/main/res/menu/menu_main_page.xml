@@ -5,4 +5,5 @@ xmlns:tools="http://schemas.android.com/tools" tools:context=".MainPage">
     android:orderInCategory="100" app:showAsAction="never" />
 <item android:id="@+id/adding_button" android:title="@string/addButton"/>
 <item android:id="@+id/login_button" android:title="@string/login"/>
+
 </menu>

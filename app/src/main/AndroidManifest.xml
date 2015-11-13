@@ -5,9 +5,11 @@
     <uses-sdk android:minSdkVersion="11" >
     </uses-sdk>
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -31,6 +33,22 @@
         <activity
             android:name=".SubmitForm"
             android:label="@string/title_activity_submit_form" >
+        </activity>
+        <activity
+            android:name=".LoginMain"
+            android:label="@string/title_activity_login_main" >
+        </activity>
+        <activity
+            android:name=".Registration"
+            android:label="@string/title_activity_registration" >
+        </activity>
+        <activity
+            android:name=".PasswordReset"
+            android:label="@string/title_activity_password_reset" >
+        </activity>
+        <activity
+            android:name=".ChangePassword"
+            android:label="@string/title_activity_change_password" >
         </activity>
     </application>
 
