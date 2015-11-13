@@ -1,0 +1,13 @@
+database:
+  driverClass: com.mysql.jdbc.Driver
+  user: root
+  password:
+  url: jdbc:mysql://127.0.0.1:3306/EventApp
+
+server:
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+      - type: http
+        port: 8081
