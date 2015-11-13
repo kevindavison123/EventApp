@@ -18,14 +18,18 @@ import android.widget.TextView;
 public class SubmitForm extends AppCompatActivity {
 
     Button buttonLoadImage;
+    private TextView pDate, pTime;
     ImageView uploadImage;
     private static int RESULT_LOAD_IMAGE = 1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         setContentView(R.layout.activity_submit_form);
 
+        //Creates the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
         setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
         TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
@@ -33,6 +37,13 @@ public class SubmitForm extends AppCompatActivity {
         // Not needed for some reason getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
+
+        TextView pDate = (TextView) findViewById(R.id.pickDate);
+        pDate.setTypeface(Typeface.SERIF);
+
+        TextView pTime = (TextView) findViewById(R.id.pickTime);
+        pTime.setTypeface(Typeface.SERIF);
+
 
         uploadImage = (ImageView) findViewById(R.id.imgView);
         buttonLoadImage =(Button) findViewById(R.id.loadImageButton);

@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -25,6 +27,7 @@ public class LoginPage extends AppCompatActivity {
         Intent intent = getIntent();
         setContentView(R.layout.activity_login_page);
 
+        //Creates the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
         setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
         TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
@@ -32,6 +35,9 @@ public class LoginPage extends AppCompatActivity {
         // Not needed for some reason getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
+
+
+
     }
 
 

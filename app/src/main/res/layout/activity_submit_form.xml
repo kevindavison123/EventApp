@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="com.dan.team.eventapp.SubmitForm">
+    tools:context="com.dan.team.eventapp.SubmitForm"
+    android:background="@color/Background">
 
     <include
         android:id="@+id/tool_bar"
@@ -20,34 +21,52 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/yourName"
+                android:id="@+id/eventName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:ems="10"
-                android:hint="Your Name"
-                android:inputType="textPersonName" />
+                android:hint="  Event Name"
+                android:inputType="text"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                />
 
             <EditText
-                android:id="@+id/groupName"
+                android:id="@+id/eventLocation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:ems="10"
-                android:hint="Group/Organization Name"
-                android:inputType="textPersonName" />
+                android:hint="  Event Location"
+                android:inputType="text"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp" />
 
             <EditText
-                android:id="@+id/subjectName"
+                android:id="@+id/editDescription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:ems="10"
-                android:hint="Subject"
-                android:inputType="textPersonName" />
+                android:hint="  Description"
+                android:inputType="textMultiLine"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp" />
+
 
             <TextView
                 android:id="@+id/pickDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pick a Date" />
+                android:text="Pick a Date"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="20dp" />
 
             <DatePicker
                 android:id="@+id/datePicker"
@@ -55,27 +74,26 @@
                 android:layout_height="wrap_content"
                 android:calendarViewShown="false"
                 android:datePickerMode="spinner"
-                android:spinnersShown="true" />
+                android:spinnersShown="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="-20dp" />
 
             <TextView
                 android:id="@+id/pickTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pick a Time" />
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:text="Pick a Time"
+                android:layout_gravity="center_horizontal" />
 
             <TimePicker
                 android:id="@+id/timePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:timePickerMode="spinner" />
-
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Give us more details!"
-                android:inputType="textMultiLine" />
+                android:timePickerMode="spinner"
+                android:layout_gravity="center"
+                android:layout_marginTop="-20dp" />
 
 
             <ImageView
@@ -85,16 +103,23 @@
 
             <Button
                 android:id="@+id/loadImageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Upload Picture" />
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Upload Picture"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="left" />
 
             <Button
                 android:id="@+id/submitButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:text="Submit" />
+                android:text="Submit"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp" />
 
         </LinearLayout>
     </ScrollView>
