@@ -32,7 +32,7 @@ public class LoginMain extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
-
+        App.setContext(this);
         inputUsername = (EditText) findViewById(R.id.username);
         inputPassword = (EditText) findViewById(R.id.password);
         loginButton = (Button) findViewById(R.id.login);

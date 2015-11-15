@@ -3,14 +3,17 @@ package com.dan.team.eventapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< HEAD
+
 import android.support.v7.app.AppCompatActivity;
-=======
+
 import android.util.Log;
->>>>>>> 8b208abd75f82ea8c36d0f9e8805e3f5795ed043
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TableRow;
+
+import org.json.JSONArray;
 
 public class MainPage extends AppCompatActivity {
 
@@ -70,7 +73,7 @@ public class MainPage extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addEvent()
+    private void addEvent()
     {
         Intent intent = new Intent(MainPage.this, SubmitForm.class);
         MainPage.this.startActivity(intent);
