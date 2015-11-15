@@ -7,6 +7,8 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +29,22 @@ import android.view.View;
 public class MainPage extends AppCompatActivity {
 
     private Toolbar toolbar;                              // Declaring the Toolbar Object
+
+public class MainPage extends AppCompatActivity {
+
+    private static Context context;
+
+
+
+    public static Context getContext()
+    {
+        return MainPage.context;
+    }
+
+    public static void setContext(Context context)
+    {
+        MainPage.context = context;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +94,7 @@ public class MainPage extends AppCompatActivity {
         }
         if(id == R.id.login_button)
         {
-            login();
+            loginPage();
             return true;
         }
 
@@ -89,12 +107,11 @@ public class MainPage extends AppCompatActivity {
         MainPage.this.startActivity(intent);
     }
 
-    public void login()
+    public void loginPage()
     {
-        Intent intent = new Intent(MainPage.this, LoginPage.class);
+        Intent intent = new Intent(MainPage.this, LoginMain.class);
         MainPage.this.startActivity(intent);
     }
-
 
 
     /* Demonstrates what happens when the user clicks an image button.

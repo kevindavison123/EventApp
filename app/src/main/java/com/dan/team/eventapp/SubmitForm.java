@@ -1,9 +1,11 @@
 package com.dan.team.eventapp;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,20 +14,38 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.TimePicker;
+import android.widget.Toast;
+import com.dan.team.eventapp.webclient.ServiceClass;
+import java.util.Date;
 
 public class SubmitForm extends AppCompatActivity {
 
+
     Button buttonLoadImage;
     private TextView pDate, pTime;
+    Button submitForm;
     ImageView uploadImage;
-    private static int RESULT_LOAD_IMAGE = 1;
+    EditText author;
+    EditText photoLoc;
+    EditText groupName;
+    EditText titleName;
+    DatePicker date;
+    TimePicker time;
+    EditText details;
 
+    private ServiceClass serviceClass = new ServiceClass();
+    private static int RESULT_LOAD_IMAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        App.setContext(SubmitForm.this);
         Intent intent = getIntent();
         setContentView(R.layout.activity_submit_form);
 
@@ -47,6 +67,9 @@ public class SubmitForm extends AppCompatActivity {
 
         uploadImage = (ImageView) findViewById(R.id.imgView);
         buttonLoadImage =(Button) findViewById(R.id.loadImageButton);
+        submitForm = (Button) findViewById(R.id.submitButton);
+        date = (DatePicker) findViewById(R.id.datePicker);
+        time = (TimePicker) findViewById(R.id.timePicker);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,8 +78,30 @@ public class SubmitForm extends AppCompatActivity {
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
         });
+        submitForm.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v) {
+                String name = author.getText().toString();
+                String group = groupName.getText().toString();
+                String title = titleName.getText().toString();
+                int month = date.getMonth()+1;
+                int day = date.getDayOfMonth();
+
+                int year = date.getYear();
+                String getDate = month + "/" + day + "/" + year;
+                int hour = time.getCurrentHour();
+                int minute = time.getCurrentMinute();
+                String time = hour + ":" + minute;
+
+
+//                serviceClass.postNewEvent(name,);
+            }
+        });
 
     }
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onActivityResult(int requestCode, int resultCode,Intent data)
     {
@@ -65,7 +110,14 @@ public class SubmitForm extends AppCompatActivity {
         {
             Uri selectedImage = data.getData();
             uploadImage.setImageURI(selectedImage);
+            uploadImage.setAdjustViewBounds(true);
+            uploadImage.setCropToPadding(true);
+
+
         }
+
+
+
     }
 
     @Override
@@ -93,7 +145,7 @@ public class SubmitForm extends AppCompatActivity {
         }
         if(id == R.id.login_button)
         {
-            login();
+            loginPage();
             return true;
         }
 
@@ -106,10 +158,9 @@ public class SubmitForm extends AppCompatActivity {
         SubmitForm.this.startActivity(intent);
     }
 
-    public void login()
+    public void loginPage()
     {
-        Intent intent = new Intent(SubmitForm.this, LoginPage.class);
+        Intent intent = new Intent(SubmitForm.this, LoginMain.class);
         SubmitForm.this.startActivity(intent);
     }
-
 }

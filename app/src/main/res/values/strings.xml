@@ -7,4 +7,8 @@
     <string name="titleForConcept">U.N.C.L.E.</string>
     <string name="titleForApp">OSI</string>
     <string name="title_activity_submit_form">SubmitForm</string>
+    <string name="title_activity_login_main">Sign In</string>
+    <string name="title_activity_registration">Registration</string>
+    <string name="title_activity_password_reset">Password Reset</string>
+    <string name="title_activity_change_password">Change Password</string>
 </resources>
