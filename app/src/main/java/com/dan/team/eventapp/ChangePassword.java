@@ -50,8 +50,11 @@ public class ChangePassword extends AppCompatActivity {
             case R.id.login_button:
                 loginPage();
                 return true;
-            default:
+            case R.id.register_button:
+                registerPage();
                 return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
     }
@@ -68,4 +71,9 @@ public class ChangePassword extends AppCompatActivity {
         ChangePassword.this.startActivity(intent);
     }
 
+    public void registerPage()
+    {
+        Intent intent = new Intent(ChangePassword.this, Registration.class);
+        ChangePassword.this.startActivity(intent);
+    }
 }

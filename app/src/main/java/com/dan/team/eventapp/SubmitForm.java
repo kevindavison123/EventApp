@@ -58,6 +58,9 @@ public class SubmitForm extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
 
+
+
+
         TextView pDate = (TextView) findViewById(R.id.pickDate);
         pDate.setTypeface(Typeface.SERIF);
 
@@ -135,21 +138,23 @@ public class SubmitForm extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        if(id == R.id.adding_button)
-        {
-            addEvent();
-            return true;
-        }
-        if(id == R.id.login_button)
-        {
-            loginPage();
-            return true;
+
+        switch (id) {
+            case R.id.action_settings:
+                return true;
+            case R.id.adding_button:
+                addEvent();
+                return true;
+            case R.id.login_button:
+                loginPage();
+                return true;
+            case R.id.register_button:
+                registerPage();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
     }
 
     public void addEvent()
@@ -161,6 +166,12 @@ public class SubmitForm extends AppCompatActivity {
     public void loginPage()
     {
         Intent intent = new Intent(SubmitForm.this, LoginMain.class);
+        SubmitForm.this.startActivity(intent);
+    }
+
+    public void registerPage()
+    {
+        Intent intent = new Intent(SubmitForm.this, Registration.class);
         SubmitForm.this.startActivity(intent);
     }
 }

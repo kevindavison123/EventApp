@@ -70,21 +70,21 @@ public class MainPage extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                return true;
+            case R.id.adding_button:
+                addEvent();
+                return true;
+            case R.id.login_button:
+                loginPage();
+                return true;
+            case R.id.register_button:
+                registerPage();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        if(id == R.id.adding_button)
-        {
-            addEvent();
-            return true;
-        }
-        if(id == R.id.login_button)
-        {
-            loginPage();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void addEvent()
@@ -96,6 +96,12 @@ public class MainPage extends AppCompatActivity {
     public void loginPage()
     {
         Intent intent = new Intent(MainPage.this, LoginMain.class);
+        MainPage.this.startActivity(intent);
+    }
+
+    public void registerPage()
+    {
+        Intent intent = new Intent(MainPage.this, Registration.class);
         MainPage.this.startActivity(intent);
     }
 
