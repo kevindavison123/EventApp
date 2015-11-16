@@ -37,25 +37,24 @@
             android:parentActivityName=".MainPage">
         </activity>
         <activity
-            android:name=".LoginPage"
+            android:name=".LoginMain"
             android:label=""
             android:parentActivityName=".MainPage">
         </activity>
         <activity
-            android:name=".LoginMain"
-            android:label="@string/title_activity_login_main" >
-        </activity>
-        <activity
             android:name=".Registration"
-            android:label="@string/title_activity_registration" >
+            android:label=""
+            android:parentActivityName=".MainPage">
         </activity>
         <activity
             android:name=".PasswordReset"
-            android:label="@string/title_activity_password_reset" >
+            android:label=""
+            android:parentActivityName=".MainPage">
         </activity>
         <activity
             android:name=".ChangePassword"
-            android:label="@string/title_activity_change_password" >
+            android:label=""
+            android:parentActivityName=".MainPage">
         </activity>
     </application>
 

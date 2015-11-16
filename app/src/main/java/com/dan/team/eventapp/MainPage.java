@@ -28,23 +28,8 @@ import android.view.View;
 
 public class MainPage extends AppCompatActivity {
 
-    private Toolbar toolbar;                              // Declaring the Toolbar Object
-
-public class MainPage extends AppCompatActivity {
-
-    private static Context context;
-
-
-
-    public static Context getContext()
-    {
-        return MainPage.context;
-    }
-
-    public static void setContext(Context context)
-    {
-        MainPage.context = context;
-    }
+    private Toolbar toolbar;
+                         // Declaring the Toolbar Object
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +41,7 @@ public class MainPage extends AppCompatActivity {
         setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
         TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTypeface(Typeface.SERIF);
+
 
         //Creates the tabs
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
