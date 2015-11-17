@@ -3,10 +3,7 @@ package com.dan.team.eventapp;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -22,11 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
-
 import com.dan.team.eventapp.webclient.ServiceClass;
-
-import java.util.Date;
 import java.util.Random;
 
 
@@ -37,7 +30,6 @@ public class SubmitForm extends AppCompatActivity {
     Button submitForm;
     ImageView uploadImage;
     EditText author;
-    EditText photoLoc;
     EditText groupName;
     EditText titleName;
     DatePicker date;
@@ -52,12 +44,10 @@ public class SubmitForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         App.setContext(SubmitForm.this);
-        Intent intent = getIntent();
         setContentView(R.layout.activity_submit_form);
         uploadImage = (ImageView) findViewById(R.id.imgView);
         buttonLoadImage =(Button) findViewById(R.id.loadImageButton);
         submitForm = (Button) findViewById(R.id.submitButton);
-        layout = (LinearLayout) findViewById(R.id.formLayout);
         author = (EditText) findViewById(R.id.yourName);
         details = (EditText) findViewById(R.id.editText);
         groupName = (EditText) findViewById(R.id.groupName);
@@ -66,11 +56,10 @@ public class SubmitForm extends AppCompatActivity {
         time = (TimePicker) findViewById(R.id.timePicker);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
                     Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(i, RESULT_LOAD_IMAGE);
-
             }
         });
         submitForm.setOnClickListener(new View.OnClickListener()
@@ -93,7 +82,6 @@ public class SubmitForm extends AppCompatActivity {
                 String location = "hicks";
                 String description = details.getText().toString();
                 String time = hour + ":" + minute;
-//                Toast.makeText(SubmitForm.this,photoLoc, Toast.LENGTH_LONG).show();
                 sendImageToServer(title + getDate, photoLoc);
                 serviceClass.postNewEvent(author,photoLoc,description,title,location,getDate,time);
             }

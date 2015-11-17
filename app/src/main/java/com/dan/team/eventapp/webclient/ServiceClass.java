@@ -1,13 +1,9 @@
 package com.dan.team.eventapp.webclient;
 
-import android.graphics.Bitmap;
 import android.widget.LinearLayout;
-
 import com.loopj.android.http.RequestParams;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -27,6 +23,22 @@ public final class ServiceClass {
         String url = "events/weeklyevents";
         AsyncOperations get = new AsyncOperations();
         get.get(linearLayout, url);
+    }
+
+    public static void postUser(String firstName, String lastName, String password, String email)
+    {
+        AsyncOperations async = new AsyncOperations();
+        JSONObject jsonObject = new JSONObject();
+        try
+        {
+            jsonObject.put("firstName", firstName);
+            jsonObject.put("lastName", lastName);
+            jsonObject.put("password", password);
+            jsonObject.put("email", email);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static void postNewEvent(int authorId, String photoLocation, String description,
