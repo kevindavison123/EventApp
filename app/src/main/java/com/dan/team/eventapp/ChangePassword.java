@@ -1,9 +1,13 @@
 package com.dan.team.eventapp;
 
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class ChangePassword extends AppCompatActivity {
 
@@ -11,6 +15,16 @@ public class ChangePassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
+
+        //Creates the toolbar and gives the toolbar its title.
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
+        setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
+        TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        toolbarTitle.setTypeface(Typeface.SERIF);
+        // Not needed for some reason getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+
     }
 
     @Override
@@ -27,11 +41,39 @@ public class ChangePassword extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                return true;
+            case R.id.adding_button:
+                addEvent();
+                return true;
+            case R.id.login_button:
+                loginPage();
+                return true;
+            case R.id.register_button:
+                registerPage();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
+    }
+
+
+
+    public void addEvent() {
+        Intent intent = new Intent(ChangePassword.this, SubmitForm.class);
+        ChangePassword.this.startActivity(intent);
+    }
+
+    public void loginPage() {
+        Intent intent = new Intent(ChangePassword.this, LoginMain.class);
+        ChangePassword.this.startActivity(intent);
+    }
+
+    public void registerPage()
+    {
+        Intent intent = new Intent(ChangePassword.this, Registration.class);
+        ChangePassword.this.startActivity(intent);
     }
 }

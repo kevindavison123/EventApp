@@ -1,53 +1,51 @@
 package com.dan.team.eventapp;
 
-import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
-
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-
-import android.util.Log;
-
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TableRow;
+import android.widget.TextView;
 
-import org.json.JSONArray;
 
 public class MainPage extends AppCompatActivity {
 
-    private static Context context;
-
-    public static Context getContext()
-    {
-        return MainPage.context;
-    }
-
-    public static void setContext(Context context)
-    {
-        MainPage.context = context;
-    }
+    private Toolbar toolbar;
+                         // Declaring the Toolbar Object
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
 
-        /*
-         Layout creator, adds three buttons per line, if it can.
-         A button is associated with a text file from the database.
-         The event is fetched from the database, a button is created, and the link is made.
-         */
-    }
+        //Creates the toolbar
+        toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
+        setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
+        TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        toolbarTitle.setTypeface(Typeface.SERIF);
 
+
+        //Creates the tabs
+        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager());
+
+        pager.setAdapter(adapter);
+        tabs.setupWithViewPager(pager);
+
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main_page, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -56,21 +54,21 @@ public class MainPage extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                return true;
+            case R.id.adding_button:
+                addEvent();
+                return true;
+            case R.id.login_button:
+                loginPage();
+                return true;
+            case R.id.register_button:
+                registerPage();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        if(id == R.id.adding_button)
-        {
-            addEvent();
-            return true;
-        }
-        if(id == R.id.login_button)
-        {
-            loginPage();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private void addEvent()
@@ -85,6 +83,13 @@ public class MainPage extends AppCompatActivity {
         MainPage.this.startActivity(intent);
     }
 
+    public void registerPage()
+    {
+        Intent intent = new Intent(MainPage.this, Registration.class);
+        MainPage.this.startActivity(intent);
+    }
+
+
     /* Demonstrates what happens when the user clicks an image button.
      * This is for demonstration purposes. The full implementation will
      * be dynamically generated and use fragments but for demonstration
@@ -96,3 +101,4 @@ public class MainPage extends AppCompatActivity {
     }
 
 }
+

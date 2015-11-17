@@ -1,97 +1,127 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     tools:context="com.dan.team.eventapp.SubmitForm"
-    >
+    android:background="@color/Background">
 
-    <LinearLayout
-        android:id="@+id/formLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar">
+    </include>
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/tool_bar">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Your Name"
-        android:ems="10"
-        android:id="@+id/yourName" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Group/Organization Name"
-        android:ems="10"
-        android:id="@+id/groupName" />
+            <EditText
+                android:id="@+id/eventName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:hint="  Event Name"
+                android:inputType="text"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Subject"
-        android:ems="10"
-        android:id="@+id/subjectName" />
+            <EditText
+                android:id="@+id/eventLocation"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:hint="  Event Location"
+                android:inputType="text"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pick a Date"
-            android:id="@+id/pickDate" />
-
-        <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/datePicker"
-        android:calendarViewShown="false"
-        android:spinnersShown="true"
-            android:datePickerMode="spinner"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pick a Time"
-            android:id="@+id/pickTime" />
-
-        <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timePicker"
-       android:timePickerMode="spinner" />
-
-        <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:hint="Give us more details!"
-        android:id="@+id/editText" />
+            <EditText
+                android:id="@+id/editDescription"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:ems="10"
+                android:hint="  Description"
+                android:inputType="textMultiLine"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp" />
 
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:id="@+id/imgView"
-            />
-        <Button
-            android:id="@+id/loadImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upload Picture" />
-        <Button
-            android:id="@+id/submitButton"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit" />
+            <TextView
+                android:id="@+id/pickDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pick a Date"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="20dp" />
 
-    </LinearLayout>
-</ScrollView>
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:spinnersShown="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="-20dp" />
+
+            <TextView
+                android:id="@+id/pickTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:text="Pick a Time"
+                android:layout_gravity="center_horizontal" />
+
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner"
+                android:layout_gravity="center"
+                android:layout_marginTop="-20dp" />
 
 
+            <ImageView
+                android:id="@+id/imgView"
+                android:layout_gravity="center"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
 
+            <Button
+                android:id="@+id/loadImageButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Upload Picture"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="left" />
 
+            <Button
+                android:id="@+id/submitButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:text="Submit"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

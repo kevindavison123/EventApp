@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">EventApp</string>
     <string name="addButton">Add Event</string>
+    <string name="registerButton">Register</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="login">Login</string>
+    <string name="register">Register</string>
     <string name="titleForConcept">U.N.C.L.E.</string>
+    <string name="titleForApp">OSI</string>
     <string name="title_activity_submit_form">SubmitForm</string>
     <string name="title_activity_login_main">Sign In</string>
     <string name="title_activity_registration">Registration</string>
