@@ -25,20 +25,21 @@ public final class ServiceClass {
         get.get(linearLayout, url);
     }
 
-    public static void postUser(String firstName, String lastName, String password, String email)
+    public static void postUser(String firstName, String lastName, String email)
     {
+        String url = "users";
         AsyncOperations async = new AsyncOperations();
         JSONObject jsonObject = new JSONObject();
         try
         {
             jsonObject.put("firstName", firstName);
             jsonObject.put("lastName", lastName);
-            jsonObject.put("password", password);
             jsonObject.put("email", email);
         }catch (Exception e)
         {
             e.printStackTrace();
         }
+        async.postJSON(jsonObject,url);
     }
 
     public static void postNewEvent(int authorId, String photoLocation, String description,

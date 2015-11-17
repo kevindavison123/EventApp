@@ -49,7 +49,6 @@ public class Registration extends AppCompatActivity {
         password = (EditText) findViewById(R.id.rPassword);
         cPassword = (EditText) findViewById(R.id.cPassword);
         register = (Button) findViewById(R.id.rRegister);
-//        backToLogin = (Button) findViewById(R.id.backToLog);
         register.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -58,13 +57,21 @@ public class Registration extends AppCompatActivity {
                 String eName = email.getText().toString();
                 String passName = password.getText().toString();
                 String confirmPassName =  cPassword.getText().toString();
-                if(passName.equals(confirmPassName))
+                if((fName.equals("")) || (lName.equals(""))|| (eName.equals("")))
                 {
-                    serviceClass.postUser(fName,lName,passName,eName);
+                    Toast.makeText(Registration.this,"One or more fields are empty",Toast.LENGTH_SHORT).show();
+                }
+                else if(passName.equals(""))
+                {
+                    Toast.makeText(Registration.this,"Please enter a password",Toast.LENGTH_SHORT).show();
+                }
+                else if(passName.equals(confirmPassName))
+                {
+                    serviceClass.postUser(fName,lName,eName);
                 }
                 else
                 {
-                    Toast.makeText(Registration.this,"Passwords do not match",Toast.LENGTH_SHORT);
+                    Toast.makeText(Registration.this,"Passwords do not match",Toast.LENGTH_SHORT).show();
                 }
             }
         });
