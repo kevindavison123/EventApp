@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">EventApp</string>
+    <string name="addButton">Add Event</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="login">Login</string>
+    <string name="titleForConcept">U.N.C.L.E.</string>
+</resources>
