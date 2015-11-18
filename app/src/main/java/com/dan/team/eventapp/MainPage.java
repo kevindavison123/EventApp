@@ -28,8 +28,8 @@ import android.view.View;
 
 public class MainPage extends AppCompatActivity {
 
+    // Declaring the Toolbar Object
     private Toolbar toolbar;
-                         // Declaring the Toolbar Object
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
