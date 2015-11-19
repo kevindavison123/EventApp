@@ -54,13 +54,12 @@ public class Registration extends AppCompatActivity{
                 String lastName = editLastName.getText().toString();
                 String email = editEmail.getText().toString();
                 String password = editPassword.getText().toString();
-                String confirmPassword = editPassword.getText().toString();
+                String confirmPassword = editConfirmPassword.getText().toString();
 
 
                 if((!firstName.equals("")) && (!lastName.equals("")) && (!email.equals("")) &&
                         (!password.equals("")) && (!confirmPassword.equals("")) && (password.equals(confirmPassword))) {
-
-                    //ServiceClass.postNewuser(name, );
+                    ServiceClass.postNewUser(email, false, firstName, lastName, password);
                     Toast.makeText(getApplicationContext(), "User Added", Toast.LENGTH_SHORT).show();
                 }
                 else if(!password.equals(confirmPassword))
@@ -83,9 +82,6 @@ public class Registration extends AppCompatActivity{
                 {
                     Toast.makeText(getApplicationContext(),"Confirm password field is empty", Toast.LENGTH_SHORT).show();
                 }
-
-
-
 
             }
         });
