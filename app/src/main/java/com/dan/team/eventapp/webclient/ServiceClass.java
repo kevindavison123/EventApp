@@ -23,6 +23,8 @@ public final class ServiceClass {
         get.get(linearLayout, url);
     }
 
+
+
     public static void postNewEvent(int authorId, String photoLocation, String description,
                              String title, String location, String date, String time) {
         String url = "events/create";

@@ -39,7 +39,6 @@ public class SubmitForm extends AppCompatActivity {
     TimePicker time;
     EditText details;
 
-    private ServiceClass serviceClass = new ServiceClass();
     private static int RESULT_LOAD_IMAGE = 1;
 
     @Override
@@ -99,8 +98,9 @@ public class SubmitForm extends AppCompatActivity {
                 int minute = time.getCurrentMinute();
                 String time = hour + ":" + minute;
 
-
-//                serviceClass.postNewEvent(name,);
+//                ServiceClass.postNewEvent(name, vvvv, );
+//                int authorId, String photoLocation, String description,
+//                        String title, String location, String date, String time
             }
         });
 
@@ -157,6 +157,7 @@ public class SubmitForm extends AppCompatActivity {
         }
 
     }
+
 
     public void addEvent()
     {

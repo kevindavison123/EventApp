@@ -2,18 +2,23 @@ package com.dan.team.eventapp;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class Registration extends AppCompatActivity {
+import com.dan.team.eventapp.webclient.ServiceClass;
 
-    EditText fName, lName, userEmail, password, confirmPassword;
+public class Registration extends AppCompatActivity{
+
+    EditText editFirstName, editLastName, editEmail, editPassword, editConfirmPassword;
     Button registerButton;
 
     @Override
@@ -32,12 +37,61 @@ public class Registration extends AppCompatActivity {
 
 
 
-        fName = (EditText) findViewById(R.id.firstName);
-        lName = (EditText) findViewById(R.id.lastName);
-        userEmail = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.rPassword);
-        confirmPassword = (EditText) findViewById(R.id.cPassword);
+        editFirstName = (EditText) findViewById(R.id.firstName);
+        editLastName = (EditText) findViewById(R.id.lastName);
+        editEmail = (EditText) findViewById(R.id.email);
+        editPassword = (EditText) findViewById(R.id.rPassword);
+        editConfirmPassword = (EditText) findViewById(R.id.cPassword);
+
         registerButton = (Button) findViewById(R.id.rRegister);
+
+        registerButton.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v) {
+                String firstName = editFirstName.getText().toString();
+                String lastName = editLastName.getText().toString();
+                String email = editEmail.getText().toString();
+                String password = editPassword.getText().toString();
+                String confirmPassword = editPassword.getText().toString();
+
+
+                if((!firstName.equals("")) && (!lastName.equals("")) && (!email.equals("")) &&
+                        (!password.equals("")) && (!confirmPassword.equals("")) && (password.equals(confirmPassword))) {
+
+                    //ServiceClass.postNewuser(name, );
+                    Toast.makeText(getApplicationContext(), "User Added", Toast.LENGTH_SHORT).show();
+                }
+                else if(!password.equals(confirmPassword))
+                {
+                    Toast.makeText(getApplicationContext(),"Passwords do not match", Toast.LENGTH_SHORT).show();
+                }
+                else if(firstName.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(),"First name field is empty", Toast.LENGTH_SHORT).show();
+                }
+                else if(lastName.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(),"Last name field is empty", Toast.LENGTH_SHORT).show();
+                }
+                else if(password.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(),"Password field is empty", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Confirm password field is empty", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+
+            }
+        });
+
+
+
 
 
     }
