@@ -54,7 +54,6 @@ public final class ServiceClass {
         try
         {
             jsonObject.put("email", email);
-            jsonObject.put("isAdmin", isAdmin);
             jsonObject.put("password", password);
 
         }catch (Exception e)
