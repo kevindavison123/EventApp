@@ -66,20 +66,33 @@ public final class ServiceClass {
         async.postJSON(jsonObject, url);
     }
 
-    public static void postImage(String name, String path)
-    {
+    public static void postImage(String name, String path) {
         String url = "pictures";
         AsyncOperations async = new AsyncOperations();
         File picture = new File(path);
         RequestParams params = new RequestParams();
-        try
-        {
+        try {
             params.put(name, picture);
-        }catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        async.postImage(params,url);
+        async.postImage(params, url);
+    }
+
+    public static void postNewUser(String email, boolean isAdmin, String firstName, String lastName) {
+        String url = "user/create";
+        AsyncOperations async = new AsyncOperations();
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("email", email);
+            jsonObject.put("isAdmin", isAdmin);
+            jsonObject.put("firstName", firstName);
+            jsonObject.put("lastName", lastName);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        async.postJSON(jsonObject, url);
 
     }
 
