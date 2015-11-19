@@ -26,7 +26,7 @@ public class LoginMain extends AppCompatActivity {
     Button loginButton;
     Button registerButton;
     Button forgotpassButton;
-    EditText inputUsername;
+    EditText inputEmail;
     EditText inputPassword;
     private TextView loginErrorMessage;
 
@@ -60,7 +60,7 @@ public class LoginMain extends AppCompatActivity {
 
 
 
-        inputUsername = (EditText) findViewById(R.id.username);
+        inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         loginButton = (Button) findViewById(R.id.login);
         registerButton = (Button) findViewById(R.id.lRegister);
@@ -80,21 +80,24 @@ public class LoginMain extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-                if((!inputUsername.getText().toString().equals("")) && (!inputPassword.getText().toString().equals("")))
+                String email = inputEmail.getText().toString();
+                String password = inputPassword.getText().toString();
+                if((!email.equals("")) && (!password.equals("")))
                 {
+
                     Toast.makeText(getApplicationContext(),"implement later! ", Toast.LENGTH_SHORT).show();
                 }
-                else if(inputUsername.getText().toString().equals(""))
+                else if(email.equals("") && password.equals(""))
                 {
-                    Toast.makeText(getApplicationContext(),"Username field is empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Email and password fields are empty", Toast.LENGTH_SHORT).show();
                 }
-                else if(inputPassword.getText().toString().equals(""))
+                else if (password.equals(""))
                 {
                     Toast.makeText(getApplicationContext(),"Password field is empty", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(),"Username and Password fields are empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Email field is empty", Toast.LENGTH_SHORT).show();
                 }
 
             }

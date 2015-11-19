@@ -46,6 +46,25 @@ public final class ServiceClass {
         async.postJSON(jsonObject, url);
     }
 
+    public static void login(String email, boolean isAdmin, String password)
+    {
+        String url = "users";
+        AsyncOperations async = new AsyncOperations();
+        JSONObject jsonObject = new JSONObject();
+        try
+        {
+            jsonObject.put("email", email);
+            jsonObject.put("isAdmin", isAdmin);
+            jsonObject.put("password", password);
+
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        async.postJSON(jsonObject, url);
+    }
+
+
     public static void postNewEvent(int authorId, String photoLocation, String description,
                              String title, String location, String date, String time) {
         String url = "events/create";
@@ -77,23 +96,6 @@ public final class ServiceClass {
             e.printStackTrace();
         }
         async.postImage(params, url);
-    }
-
-    public static void postNewUser(String email, boolean isAdmin, String firstName, String lastName) {
-        String url = "user/create";
-        AsyncOperations async = new AsyncOperations();
-
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("email", email);
-            jsonObject.put("isAdmin", isAdmin);
-            jsonObject.put("firstName", firstName);
-            jsonObject.put("lastName", lastName);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        async.postJSON(jsonObject, url);
-
     }
 
     public static void deleteEvent(int eventId) {
