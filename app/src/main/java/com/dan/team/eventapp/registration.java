@@ -86,17 +86,12 @@ public class Registration extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
 
-
-
         fName = (EditText) findViewById(R.id.firstName);
         lName = (EditText) findViewById(R.id.lastName);
         userEmail = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.rPassword);
         confirmPassword = (EditText) findViewById(R.id.cPassword);
         registerButton = (Button) findViewById(R.id.rRegister);
-
-
-
     }
 
     @Override
