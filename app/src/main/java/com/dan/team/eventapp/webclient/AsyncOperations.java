@@ -1,7 +1,12 @@
 package com.dan.team.eventapp.webclient;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +52,35 @@ public class AsyncOperations {
             }
         });
     }
+    private void getImage(String url, final ImageButton imgButton)
+    {
+        client.get(FORM_URL + url, null, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                Bitmap image = BitmapFactory.decodeByteArray(responseBody,0,responseBody.length);
+                imgButton.setImageBitmap(image);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        });
+    }
+    public void postImage(RequestParams params,String path)
+    {
+        client.post(FORM_URL + path, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        });
+    }
 
     public void deleteEvent(int eventId, String url) {
         String restUrl = FORM_URL + url + "/" + eventId;
@@ -72,20 +106,25 @@ public class AsyncOperations {
 
             public void onSuccess(int statusCode, Header[] headers, JSONArray jsonArray) {
 
+                List<ImageButton> eventImages = new ArrayList<>();
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     try {
+                        ImageButton imageButton = new ImageButton(context);
+                        eventImages.add(imageButton);
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         Iterator<String> it = jsonObject.keys();
-                        String value = "";
+
                         List<TextView> textViews = new ArrayList();
                         while (it.hasNext()) {
                             String name = it.next();
-                            value = jsonObject.get(name).toString();
-                            TextView rowTextView = new TextView(context);
-                            rowTextView.setText(value);
-                            textViews.add(rowTextView);
-                            linearLayout.addView(rowTextView);
+                            String value = jsonObject.get(name).toString();
+                            if(name.equals("photo_loc"))
+                            {
+
+                                getImage(value, imageButton);
+                            }
+
                         }
 
                     } catch (JSONException e) {

@@ -1,9 +1,12 @@
 package com.dan.team.eventapp;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+
 import android.graphics.Typeface;
+
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -22,22 +25,27 @@ import android.widget.LinearLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import com.dan.team.eventapp.webclient.ServiceClass;
+
+import java.util.Random;
+
 import java.util.Date;
+
 
 public class SubmitForm extends AppCompatActivity {
 
+    final ServiceClass serviceClass = new ServiceClass();
 
     Button buttonLoadImage;
     private TextView pDate, pTime;
     Button submitForm;
     ImageView uploadImage;
     EditText author;
-    EditText photoLoc;
     EditText groupName;
     EditText titleName;
     DatePicker date;
     TimePicker time;
     EditText details;
+   private Uri photo;
 
     private static int RESULT_LOAD_IMAGE = 1;
 
@@ -45,7 +53,6 @@ public class SubmitForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         App.setContext(SubmitForm.this);
-        Intent intent = getIntent();
         setContentView(R.layout.activity_submit_form);
 
         //Creates the toolbar
@@ -57,13 +64,8 @@ public class SubmitForm extends AppCompatActivity {
         // Not needed for some reason getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
-
-
-
-
         TextView pDate = (TextView) findViewById(R.id.pickDate);
         pDate.setTypeface(Typeface.SERIF);
-
         TextView pTime = (TextView) findViewById(R.id.pickTime);
         pTime.setTypeface(Typeface.SERIF);
 
@@ -71,36 +73,45 @@ public class SubmitForm extends AppCompatActivity {
         uploadImage = (ImageView) findViewById(R.id.imgView);
         buttonLoadImage =(Button) findViewById(R.id.loadImageButton);
         submitForm = (Button) findViewById(R.id.submitButton);
+
+//        author = (EditText) findViewById(R.id.yourName);
+//        details = (EditText) findViewById(R.id.editText);
+//        groupName = (EditText) findViewById(R.id.groupName);
+//        titleName = (EditText) findViewById(R.id.subjectName);
+
         date = (DatePicker) findViewById(R.id.datePicker);
         time = (TimePicker) findViewById(R.id.timePicker);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
 
-                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(i, RESULT_LOAD_IMAGE);
-            }
-        });
+            public void onClick(View v)
+            {
+                    Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(i, RESULT_LOAD_IMAGE);
+        }});
         submitForm.setOnClickListener(new View.OnClickListener()
         {
 
             @Override
             public void onClick(View v) {
-                String name = author.getText().toString();
+                Random random = new Random();
+                int author = random.nextInt(300);
+
                 String group = groupName.getText().toString();
                 String title = titleName.getText().toString();
                 int month = date.getMonth()+1;
                 int day = date.getDayOfMonth();
-
+                String photoLoc = getURIPath();
                 int year = date.getYear();
                 String getDate = month + "/" + day + "/" + year;
                 int hour = time.getCurrentHour();
                 int minute = time.getCurrentMinute();
+                String location = "hicks";
+                String description = details.getText().toString();
                 String time = hour + ":" + minute;
 
-//                ServiceClass.postNewEvent(name, vvvv, );
-//                int authorId, String photoLocation, String description,
-//                        String title, String location, String date, String time
+                sendImageToServer(title + getDate, photoLoc);
+                serviceClass.postNewEvent(author,photoLoc,description,title,location,getDate,time);
             }
         });
 
@@ -112,15 +123,53 @@ public class SubmitForm extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data)
         {
-            Uri selectedImage = data.getData();
-            uploadImage.setImageURI(selectedImage);
-            uploadImage.setAdjustViewBounds(true);
-            uploadImage.setCropToPadding(true);
-
-
+           createImage(data);
         }
+        Toast.makeText(SubmitForm.this,getURIPath(), Toast.LENGTH_LONG).show();
+
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    private Uri createImage(Intent data)
+    {
+        Uri selectedImage = data.getData();
+        setUriPath(selectedImage);
+        uploadImage.setImageURI(selectedImage);
+        uploadImage.setAdjustViewBounds(true);
+        uploadImage.setCropToPadding(true);
+
+        return selectedImage;
+    }
+    private void setUriPath(Uri image)
+    {
+       this.photo = image;
+
+    }
+    private String getURIPath()
+    {
+        Cursor cursor = null;
+        try {
+
+            Context context = App.getContext();
+            Uri imagePicked = this.photo;
+            String[] proj = { MediaStore.Images.Media.DATA};
+            cursor = context.getContentResolver().query(imagePicked, proj, null, null, null);
+            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(columnIndex);
+        }finally {
+            if(cursor != null)
+            {
+                cursor.close();
+            }
+        }
+    }
 
 
+    private void sendImageToServer(String name, String photoLocation)
+    {
+//        Bitmap image = ((BitmapDrawable)uploadImage.getDrawable()).getBitmap();
+        serviceClass.postImage(name,photoLocation);
 
     }
 

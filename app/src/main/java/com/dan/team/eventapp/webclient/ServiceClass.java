@@ -1,9 +1,11 @@
 package com.dan.team.eventapp.webclient;
 
 import android.widget.LinearLayout;
-
+import com.loopj.android.http.RequestParams;
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Created by kevin on 10/27/2015.
@@ -23,7 +25,26 @@ public final class ServiceClass {
         get.get(linearLayout, url);
     }
 
+    public static void postUser(String email, boolean isAdmin, String firstName, String lastName,
+    String password)
+    {
+        String url = "users";
+        AsyncOperations async = new AsyncOperations();
+        JSONObject jsonObject = new JSONObject();
+        try
+        {
+            jsonObject.put("email", email);
+            jsonObject.put("isAdmin", isAdmin);
+            jsonObject.put("firstName", firstName);
+            jsonObject.put("lastName", lastName);
+            jsonObject.put("password", password);
 
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        async.postJSON(jsonObject, url);
+    }
 
     public static void postNewEvent(int authorId, String photoLocation, String description,
                              String title, String location, String date, String time) {
@@ -45,22 +66,21 @@ public final class ServiceClass {
         async.postJSON(jsonObject, url);
     }
 
-    public static void postNewUser(String email, boolean isAdmin, String firstName, String lastName,
-                                   String password) {
-        String url = "user/create";
+    public static void postImage(String name, String path)
+    {
+        String url = "pictures";
         AsyncOperations async = new AsyncOperations();
-
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("email", email);
-            jsonObject.put("isAdmin", isAdmin);
-            jsonObject.put("firstName", firstName);
-            jsonObject.put("lastName", lastName);
-            jsonObject.put("password", password);
-        } catch (JSONException e) {
+        File picture = new File(path);
+        RequestParams params = new RequestParams();
+        try
+        {
+            params.put(name, picture);
+        }catch (FileNotFoundException e)
+        {
             e.printStackTrace();
         }
-        async.postJSON(jsonObject, url);
+        async.postImage(params,url);
+
     }
 
     public static void deleteEvent(int eventId) {

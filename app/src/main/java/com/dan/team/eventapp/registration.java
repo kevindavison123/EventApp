@@ -1,6 +1,7 @@
 package com.dan.team.eventapp;
 
 import android.content.Intent;
+
 import android.graphics.Typeface;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -13,18 +14,62 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.dan.team.eventapp.webclient.ServiceClass;
 
-public class Registration extends AppCompatActivity{
 
-    EditText editFirstName, editLastName, editEmail, editPassword, editConfirmPassword;
-    Button registerButton;
+public class Registration extends AppCompatActivity {
+
+    EditText firstName;
+    EditText lastName;
+    EditText email;
+    EditText password;
+    EditText cPassword;
+    Button register;
+    Button backToLogin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+        App.setContext(Registration.this);
+        final ServiceClass serviceClass = new ServiceClass();
+        firstName = (EditText) findViewById(R.id.firstName);
+        lastName = (EditText) findViewById(R.id.lastName);
+        email = (EditText) findViewById(R.id.email);
+        password = (EditText) findViewById(R.id.rPassword);
+        cPassword = (EditText) findViewById(R.id.cPassword);
+        register = (Button) findViewById(R.id.rRegister);
+        register.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                String fName = firstName.getText().toString();
+                String lName = lastName.getText().toString();
+                String eName = email.getText().toString();
+                String passName = password.getText().toString();
+                String confirmPassName =  cPassword.getText().toString();
+                if((fName.equals("")) || (lName.equals(""))|| (eName.equals("")))
+                {
+                    Toast.makeText(Registration.this,"One or more fields are empty",Toast.LENGTH_SHORT).show();
+                }
+                else if(passName.equals(""))
+                {
+                    Toast.makeText(Registration.this,"Please enter a password",Toast.LENGTH_SHORT).show();
+                }
+                else if(passName.equals(confirmPassName))
+                {
+                    serviceClass.postUser(eName, false, fName, lName,
+                        passName);
+                }
+                else
+                {
+                    Toast.makeText(Registration.this,"Passwords do not match",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
 
         //Creates the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
@@ -34,58 +79,6 @@ public class Registration extends AppCompatActivity{
         // Not needed for some reason getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
-
-
-
-        editFirstName = (EditText) findViewById(R.id.firstName);
-        editLastName = (EditText) findViewById(R.id.lastName);
-        editEmail = (EditText) findViewById(R.id.email);
-        editPassword = (EditText) findViewById(R.id.rPassword);
-        editConfirmPassword = (EditText) findViewById(R.id.cPassword);
-
-        registerButton = (Button) findViewById(R.id.rRegister);
-
-        registerButton.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v) {
-                String firstName = editFirstName.getText().toString();
-                String lastName = editLastName.getText().toString();
-                String email = editEmail.getText().toString();
-                String password = editPassword.getText().toString();
-                String confirmPassword = editConfirmPassword.getText().toString();
-
-
-                if((!firstName.equals("")) && (!lastName.equals("")) && (!email.equals("")) &&
-                        (!password.equals("")) && (!confirmPassword.equals("")) && (password.equals(confirmPassword))) {
-                    ServiceClass.postNewUser(email, false, firstName, lastName, password);
-                    Toast.makeText(getApplicationContext(), "User Added", Toast.LENGTH_SHORT).show();
-                }
-                else if(!password.equals(confirmPassword))
-                {
-                    Toast.makeText(getApplicationContext(),"Passwords do not match", Toast.LENGTH_SHORT).show();
-                }
-                else if(firstName.equals(""))
-                {
-                    Toast.makeText(getApplicationContext(),"First name field is empty", Toast.LENGTH_SHORT).show();
-                }
-                else if(lastName.equals(""))
-                {
-                    Toast.makeText(getApplicationContext(),"Last name field is empty", Toast.LENGTH_SHORT).show();
-                }
-                else if(password.equals(""))
-                {
-                    Toast.makeText(getApplicationContext(),"Password field is empty", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),"Confirm password field is empty", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
 
 
 
