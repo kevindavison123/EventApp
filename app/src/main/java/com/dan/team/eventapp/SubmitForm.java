@@ -102,7 +102,7 @@ public class SubmitForm extends AppCompatActivity {
 //                Random random = new Random();
 //                int author = random.nextInt(300);
 //
-                String title = titleName.getText().toString();
+//                String title = titleName.getText().toString();
                 int month = date.getMonth()+1;
                 int day = date.getDayOfMonth();
 //                String photoLoc = getURIPath();
@@ -113,7 +113,7 @@ public class SubmitForm extends AppCompatActivity {
 //                String location = "hicks";
 //                String description = details.getText().toString();
 //                String time = hour + ":" + minute;
-                sendImageToServer(title+getDate);
+                sendImageToServer(getDate);
 //                serviceClass.postNewEvent(author,photoLoc,description,title,location,getDate,time);
             }
         });
@@ -172,9 +172,9 @@ public class SubmitForm extends AppCompatActivity {
     private void sendImageToServer(String name)
     {
         Bitmap image = ((BitmapDrawable)uploadImage.getDrawable()).getBitmap();
-        Bitmap thumbnail = resizeImage(image,200,200);
+        Bitmap thumbnail = resizeImage(image,150,150);
         thumbView.setImageBitmap(thumbnail);
-        serviceClass.postImage(name,image,thumbnail);
+//        serviceClass.postImage(name,image,thumbnail);
 
     }
 
