@@ -1,20 +1,30 @@
 package com.dan.team.eventapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.dan.team.eventapp.webclient.ServiceClass;
 
 
 public class MainPage extends AppCompatActivity {
 
+
+    private int width = 0;
     // Declaring the Toolbar Object
     private Toolbar toolbar;
 
@@ -22,7 +32,7 @@ public class MainPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
-
+        App.setContext(MainPage.this);
         //Creates the toolbar
         toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
         setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
@@ -37,6 +47,18 @@ public class MainPage extends AppCompatActivity {
 
         pager.setAdapter(adapter);
         tabs.setupWithViewPager(pager);
+
+         /*
+         Layout creator, adds three buttons per line, if it can.
+         A button is associated with a text file from the database.
+         The event is fetched from the database, a button is created, and the link is made.
+         */
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        width = size.x;
+        TableLayout mainPage = (TableLayout) findViewById(R.id.tableLayout);
+        ServiceClass.formGetAll(mainPage, width);
 
 
     }

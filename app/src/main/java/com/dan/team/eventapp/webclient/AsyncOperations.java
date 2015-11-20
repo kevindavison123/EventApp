@@ -1,17 +1,27 @@
 package com.dan.team.eventapp.webclient;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.design.widget.TabLayout;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dan.team.eventapp.App;
+import com.dan.team.eventapp.PageView;
+import com.dan.team.eventapp.R;
 import com.loopj.android.http.*;
 
 import org.json.JSONArray;
@@ -20,6 +30,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -98,7 +109,7 @@ public class AsyncOperations {
 
     }
 
-    public void get(final LinearLayout linearLayout, String url) {
+    public void get(final TableLayout tableLayout, String url, final int width) {
         String restUrl = FORM_URL + url;
 
 
@@ -111,35 +122,51 @@ public class AsyncOperations {
 
             }
 
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
             public void onSuccess(int statusCode, Header[] headers, JSONArray jsonArray) {
+                Toast.makeText(context,context.toString(),Toast.LENGTH_SHORT);
+                TableRow[] rows;
+                ArrayList<ImageButton> imageButtons = new ArrayList<>();
+                ArrayList<TableRow> tableRows;
+                int size = jsonArray.length();
+                TableRow.LayoutParams tableRowParams = new TableRow.LayoutParams(width/2,width/2);
+                tableRowParams.setMargins(0,0,0,0);
+                TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
+                tableLayoutParams.setMargins(0,0,0,0);
 
-                List<ImageButton> eventImages = new ArrayList<>();
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    try {
-                        ImageButton imageButton = new ImageButton(context);
-                        eventImages.add(imageButton);
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        Iterator<String> it = jsonObject.keys();
-
-                        List<TextView> textViews = new ArrayList();
-                        while (it.hasNext()) {
-                            String name = it.next();
-                            String value = jsonObject.get(name).toString();
-                            if(name.equals("photo_loc"))
-                            {
-
-                                getImage(value, imageButton);
-                            }
-
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
+                for (int i = 0; i < size; i++)
+                {
+                    ImageButton newButton = new ImageButton(context);
+                    imageButtons.add(newButton);
                 }
 
+                TableRow row = new TableRow(context);
+                tableLayout.addView(row);
+                for(int i = 0; i<imageButtons.size(); i++)
+                {
+                    int id = 0;
+                    imageButtons.get(i).setId(id);
+                    imageButtons.get(i).setCropToPadding(true);
+                    imageButtons.get(i).setAdjustViewBounds(true);
+                    imageButtons.get(i).setScaleType(ImageView.ScaleType.FIT_XY);
+                    imageButtons.get(i).setBackground(null);
+                    imageButtons.get(i).setLayoutParams(tableRowParams);
+                    imageButtons.get(i).setImageResource(R.drawable.americanultra);
+                    imageButtons.get(i).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
+                    Log.d("This is the i", " " + i);
+                    if(i%2==0)
+                    {
+                        TableRow tableRow = new TableRow(context);
+                        tableRow.addView(imageButtons.get(i),tableRowParams);
+                        tableRow.addView(imageButtons.get(i+1),tableRowParams);
+                        tableLayout.addView(tableRow,tableLayoutParams);
+                    }
+                }
 
                 Log.d("omg android", jsonArray.toString());
             }

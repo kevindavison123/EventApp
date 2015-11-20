@@ -2,6 +2,8 @@ package com.dan.team.eventapp.webclient;
 
 import android.graphics.Bitmap;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+
 import com.loopj.android.http.RequestParams;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,18 +16,19 @@ import java.io.FileNotFoundException;
  */
 public final class ServiceClass {
 
-    public static void formGetAll(LinearLayout linearLayout) {
+    public static void formGetAll(TableLayout tableLayout,int width)
+    {
         String url = "events/allevents";
         AsyncOperations get = new AsyncOperations();
         //This needs to be TableLayout
-        get.get(linearLayout, url);
+        get.get(tableLayout,url,width);
     }
 
-    public static void formGetWeekly(LinearLayout linearLayout) {
+    public static void formGetWeekly(TableLayout tableLayout,int width) {
         String url = "events/weeklyevents";
         AsyncOperations get = new AsyncOperations();
         //This needs to be TableLayout
-        get.get(linearLayout, url);
+        get.get(tableLayout, url,width);
     }
 
 
