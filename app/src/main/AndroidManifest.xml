@@ -46,11 +46,11 @@
             android:label=""
             android:parentActivityName=".MainPage">
         </activity>
-        <activity
-            android:name=".PasswordReset"
-            android:label=""
-            android:parentActivityName=".MainPage">
-        </activity>
+        <!--<activity-->
+            <!--android:name=".PasswordReset"-->
+            <!--android:label=""-->
+            <!--android:parentActivityName=".MainPage">-->
+        <!--</activity>-->
         <activity
             android:name=".ChangePassword"
             android:label=""

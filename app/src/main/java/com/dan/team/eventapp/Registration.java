@@ -3,6 +3,7 @@ package com.dan.team.eventapp;
 import android.content.Intent;
 
 import android.graphics.Typeface;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,29 +12,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-
-
+import android.widget.Toast;
 import com.dan.team.eventapp.webclient.ServiceClass;
+
 
 public class Registration extends AppCompatActivity {
 
     EditText firstName;
     EditText lastName;
     EditText email;
-    EditText rPassword;
+    EditText password;
     EditText cPassword;
     Button register;
     Button backToLogin;
-
-
-
-
-    EditText fName, lName, userEmail, password, confirmPassword;
-    Button registerButton;
 
 
     @Override
@@ -77,6 +69,7 @@ public class Registration extends AppCompatActivity {
         });
 
 
+
         //Creates the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
         setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
@@ -86,12 +79,7 @@ public class Registration extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
 
-        fName = (EditText) findViewById(R.id.firstName);
-        lName = (EditText) findViewById(R.id.lastName);
-        userEmail = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.rPassword);
-        confirmPassword = (EditText) findViewById(R.id.cPassword);
-        registerButton = (Button) findViewById(R.id.rRegister);
+
     }
 
     @Override

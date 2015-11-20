@@ -36,6 +36,7 @@ import java.util.Date;
 
 public class SubmitForm extends AppCompatActivity {
 
+    final ServiceClass serviceClass = new ServiceClass();
 
     Button buttonLoadImage;
     private TextView pDate, pTime;
@@ -50,7 +51,6 @@ public class SubmitForm extends AppCompatActivity {
     EditText details;
    private Uri photo;
 
-    private ServiceClass serviceClass = new ServiceClass();
     private static int RESULT_LOAD_IMAGE = 1;
 
     @Override
@@ -64,6 +64,7 @@ public class SubmitForm extends AppCompatActivity {
         setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
         TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTypeface(Typeface.SERIF);
+
         // Not needed for some reason getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
@@ -108,6 +109,7 @@ public class SubmitForm extends AppCompatActivity {
 //                String photoLoc = getURIPath();
                 int year = date.getYear();
                 String getDate = month + "/" + day + "/" + year;
+
 //                int hour = time.getCurrentHour();
 //                int minute = time.getCurrentMinute();
 //                String location = "hicks";
@@ -115,6 +117,16 @@ public class SubmitForm extends AppCompatActivity {
 //                String time = hour + ":" + minute;
                 sendImageToServer(getDate);
 //                serviceClass.postNewEvent(author,photoLoc,description,title,location,getDate,time);
+
+                int hour = time.getCurrentHour();
+                int minute = time.getCurrentMinute();
+                String location = "hicks";
+                String description = details.getText().toString();
+                String time = hour + ":" + minute;
+
+                sendImageToServer(getDate);
+//                serviceClass.postNewEvent(author,description,title,location,getDate,time);
+
             }
         });
 
@@ -181,27 +193,13 @@ public class SubmitForm extends AppCompatActivity {
     private Bitmap resizeImage(Bitmap bm, int newWidth, int newHeight)
     {
         int width = bm.getWidth();
-
         int height = bm.getHeight();
-
         float scaleWidth = ((float) newWidth) / width;
-
         float scaleHeight = ((float) newHeight) / height;
-
-// CREATE A MATRIX FOR THE MANIPULATION
-
         Matrix matrix = new Matrix();
-
-// RESIZE THE BIT MAP
-
         matrix.postScale(scaleWidth, scaleHeight);
-
-// RECREATE THE NEW BITMAP
-
         Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
-
         return resizedBitmap;
-
     }
 
 
@@ -238,6 +236,7 @@ public class SubmitForm extends AppCompatActivity {
         }
 
     }
+
 
     public void addEvent()
     {

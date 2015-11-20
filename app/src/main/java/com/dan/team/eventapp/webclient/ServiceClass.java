@@ -28,7 +28,9 @@ public final class ServiceClass {
         get.get(linearLayout, url);
     }
 
+
     public static void postUser(String firstName, String lastName, String email, String password)
+
     {
         String url = "user/create";
         AsyncOperations async = new AsyncOperations();
@@ -66,7 +68,6 @@ public final class ServiceClass {
         }
         async.postJSON(jsonObject, url);
     }
-
 
     public static void postImage(String imageName, Bitmap image, Bitmap thumbnail)
     {
