@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.Typeface;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -38,6 +41,7 @@ public class SubmitForm extends AppCompatActivity {
     private TextView pDate, pTime;
     Button submitForm;
     ImageView uploadImage;
+    ImageView thumbView;
     EditText author;
     EditText groupName;
     EditText titleName;
@@ -70,6 +74,7 @@ public class SubmitForm extends AppCompatActivity {
 
 
         uploadImage = (ImageView) findViewById(R.id.imgView);
+        thumbView = (ImageView) findViewById(R.id.imgThumb);
         buttonLoadImage =(Button) findViewById(R.id.loadImageButton);
         submitForm = (Button) findViewById(R.id.submitButton);
 
@@ -83,33 +88,33 @@ public class SubmitForm extends AppCompatActivity {
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
             @Override
 
-            public void onClick(View v)
-            {
-                    Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(i, RESULT_LOAD_IMAGE);
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, RESULT_LOAD_IMAGE);
+
         }});
+
         submitForm.setOnClickListener(new View.OnClickListener()
         {
 
             @Override
             public void onClick(View v) {
-                Random random = new Random();
-                int author = random.nextInt(300);
-
-                String group = groupName.getText().toString();
+//                Random random = new Random();
+//                int author = random.nextInt(300);
+//
                 String title = titleName.getText().toString();
                 int month = date.getMonth()+1;
                 int day = date.getDayOfMonth();
-                String photoLoc = getURIPath();
+//                String photoLoc = getURIPath();
                 int year = date.getYear();
                 String getDate = month + "/" + day + "/" + year;
-                int hour = time.getCurrentHour();
-                int minute = time.getCurrentMinute();
-                String location = "hicks";
-                String description = details.getText().toString();
-                String time = hour + ":" + minute;
-                sendImageToServer(title + getDate, photoLoc);
-                serviceClass.postNewEvent(author,photoLoc,description,title,location,getDate,time);
+//                int hour = time.getCurrentHour();
+//                int minute = time.getCurrentMinute();
+//                String location = "hicks";
+//                String description = details.getText().toString();
+//                String time = hour + ":" + minute;
+                sendImageToServer(title+getDate);
+//                serviceClass.postNewEvent(author,photoLoc,description,title,location,getDate,time);
             }
         });
 
@@ -164,12 +169,41 @@ public class SubmitForm extends AppCompatActivity {
     }
 
 
-    private void sendImageToServer(String name, String photoLocation)
+    private void sendImageToServer(String name)
     {
-//        Bitmap image = ((BitmapDrawable)uploadImage.getDrawable()).getBitmap();
-        serviceClass.postImage(name,photoLocation);
+        Bitmap image = ((BitmapDrawable)uploadImage.getDrawable()).getBitmap();
+        Bitmap thumbnail = resizeImage(image,200,200);
+        thumbView.setImageBitmap(thumbnail);
+        serviceClass.postImage(name,image,thumbnail);
 
     }
+
+    private Bitmap resizeImage(Bitmap bm, int newWidth, int newHeight)
+    {
+        int width = bm.getWidth();
+
+        int height = bm.getHeight();
+
+        float scaleWidth = ((float) newWidth) / width;
+
+        float scaleHeight = ((float) newHeight) / height;
+
+// CREATE A MATRIX FOR THE MANIPULATION
+
+        Matrix matrix = new Matrix();
+
+// RESIZE THE BIT MAP
+
+        matrix.postScale(scaleWidth, scaleHeight);
+
+// RECREATE THE NEW BITMAP
+
+        Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+
+        return resizedBitmap;
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

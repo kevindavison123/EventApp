@@ -1,5 +1,6 @@
 package com.dan.team.eventapp.webclient;
 
+import android.graphics.Bitmap;
 import android.widget.LinearLayout;
 import com.loopj.android.http.RequestParams;
 import org.json.JSONException;
@@ -16,12 +17,14 @@ public final class ServiceClass {
     public static void formGetAll(LinearLayout linearLayout) {
         String url = "events/allevents";
         AsyncOperations get = new AsyncOperations();
+        //This needs to be TableLayout
         get.get(linearLayout, url);
     }
 
     public static void formGetWeekly(LinearLayout linearLayout) {
         String url = "events/weeklyevents";
         AsyncOperations get = new AsyncOperations();
+        //This needs to be TableLayout
         get.get(linearLayout, url);
     }
 
@@ -41,7 +44,7 @@ public final class ServiceClass {
         {
             e.printStackTrace();
         }
-        async.postJSON(jsonObject,url);
+        async.postJSON(jsonObject, url);
     }
 
     public static void postNewEvent(int authorId, String photoLocation, String description,
@@ -65,34 +68,18 @@ public final class ServiceClass {
     }
 
 
-    public static void postImage(String name, String path) {
-        String url = "pictures";
+    public static void postImage(String imageName, Bitmap image, Bitmap thumbnail)
+    {
+        String url = "Some url Liam will make";
+        String thumbName = imageName + "_thumb";
         AsyncOperations async = new AsyncOperations();
-        File picture = new File(path);
         RequestParams params = new RequestParams();
-        try {
-            params.put(name, picture);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        params.put("name", imageName);
+        params.put("image", image);
+        params.put("thumbnail", thumbName);
+        params.put("thumbnailImage", thumbnail);
+
         async.postImage(params, url);
-    }
-
-    public static void postNewUser(String email, boolean isAdmin, String firstName, String lastName) {
-        String url = "user/create";
-        AsyncOperations async = new AsyncOperations();
-
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("email", email);
-            jsonObject.put("isAdmin", isAdmin);
-            jsonObject.put("firstName", firstName);
-            jsonObject.put("lastName", lastName);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        async.postJSON(jsonObject, url);
-
     }
 
     public static void deleteEvent(int eventId) {

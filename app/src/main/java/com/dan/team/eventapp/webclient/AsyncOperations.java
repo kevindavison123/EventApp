@@ -59,7 +59,7 @@ public class AsyncOperations {
         client.get(FORM_URL + url, null, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                Bitmap image = BitmapFactory.decodeByteArray(responseBody,0,responseBody.length);
+                Bitmap image = BitmapFactory.decodeByteArray(responseBody, 0, responseBody.length);
                 imgButton.setImageBitmap(image);
             }
 
@@ -69,9 +69,9 @@ public class AsyncOperations {
             }
         });
     }
-    public void postImage(RequestParams params,String path)
+    public void postImage(RequestParams params, String url)
     {
-        client.post(FORM_URL + path, params, new AsyncHttpResponseHandler() {
+        client.post(FORM_URL + url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
@@ -83,6 +83,11 @@ public class AsyncOperations {
             }
         });
     }
+
+
+
+
+
 
     public void deleteEvent(int eventId, String url) {
         String restUrl = FORM_URL + url + "/" + eventId;
