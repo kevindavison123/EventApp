@@ -15,29 +15,27 @@ import android.widget.TextView;
 
 public class MainPage extends AppCompatActivity {
 
-    // Declaring the Toolbar Object
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
 
-        //Creates the toolbar
-        toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
-        setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
+        //Finds the toolbar and sets it up as an actionbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        //Sets the toolbar title and font.
         TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTypeface(Typeface.SERIF);
 
-
-        //Creates the tabs
+        //Finds the tab layout and the viewpager, which shows the content for each tab
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager());
 
+        //Essentially this displays the tabs and the content each tab's fragment holds.
+        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
         tabs.setupWithViewPager(pager);
-
 
     }
     @Override
@@ -53,40 +51,27 @@ public class MainPage extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        //This is used to navigate between each supplementary
+        //activity via the action bar.
+        Intent intent;
         switch (id) {
             case R.id.action_settings:
                 return true;
             case R.id.adding_button:
-                addEvent();
+                intent = new Intent(MainPage.this, SubmitForm.class);
+                MainPage.this.startActivity(intent);
                 return true;
             case R.id.login_button:
-                loginPage();
+                intent = new Intent(MainPage.this, LoginMain.class);
+                MainPage.this.startActivity(intent);
                 return true;
             case R.id.register_button:
-                registerPage();
+                intent = new Intent(MainPage.this, Registration.class);
+                MainPage.this.startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void addEvent()
-    {
-        Intent intent = new Intent(MainPage.this, SubmitForm.class);
-        MainPage.this.startActivity(intent);
-    }
-
-    public void loginPage()
-    {
-        Intent intent = new Intent(MainPage.this, LoginMain.class);
-        MainPage.this.startActivity(intent);
-    }
-
-    public void registerPage()
-    {
-        Intent intent = new Intent(MainPage.this, Registration.class);
-        MainPage.this.startActivity(intent);
     }
 
 

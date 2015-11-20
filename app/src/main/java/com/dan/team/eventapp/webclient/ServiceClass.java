@@ -25,16 +25,15 @@ public final class ServiceClass {
         get.get(linearLayout, url);
     }
 
-    public static void postUser(String email, boolean isAdmin, String firstName, String lastName,
-    String password)
+    public static void postUser(String firstName, String lastName, String email, String password)
     {
-        String url = "users";
+        String url = "user/create";
         AsyncOperations async = new AsyncOperations();
         JSONObject jsonObject = new JSONObject();
         try
         {
             jsonObject.put("email", email);
-            jsonObject.put("isAdmin", isAdmin);
+            jsonObject.put("isAdmin", false);
             jsonObject.put("firstName", firstName);
             jsonObject.put("lastName", lastName);
             jsonObject.put("password", password);
@@ -45,6 +44,23 @@ public final class ServiceClass {
         }
         async.postJSON(jsonObject, url);
     }
+
+    public static void login(String email, String password)
+    {
+        String url = "user/getall";
+        AsyncOperations async = new AsyncOperations();
+        JSONObject jsonObject = new JSONObject();
+        try
+        {
+            jsonObject.put("email", email);
+            jsonObject.put("password", password);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        async.postJSON(jsonObject, url);
+    }
+
 
     public static void postNewEvent(int authorId, String photoLocation, String description,
                              String title, String location, String date, String time) {
@@ -77,23 +93,6 @@ public final class ServiceClass {
             e.printStackTrace();
         }
         async.postImage(params, url);
-    }
-
-    public static void postNewUser(String email, boolean isAdmin, String firstName, String lastName) {
-        String url = "user/create";
-        AsyncOperations async = new AsyncOperations();
-
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("email", email);
-            jsonObject.put("isAdmin", isAdmin);
-            jsonObject.put("firstName", firstName);
-            jsonObject.put("lastName", lastName);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        async.postJSON(jsonObject, url);
-
     }
 
     public static void deleteEvent(int eventId) {

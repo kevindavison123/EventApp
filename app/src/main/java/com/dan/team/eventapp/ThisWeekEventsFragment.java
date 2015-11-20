@@ -5,17 +5,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 
-public class PageFragment extends Fragment {
+public class ThisWeekEventsFragment extends Fragment {
     private static final String ARG_PAGE_NUMBER = "page_number";
 
-    public PageFragment() {
+    public ThisWeekEventsFragment() {
     }
 
-    public static PageFragment newInstance(int page) {
-        PageFragment fragment = new PageFragment();
+    public static ThisWeekEventsFragment newInstance(int page) {
+        ThisWeekEventsFragment fragment = new ThisWeekEventsFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE_NUMBER, page);
         fragment.setArguments(args);
@@ -25,7 +24,7 @@ public class PageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_page_layout, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_thisweekevents_layout, container, false);
 
 //        TextView txt = (TextView) rootView.findViewById(R.id.page_number_label);
 //        int page = getArguments().getInt(ARG_PAGE_NUMBER, -1);
