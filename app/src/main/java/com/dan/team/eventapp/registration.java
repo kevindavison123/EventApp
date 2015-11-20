@@ -67,7 +67,7 @@ public class Registration extends AppCompatActivity {
                 }
                 else if(passName.equals(confirmPassName))
                 {
-                    serviceClass.postUser(fName,lName,eName);
+                    serviceClass.postUser(fName,lName,eName, passName);
                 }
                 else
                 {

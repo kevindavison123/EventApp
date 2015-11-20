@@ -25,16 +25,18 @@ public final class ServiceClass {
         get.get(linearLayout, url);
     }
 
-    public static void postUser(String firstName, String lastName, String email)
+    public static void postUser(String firstName, String lastName, String email, String password)
     {
-        String url = "users";
+        String url = "users/create";
         AsyncOperations async = new AsyncOperations();
         JSONObject jsonObject = new JSONObject();
         try
         {
+            jsonObject.put("email", email);
+            jsonObject.put("isAdmin", false);
             jsonObject.put("firstName", firstName);
             jsonObject.put("lastName", lastName);
-            jsonObject.put("email", email);
+            jsonObject.put("password", password);
         }catch (Exception e)
         {
             e.printStackTrace();
