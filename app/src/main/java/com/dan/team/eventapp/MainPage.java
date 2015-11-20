@@ -19,6 +19,7 @@ public class MainPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("");
         setContentView(R.layout.activity_main_page);
 
         //Finds the toolbar and sets it up as an actionbar
