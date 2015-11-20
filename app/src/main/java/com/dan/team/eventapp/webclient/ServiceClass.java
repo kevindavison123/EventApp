@@ -46,7 +46,7 @@ public final class ServiceClass {
         async.postJSON(jsonObject, url);
     }
 
-    public static void login(String email, boolean isAdmin, String password)
+    public static void login(String email, String password)
     {
         String url = "users";
         AsyncOperations async = new AsyncOperations();

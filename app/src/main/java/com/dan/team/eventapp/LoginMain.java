@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dan.team.eventapp.webclient.ServiceClass;
 
 
 public class LoginMain extends AppCompatActivity {
@@ -58,6 +59,7 @@ public class LoginMain extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
 
+        final ServiceClass serviceClass = new ServiceClass();
 
 
         inputEmail = (EditText) findViewById(R.id.email);
@@ -84,7 +86,7 @@ public class LoginMain extends AppCompatActivity {
                 String password = inputPassword.getText().toString();
                 if((!email.equals("")) && (!password.equals("")))
                 {
-
+                    serviceClass.login(email, password);
                     Toast.makeText(getApplicationContext(),"implement later! ", Toast.LENGTH_SHORT).show();
                 }
                 else if(email.equals("") && password.equals(""))

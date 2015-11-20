@@ -13,7 +13,22 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return PageFragment.newInstance(position + 1);
+
+        switch (position) {
+            case 0:
+                return AllEventsFragment.newInstance(position + 1);
+            case 1:
+                return ThisWeekEventsFragment.newInstance(position + 1);
+            case 2:
+                return MovieEventsFragment.newInstance(position + 1);
+            default:
+                return AllEventsFragment.newInstance(position + 1);
+        }
+
+//        if (position == 0)
+//            return AllEventsFragment.newInstance(position + 1);
+//        else
+//            return ThisWeekEventsFragment.newInstance(position + 1);
     }
 
     @Override
