@@ -30,11 +30,11 @@
             android:label=""
             android:parentActivityName=".MainPage" >
         </activity>
-        <activitya
+        <activity
             android:name=".SubmitForm"
             android:label=""
             android:parentActivityName=".MainPage">
-        </activitya>
+        </activity>
         <activity
             android:name=".LoginMain"
             android:label=""

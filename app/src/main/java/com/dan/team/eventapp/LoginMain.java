@@ -22,7 +22,6 @@ import com.dan.team.eventapp.webclient.ServiceClass;
 
 public class LoginMain extends AppCompatActivity {
 
-    private Toolbar toolbar;
 
     Button loginButton;
     Button registerButton;
@@ -48,16 +47,18 @@ public class LoginMain extends AppCompatActivity {
 
         App.setContext(this);
 
-
-
-        //Creates the toolbar and gives the toolbar its title.
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
-        setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
+        //Finds the toolbar and sets it up as an actionbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        //Sets the toolbar title and font.
         TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTypeface(Typeface.SERIF);
-        // Not needed for some reason getSupportActionBar().setHomeButtonEnabled(true);
+        //Used to navigate back on the toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
+
+
+
 
         final ServiceClass serviceClass = new ServiceClass();
 

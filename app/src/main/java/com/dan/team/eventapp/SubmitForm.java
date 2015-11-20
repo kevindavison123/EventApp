@@ -55,15 +55,17 @@ public class SubmitForm extends AppCompatActivity {
         App.setContext(SubmitForm.this);
         setContentView(R.layout.activity_submit_form);
 
-        //Creates the toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
-        setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
+        //Finds the toolbar and sets it up as an actionbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        //Sets the toolbar title and font.
         TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTypeface(Typeface.SERIF);
-
-        // Not needed for some reason getSupportActionBar().setHomeButtonEnabled(true);
+        //Used to navigate back on the toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
+
+
         TextView pDate = (TextView) findViewById(R.id.pickDate);
         pDate.setTypeface(Typeface.SERIF);
         TextView pTime = (TextView) findViewById(R.id.pickTime);
@@ -169,7 +171,7 @@ public class SubmitForm extends AppCompatActivity {
     private void sendImageToServer(String name, String photoLocation)
     {
 //        Bitmap image = ((BitmapDrawable)uploadImage.getDrawable()).getBitmap();
-        serviceClass.postImage(name,photoLocation);
+        serviceClass.postImage(name, photoLocation);
 
     }
 
