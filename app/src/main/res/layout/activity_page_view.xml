@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/eventTitle"
+        android:layout_height="wrap_content"
+        android:textSize="45sp"
+        android:gravity="center_horizontal"/>
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:id="@+id/imageView"
+        android:src="@drawable/uncle2"
+        android:scaleType="fitStart"
+        android:layout_gravity="top|bottom"
+        android:onClick="onImageClick"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/eventTime"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:gravity="center_horizontal"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventDate"
+            android:textSize="40sp"
+            android:gravity="right"/>
+
+
+    </LinearLayout>
+</LinearLayout>

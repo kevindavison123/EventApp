@@ -7,10 +7,13 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="titleForConcept">U.N.C.L.E.</string>
+    <string name="timeForConcept">8:30 PM</string>
+    <string name="dateForConcept">10/25/15</string>
     <string name="titleForApp">OSI</string>
     <string name="title_activity_submit_form">SubmitForm</string>
     <string name="title_activity_login_main">Sign In</string>
     <string name="title_activity_registration">Registration</string>
     <string name="title_activity_password_reset">Password Reset</string>
     <string name="title_activity_change_password">Change Password</string>
+    <string name="title_activity_page_back_view">PageBackView</string>
 </resources>

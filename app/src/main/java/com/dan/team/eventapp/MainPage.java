@@ -81,7 +81,7 @@ public class MainPage extends AppCompatActivity {
      * it is just an image in another activity.
      */
     public void onUserClickConcept(View view) {
-        Intent intent = new Intent(MainPage.this, ConceptPageView.class);
+        Intent intent = new Intent(MainPage.this, PageView.class);
         MainPage.this.startActivity(intent);
     }
 

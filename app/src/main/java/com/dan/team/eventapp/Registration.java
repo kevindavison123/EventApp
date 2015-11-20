@@ -60,15 +60,23 @@ public class Registration extends AppCompatActivity {
                 String lName = lastName.getText().toString();
                 String eName = email.getText().toString();
                 String passName = password.getText().toString();
-                String confirmPassName = cPassword.getText().toString();
-                if ((fName.equals("")) || (lName.equals("")) || (eName.equals(""))) {
-                    Toast.makeText(Registration.this, "One or more fields are empty", Toast.LENGTH_SHORT).show();
-                } else if (passName.equals("")) {
-                    Toast.makeText(Registration.this, "Please enter a password", Toast.LENGTH_SHORT).show();
-                } else if (passName.equals(confirmPassName)) {
-                    serviceClass.postUser(fName, lName, eName, passName);
-                } else {
-                    Toast.makeText(Registration.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                String confirmPassName =  cPassword.getText().toString();
+                if((fName.equals("")) || (lName.equals(""))|| (eName.equals("")))
+                {
+                    Toast.makeText(Registration.this,"One or more fields are empty",Toast.LENGTH_SHORT).show();
+                }
+                else if(passName.equals(""))
+                {
+                    Toast.makeText(Registration.this,"Please enter a password",Toast.LENGTH_SHORT).show();
+                }
+                else if(passName.equals(confirmPassName))
+                {
+                    serviceClass.postUser(fName,lName,eName, passName);
+                }
+                else
+                {
+                    Toast.makeText(Registration.this,"Passwords do not match",Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
