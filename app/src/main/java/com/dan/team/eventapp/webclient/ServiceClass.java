@@ -47,7 +47,7 @@ public final class ServiceClass {
 
     public static void login(String email, String password)
     {
-        String url = "users";
+        String url = "user/getall";
         AsyncOperations async = new AsyncOperations();
         JSONObject jsonObject = new JSONObject();
         try

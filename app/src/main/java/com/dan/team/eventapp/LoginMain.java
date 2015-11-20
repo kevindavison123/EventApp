@@ -87,7 +87,7 @@ public class LoginMain extends AppCompatActivity {
                 if((!email.equals("")) && (!password.equals("")))
                 {
                     serviceClass.login(email, password);
-                    Toast.makeText(getApplicationContext(),"implement later! ", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"implement later! ", Toast.LENGTH_SHORT).show();
                 }
                 else if(email.equals("") && password.equals(""))
                 {
