@@ -62,15 +62,17 @@ public class SubmitForm extends AppCompatActivity {
         App.setContext(SubmitForm.this);
         setContentView(R.layout.activity_submit_form);
 
-        //Creates the toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
-        setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
+        //Finds the toolbar and sets it up as an actionbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        //Sets the toolbar title and font.
         TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTypeface(Typeface.SERIF);
-
-        // Not needed for some reason getSupportActionBar().setHomeButtonEnabled(true);
+        //Used to navigate back on the toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
+
+
         TextView pDate = (TextView) findViewById(R.id.pickDate);
         pDate.setTypeface(Typeface.SERIF);
         TextView pTime = (TextView) findViewById(R.id.pickTime);
@@ -172,13 +174,11 @@ public class SubmitForm extends AppCompatActivity {
         }
     }
 
-
     private void sendImageToServer(String name) {
         Bitmap image = ((BitmapDrawable) uploadImage.getDrawable()).getBitmap();
         Bitmap thumbnail = resizeImage(image, 150, 150);
         thumbView.setImageBitmap(thumbnail);
 //        serviceClass.postImage(name,image,thumbnail);
-
     }
 
     private Bitmap resizeImage(Bitmap bm, int newWidth, int newHeight) {
@@ -207,19 +207,22 @@ public class SubmitForm extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        Intent intent;
 
         switch (id) {
             case R.id.action_settings:
                 return true;
             case R.id.adding_button:
-                addEvent();
+                intent = new Intent(SubmitForm.this, SubmitForm.class);
+                SubmitForm.this.startActivity(intent);
                 return true;
             case R.id.login_button:
-                loginPage();
+                intent = new Intent(SubmitForm.this, LoginMain.class);
+                SubmitForm.this.startActivity(intent);
                 return true;
             case R.id.register_button:
-                registerPage();
+                intent = new Intent(SubmitForm.this, Registration.class);
+                SubmitForm.this.startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -227,19 +230,4 @@ public class SubmitForm extends AppCompatActivity {
 
     }
 
-
-    public void addEvent() {
-        Intent intent = new Intent(SubmitForm.this, SubmitForm.class);
-        SubmitForm.this.startActivity(intent);
-    }
-
-    public void loginPage() {
-        Intent intent = new Intent(SubmitForm.this, LoginMain.class);
-        SubmitForm.this.startActivity(intent);
-    }
-
-    public void registerPage() {
-        Intent intent = new Intent(SubmitForm.this, Registration.class);
-        SubmitForm.this.startActivity(intent);
-    }
 }

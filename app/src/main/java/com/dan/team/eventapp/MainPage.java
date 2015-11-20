@@ -24,6 +24,7 @@ import com.dan.team.eventapp.webclient.ServiceClass;
 public class MainPage extends AppCompatActivity {
 
 
+
     private int width = 0;
     // Declaring the Toolbar Object
     private Toolbar toolbar;
@@ -31,22 +32,27 @@ public class MainPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("");
         setContentView(R.layout.activity_main_page);
         App.setContext(MainPage.this);
         //Creates the toolbar
         toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
         setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
+
+
+
         TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTypeface(Typeface.SERIF);
 
-
-        //Creates the tabs
+        //Finds the tab layout and the viewpager, which shows the content for each tab
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager());
 
+        //Essentially this displays the tabs and the content each tab's fragment holds.
+        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
         tabs.setupWithViewPager(pager);
+
 
          /*
          Layout creator, adds three buttons per line, if it can.
@@ -59,7 +65,6 @@ public class MainPage extends AppCompatActivity {
         width = size.x;
         TableLayout mainPage = (TableLayout) findViewById(R.id.tableLayout);
         ServiceClass.formGetAll(mainPage, width);
-
 
     }
     @Override
@@ -75,40 +80,27 @@ public class MainPage extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        //This is used to navigate between each supplementary
+        //activity via the action bar.
+        Intent intent;
         switch (id) {
             case R.id.action_settings:
                 return true;
             case R.id.adding_button:
-                addEvent();
+                intent = new Intent(MainPage.this, SubmitForm.class);
+                MainPage.this.startActivity(intent);
                 return true;
             case R.id.login_button:
-                loginPage();
+                intent = new Intent(MainPage.this, LoginMain.class);
+                MainPage.this.startActivity(intent);
                 return true;
             case R.id.register_button:
-                registerPage();
+                intent = new Intent(MainPage.this, Registration.class);
+                MainPage.this.startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void addEvent()
-    {
-        Intent intent = new Intent(MainPage.this, SubmitForm.class);
-        MainPage.this.startActivity(intent);
-    }
-
-    public void loginPage()
-    {
-        Intent intent = new Intent(MainPage.this, LoginMain.class);
-        MainPage.this.startActivity(intent);
-    }
-
-    public void registerPage()
-    {
-        Intent intent = new Intent(MainPage.this, Registration.class);
-        MainPage.this.startActivity(intent);
     }
 
 

@@ -17,16 +17,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dan.team.eventapp.webclient.ServiceClass;
 
 
 public class LoginMain extends AppCompatActivity {
 
-    private Toolbar toolbar;
 
     Button loginButton;
     Button registerButton;
     Button forgotpassButton;
-    EditText inputUsername;
+    EditText inputEmail;
     EditText inputPassword;
     private TextView loginErrorMessage;
 
@@ -47,20 +47,23 @@ public class LoginMain extends AppCompatActivity {
 
         App.setContext(this);
 
-
-
-        //Creates the toolbar and gives the toolbar its title.
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
-        setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
+        //Finds the toolbar and sets it up as an actionbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        //Sets the toolbar title and font.
         TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTypeface(Typeface.SERIF);
-        // Not needed for some reason getSupportActionBar().setHomeButtonEnabled(true);
+        //Used to navigate back on the toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
 
 
 
-        inputUsername = (EditText) findViewById(R.id.username);
+
+        final ServiceClass serviceClass = new ServiceClass();
+
+
+        inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         loginButton = (Button) findViewById(R.id.login);
         registerButton = (Button) findViewById(R.id.lRegister);
@@ -80,21 +83,24 @@ public class LoginMain extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-                if((!inputUsername.getText().toString().equals("")) && (!inputPassword.getText().toString().equals("")))
+                String email = inputEmail.getText().toString();
+                String password = inputPassword.getText().toString();
+                if((!email.equals("")) && (!password.equals("")))
                 {
-                    Toast.makeText(getApplicationContext(),"implement later! ", Toast.LENGTH_SHORT).show();
+                    serviceClass.login(email, password);
+                    //Toast.makeText(getApplicationContext(),"implement later! ", Toast.LENGTH_SHORT).show();
                 }
-                else if(inputUsername.getText().toString().equals(""))
+                else if(email.equals("") && password.equals(""))
                 {
-                    Toast.makeText(getApplicationContext(),"Username field is empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Email and password fields are empty", Toast.LENGTH_SHORT).show();
                 }
-                else if(inputPassword.getText().toString().equals(""))
+                else if (password.equals(""))
                 {
                     Toast.makeText(getApplicationContext(),"Password field is empty", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(),"Username and Password fields are empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Email field is empty", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -118,39 +124,27 @@ public class LoginMain extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        Intent intent;
+
         switch (id) {
             case R.id.action_settings:
                 return true;
             case R.id.adding_button:
-                addEvent();
+                intent = new Intent(LoginMain.this, SubmitForm.class);
+                LoginMain.this.startActivity(intent);
                 return true;
             case R.id.login_button:
-                loginPage();
+                intent = new Intent(LoginMain.this, LoginMain.class);
+                LoginMain.this.startActivity(intent);
                 return true;
             case R.id.register_button:
-                registerPage();
+                intent = new Intent(LoginMain.this, Registration.class);
+                LoginMain.this.startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+
         }
-    }
-
-    public void addEvent()
-    {
-        Intent intent = new Intent(LoginMain.this, SubmitForm.class);
-        LoginMain.this.startActivity(intent);
-    }
-
-    public void loginPage()
-    {
-        Intent intent = new Intent(LoginMain.this, LoginMain.class);
-        LoginMain.this.startActivity(intent);
-    }
-
-    public void registerPage()
-    {
-        Intent intent = new Intent(LoginMain.this, Registration.class);
-        LoginMain.this.startActivity(intent);
     }
 
 
