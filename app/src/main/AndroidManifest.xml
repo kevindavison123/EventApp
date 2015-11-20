@@ -16,7 +16,6 @@
         android:icon="@drawable/klogo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
         <activity
             android:name=".MainPage"
             android:label="" >
@@ -27,34 +26,38 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ConceptPageView"
+            android:name=".PageView"
             android:label=""
             android:parentActivityName=".MainPage" >
         </activity>
         <activity
             android:name=".SubmitForm"
             android:label=""
-            android:parentActivityName=".MainPage">
+            android:parentActivityName=".MainPage" >
         </activity>
         <activity
             android:name=".LoginMain"
             android:label=""
-            android:parentActivityName=".MainPage">
+            android:parentActivityName=".MainPage" >
         </activity>
         <activity
             android:name=".Registration"
             android:label=""
-            android:parentActivityName=".MainPage">
+            android:parentActivityName=".MainPage" >
         </activity>
-        <!--<activity-->
-            <!--android:name=".PasswordReset"-->
-            <!--android:label=""-->
-            <!--android:parentActivityName=".MainPage">-->
-        <!--</activity>-->
+        <!-- <activity -->
+        <!-- android:name=".PasswordReset" -->
+        <!-- android:label="" -->
+        <!-- android:parentActivityName=".MainPage"> -->
+        <!-- </activity> -->
         <activity
             android:name=".ChangePassword"
             android:label=""
-            android:parentActivityName=".MainPage">
+            android:parentActivityName=".MainPage" >
+        </activity>
+        <activity
+            android:name=".PageBackView"
+            android:label="@string/title_activity_page_back_view" >
         </activity>
     </application>
 

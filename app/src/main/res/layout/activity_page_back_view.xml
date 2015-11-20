@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/eventTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/titleForConcept"
+        android:textSize="50sp"
+        android:gravity="center_horizontal"/>
+    <TextView
+        android:id="@+id/eventDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dateForConcept"
+        android:textSize="35sp"
+        android:gravity="center_horizontal"/>
+    <TextView
+        android:id="@+id/eventTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/timeForConcept"
+        android:textSize="35sp"
+        android:gravity="center_horizontal"/>
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:id="@+id/imageView"
+        android:src="@drawable/uncle2"
+        android:scaleType="fitStart"
+        android:layout_gravity="top|bottom"
+        android:onClick="onImageClick"/>
+</LinearLayout>
