@@ -53,40 +53,26 @@ public class MainPage extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        Intent intent;
+
         switch (id) {
             case R.id.action_settings:
                 return true;
             case R.id.adding_button:
-                addEvent();
+                intent = new Intent(MainPage.this, SubmitForm.class);
+                MainPage.this.startActivity(intent);
                 return true;
             case R.id.login_button:
-                loginPage();
+                intent = new Intent(MainPage.this, LoginMain.class);
+                MainPage.this.startActivity(intent);
                 return true;
             case R.id.register_button:
-                registerPage();
+                intent = new Intent(MainPage.this, Registration.class);
+                MainPage.this.startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void addEvent()
-    {
-        Intent intent = new Intent(MainPage.this, SubmitForm.class);
-        MainPage.this.startActivity(intent);
-    }
-
-    public void loginPage()
-    {
-        Intent intent = new Intent(MainPage.this, LoginMain.class);
-        MainPage.this.startActivity(intent);
-    }
-
-    public void registerPage()
-    {
-        Intent intent = new Intent(MainPage.this, Registration.class);
-        MainPage.this.startActivity(intent);
     }
 
 

@@ -187,19 +187,22 @@ public class SubmitForm extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        Intent intent;
 
         switch (id) {
             case R.id.action_settings:
                 return true;
             case R.id.adding_button:
-                addEvent();
+                intent = new Intent(SubmitForm.this, SubmitForm.class);
+                SubmitForm.this.startActivity(intent);
                 return true;
             case R.id.login_button:
-                loginPage();
+                intent = new Intent(SubmitForm.this, LoginMain.class);
+                SubmitForm.this.startActivity(intent);
                 return true;
             case R.id.register_button:
-                registerPage();
+                intent = new Intent(SubmitForm.this, Registration.class);
+                SubmitForm.this.startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -207,22 +210,4 @@ public class SubmitForm extends AppCompatActivity {
 
     }
 
-
-    public void addEvent()
-    {
-        Intent intent = new Intent(SubmitForm.this, SubmitForm.class);
-        SubmitForm.this.startActivity(intent);
-    }
-
-    public void loginPage()
-    {
-        Intent intent = new Intent(SubmitForm.this, LoginMain.class);
-        SubmitForm.this.startActivity(intent);
-    }
-
-    public void registerPage()
-    {
-        Intent intent = new Intent(SubmitForm.this, Registration.class);
-        SubmitForm.this.startActivity(intent);
-    }
 }
