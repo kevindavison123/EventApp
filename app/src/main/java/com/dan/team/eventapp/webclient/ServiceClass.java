@@ -27,7 +27,7 @@ public final class ServiceClass {
 
     public static void postUser(String firstName, String lastName, String email, String password)
     {
-        String url = "users/create";
+        String url = "user/create";
         AsyncOperations async = new AsyncOperations();
         JSONObject jsonObject = new JSONObject();
         try
