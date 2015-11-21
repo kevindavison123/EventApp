@@ -207,8 +207,9 @@ public class SubmitForm extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        //This is used to navigate between each supplementary
+        //activity via the action bar.
         Intent intent;
-
         switch (id) {
             case R.id.action_settings:
                 return true;

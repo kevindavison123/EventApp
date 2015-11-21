@@ -56,7 +56,8 @@
         </activity>
         <activity
             android:name=".PageBackView"
-            android:label="@string/title_activity_page_back_view" >
+            android:label=""
+            android:parentActivityName=".MainPage">
         </activity>
     </application>
 
