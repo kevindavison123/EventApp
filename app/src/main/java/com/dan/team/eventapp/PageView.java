@@ -5,8 +5,10 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,20 +19,33 @@ import java.util.Arrays;
  * the final should be dynamic and probably a fragment. */
 public class PageView extends AppCompatActivity {
 
+    ImageView eventPicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_view);
 
+        //Finds the toolbar and sets it up as an actionbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        //Sets the toolbar title and font.
+        TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        toolbarTitle.setTypeface(Typeface.SERIF);
+        //Used to navigate back on the toolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
 
-        ArrayList<String> data = getIntent().getExtras().getStringArrayList("1");
-        for(String string: data)
-        {
-            Toast.makeText(this,string,Toast.LENGTH_SHORT).show();
-        }
+        eventPicture = (ImageView) findViewById(R.id.eventPicture);
 
-        Intent intent = getIntent();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_page_view, menu);
+        return true;
     }
 
     @Override
@@ -40,19 +55,31 @@ public class PageView extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        Intent intent;
+
+        switch (id) {
+            case R.id.action_settings:
+                return true;
+            case R.id.adding_button:
+                intent = new Intent(PageView.this, SubmitForm.class);
+                PageView.this.startActivity(intent);
+                return true;
+            case R.id.login_button:
+                intent = new Intent(PageView.this, LoginMain.class);
+                PageView.this.startActivity(intent);
+                return true;
+            case R.id.register_button:
+                intent = new Intent(PageView.this, Registration.class);
+                PageView.this.startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
     }
 
     public void onImageClick(View v) {
-//        Intent intent = new Intent(PageView.this, PageBackView.class);
-//        intent.putExtra("Time", time);
-//        intent.putExtra("Date", date);
-//        intent.putExtra("EventName", eventName);
-//        PageView.this.startActivity(intent);
+            Intent intent = new Intent(PageView.this, PageBackView.class);
+            PageView.this.startActivity(intent);
     }
 }
