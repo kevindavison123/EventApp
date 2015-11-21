@@ -4,17 +4,27 @@ import android.graphics.Bitmap;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 
+import com.dan.team.eventapp.App;
+import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.File;
-import java.io.FileNotFoundException;
 
 /**
  * Created by kevin on 10/27/2015.
  * This is
  */
 public final class ServiceClass {
+
+    private static PersistentCookieStore cookieStore;
+
+    private ServiceClass() {
+        cookieStore = new PersistentCookieStore(App.getContext());
+    }
+
+    public static PersistentCookieStore getCookieStore() {
+        return cookieStore;
+    }
 
     public static void formGetAll(TableLayout tableLayout,int width)
     {
@@ -54,18 +64,20 @@ public final class ServiceClass {
 
     public static void login(String email, String password)
     {
-        String url = "user/getall";
         AsyncOperations async = new AsyncOperations();
         JSONObject jsonObject = new JSONObject();
         try
         {
             jsonObject.put("email", email);
+            jsonObject.put("isAdmin", null);
+            jsonObject.put("firstName", null);
+            jsonObject.put("lastName", null);
             jsonObject.put("password", password);
         }catch (Exception e)
         {
             e.printStackTrace();
         }
-        async.postJSON(jsonObject, url);
+        async.login(jsonObject);
     }
 
 
@@ -86,7 +98,7 @@ public final class ServiceClass {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        async.postJSON(jsonObject, url);
+        async.postEvent(jsonObject, url);
     }
 
     public static void postImage(String imageName, Bitmap image, Bitmap thumbnail)
