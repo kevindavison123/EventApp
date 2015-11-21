@@ -16,6 +16,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
+
                 return AllEventsFragment.newInstance(position + 1);
             case 1:
                 return ThisWeekEventsFragment.newInstance(position + 1);

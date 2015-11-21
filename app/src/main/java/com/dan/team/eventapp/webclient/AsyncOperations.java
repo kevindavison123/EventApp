@@ -151,14 +151,18 @@ public class AsyncOperations {
                         Iterator<String> fieldIterator = jsonObject.keys();
                         while(fieldIterator.hasNext())
                         {
-                            String name = fieldIterator.next();
-                            dataPacket.add(name);
-                            if(name.equals("eventId"))
+                            String key = fieldIterator.next();
+                            String value = jsonObject.get(key).toString();
+                            dataPacket.add(value);
+                            if(key.equals("eventId"))
                             {
-                                packetName = name;
+
+                                packetName = jsonObject.get(key).toString();
+                                Log.d("Packet name is ", ""+packetName);
                             }
                         }
                         jsonPacket.putStringArrayList(packetName, dataPacket);
+                        Log.d("jsonPacket: ", jsonPacket.get(packetName).toString());
 
 
                     } catch (JSONException e) {
@@ -199,9 +203,9 @@ public class AsyncOperations {
                     imageButtons.get(i).setScaleType(ImageView.ScaleType.FIT_XY);
                     imageButtons.get(i).setBackground(null);
                     imageButtons.get(i).setLayoutParams(tableRowParams);
-                    getImage("events/getImageThumb/"+id,imageButtons.get(i));
+                    getImage("events/getImageThumb/" + id, imageButtons.get(i));
 
-                    final String ID = ""+i+1;
+                    final String ID = String.valueOf(id);
                     imageButtons.get(i).setOnClickListener(new View.OnClickListener()
                     {
                         @Override
@@ -209,6 +213,8 @@ public class AsyncOperations {
                         {
                             Intent intent = new Intent(tableLayout.getContext(), PageView.class);
                             intent.putStringArrayListExtra(ID, (ArrayList<String>) jsonPacket.get(ID));
+                            Log.d("THIS IS THE DATA", jsonPacket.get(ID).toString());
+                            
                             tableLayout.getContext().startActivity(intent);
                         }
                     });

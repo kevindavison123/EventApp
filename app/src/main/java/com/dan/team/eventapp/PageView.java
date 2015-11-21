@@ -8,32 +8,27 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /* this is for demonstrating what a click on an image tile should do. This is a concept,
  * the final should be dynamic and probably a fragment. */
 public class PageView extends AppCompatActivity {
 
-    private String time;
-    private String date;
-    private String eventName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_view);
-        time = "12:00PM";
-        date = "10/11/15";
-        eventName = "someEvent";
-//        Bundle extras = getIntent().getExtras();
-//        time = extras.getString("Time");
-//        date = extras.getString("Date");
-//        eventName = extras.getString("EventName");
-        TextView eventTitle = (TextView) findViewById(R.id.eventTitle);
-        eventTitle.setText(eventName);
-        TextView eventTime = (TextView) findViewById(R.id.eventTime);
-        eventTime.setText(time);
-        TextView eventDate = (TextView) findViewById(R.id.eventDate);
-        eventDate.setText(date);
+
+
+        ArrayList<String> data = getIntent().getExtras().getStringArrayList("1");
+        for(String string: data)
+        {
+            Toast.makeText(this,string,Toast.LENGTH_SHORT).show();
+        }
 
         Intent intent = getIntent();
     }
@@ -54,10 +49,10 @@ public class PageView extends AppCompatActivity {
     }
 
     public void onImageClick(View v) {
-        Intent intent = new Intent(PageView.this, PageBackView.class);
-        intent.putExtra("Time", time);
-        intent.putExtra("Date", date);
-        intent.putExtra("EventName", eventName);
-        PageView.this.startActivity(intent);
+//        Intent intent = new Intent(PageView.this, PageBackView.class);
+//        intent.putExtra("Time", time);
+//        intent.putExtra("Date", date);
+//        intent.putExtra("EventName", eventName);
+//        PageView.this.startActivity(intent);
     }
 }

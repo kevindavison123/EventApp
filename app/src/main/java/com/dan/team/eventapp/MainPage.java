@@ -137,11 +137,5 @@ public class MainPage extends AppCompatActivity {
         return width;
     }
 
-    private void clearFrag()
-    {
-        
-
-    }
-
 }
 
