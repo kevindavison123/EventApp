@@ -1,14 +1,16 @@
 package com.dan.team.eventapp;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
 public class AllEventsFragment extends Fragment {
-    private static final String ARG_PAGE_NUMBER = "page_number";
+    private static final String ARG_PAGE_NUMBER = "allEvents";
 
     public AllEventsFragment() {
     }
@@ -25,10 +27,9 @@ public class AllEventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_allevents_layout, container, false);
+        MainPage mainPage = (MainPage) getActivity();
+        mainPage.allEvents();
 
-//        TextView txt = (TextView) rootView.findViewById(R.id.page_number_label);
-//        int page = getArguments().getInt(ARG_PAGE_NUMBER, -1);
-//        txt.setText(String.format("Page %d", page));
 
         return rootView;
     }

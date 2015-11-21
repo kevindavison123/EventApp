@@ -111,7 +111,7 @@ public class AsyncOperations {
 
     public void get(final TableLayout tableLayout, String url, final int width) {
         String restUrl = FORM_URL + url;
-
+        tableLayout.removeAllViews();
 
         client.get(restUrl, new JsonHttpResponseHandler() {
             @Override
@@ -127,7 +127,6 @@ public class AsyncOperations {
                 Toast.makeText(context,context.toString(),Toast.LENGTH_SHORT);
                 TableRow[] rows;
                 ArrayList<ImageButton> imageButtons = new ArrayList<>();
-                ArrayList<TableRow> tableRows;
                 int size = jsonArray.length();
                 TableRow.LayoutParams tableRowParams = new TableRow.LayoutParams(width/2,width/2);
                 tableRowParams.setMargins(0,0,0,0);
@@ -138,6 +137,7 @@ public class AsyncOperations {
                 {
                     ImageButton newButton = new ImageButton(context);
                     imageButtons.add(newButton);
+
                 }
 
                 TableRow row = new TableRow(context);

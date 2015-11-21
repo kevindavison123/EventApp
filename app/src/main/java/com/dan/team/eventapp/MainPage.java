@@ -1,5 +1,7 @@
 package com.dan.team.eventapp;
 
+import android.app.Fragment;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
@@ -28,6 +30,8 @@ public class MainPage extends AppCompatActivity {
     private int width = 0;
     // Declaring the Toolbar Object
     private Toolbar toolbar;
+    private TableLayout mainPage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +58,16 @@ public class MainPage extends AppCompatActivity {
         tabs.setupWithViewPager(pager);
 
 
+
          /*
          Layout creator, adds three buttons per line, if it can.
          A button is associated with a text file from the database.
          The event is fetched from the database, a button is created, and the link is made.
          */
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        width = size.x;
-        TableLayout mainPage = (TableLayout) findViewById(R.id.tableLayout);
-        ServiceClass.formGetAll(mainPage, width);
+
+        mainPage = (TableLayout) findViewById(R.id.tableLayout);
+
+
 
     }
     @Override
@@ -112,6 +115,32 @@ public class MainPage extends AppCompatActivity {
     public void onUserClickConcept(View view) {
         Intent intent = new Intent(MainPage.this, PageView.class);
         MainPage.this.startActivity(intent);
+    }
+    public void allEvents()
+    {
+        ServiceClass.formGetAll(mainPage, phoneWidth());
+    }
+    public void getWeekly()
+    {
+        ServiceClass.formGetWeekly(mainPage, phoneWidth());
+    }
+    public void getMovie()
+    {
+        ServiceClass.formGetWeekly(mainPage,phoneWidth());
+    }
+    private int phoneWidth()
+    {
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        width = size.x;
+        return width;
+    }
+
+    private void clearFrag()
+    {
+        
+
     }
 
 }
