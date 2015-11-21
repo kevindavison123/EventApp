@@ -57,12 +57,6 @@ public class LoginMain extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
 
-
-
-
-        final ServiceClass serviceClass = new ServiceClass();
-
-
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         loginButton = (Button) findViewById(R.id.login);
@@ -87,7 +81,7 @@ public class LoginMain extends AppCompatActivity {
                 String password = inputPassword.getText().toString();
                 if((!email.equals("")) && (!password.equals("")))
                 {
-                    serviceClass.login(email, password);
+                    ServiceClass.login(email, password);
                     //Toast.makeText(getApplicationContext(),"implement later! ", Toast.LENGTH_SHORT).show();
                 }
                 else if(email.equals("") && password.equals(""))

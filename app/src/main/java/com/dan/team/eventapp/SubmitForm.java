@@ -37,8 +37,6 @@ import java.util.Date;
 
 public class SubmitForm extends AppCompatActivity {
 
-    final ServiceClass serviceClass = new ServiceClass();
-
     Button buttonLoadImage;
     Button submitForm;
 
@@ -122,7 +120,7 @@ public class SubmitForm extends AppCompatActivity {
 
 
 //                sendImageToServer(dateString);
-                serviceClass.postNewEvent(author, "", description, title, location, dateSting,
+                ServiceClass.postNewEvent(author, "", description, title, location, dateSting,
                         timeString);
             }
         });
