@@ -46,7 +46,6 @@ public class Registration extends AppCompatActivity {
 
 
         App.setContext(Registration.this);
-        final ServiceClass serviceClass = new ServiceClass();
         firstName = (EditText) findViewById(R.id.firstName);
         lastName = (EditText) findViewById(R.id.lastName);
         email = (EditText) findViewById(R.id.email);
@@ -71,7 +70,7 @@ public class Registration extends AppCompatActivity {
                 }
                 else if(passName.equals(confirmPassName))
                 {
-                    serviceClass.postUser(fName,lName,eName, passName);
+                    ServiceClass.postUser(fName,lName,eName, passName);
                 }
                 else
                 {

@@ -29,15 +29,18 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.dan.team.eventapp.webclient.ServiceClass;
+import com.loopj.android.http.PersistentCookieStore;
 
+import java.util.List;
 import java.util.Random;
 
 import java.util.Date;
 
+import cz.msebera.android.httpclient.cookie.Cookie;
+import cz.msebera.android.httpclient.impl.cookie.BasicClientCookie;
+
 
 public class SubmitForm extends AppCompatActivity {
-
-    final ServiceClass serviceClass = new ServiceClass();
 
     Button buttonLoadImage;
     Button submitForm;
@@ -105,28 +108,35 @@ public class SubmitForm extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                int author = 1;
+                Cookie authorId = ServiceClass.getCookieValue("id");
 
-                String title = eventName.getText().toString();
-                String description = editDescription.getText().toString();
-                String location = eventLocation.getText().toString();
+                if (authorId == null) {
+                    Toast.makeText(getApplicationContext(),"You must be logged in to create an event", Toast.LENGTH_SHORT).show();
+                } else {
 
-                int month = date.getMonth() + 1;
-                int day = date.getDayOfMonth();
-                int year = date.getYear();
-                String dateSting = year + "-" + month + "-" + day;
+                    int author = Integer.parseInt(authorId.getValue());
+                    String title = eventName.getText().toString();
+                    String description = editDescription.getText().toString();
+                    String location = eventLocation.getText().toString();
 
-                int hour = time.getCurrentHour();
-                int minute = time.getCurrentMinute();
-                String timeString = hour + ":" + minute + ":00";
+                    int month = date.getMonth() + 1;
+                    int day = date.getDayOfMonth();
+                    int year = date.getYear();
+                    String dateSting = year + "-" + month + "-" + day;
+
+                    int hour = time.getCurrentHour();
+                    int minute = time.getCurrentMinute();
+                    String timeString = hour + ":" + minute + ":00";
 
 
-//                sendImageToServer(dateString);
-                serviceClass.postNewEvent(author, "", description, title, location, dateSting,
-                        timeString);
+                    //                sendImageToServer(dateString);
+                    ServiceClass.postNewEvent(author, "", description, title, location, dateSting,
+                            timeString);
+
+                    Toast.makeText(getApplicationContext(),"Event Created!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
