@@ -33,4 +33,6 @@ public class AllEventsFragment extends Fragment {
 
         return rootView;
     }
+
+
 }

@@ -36,15 +36,15 @@ public class MainPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //The App title is inherited from the main label so this allows the page to use the toolbar title instead.
         setTitle("");
         setContentView(R.layout.activity_main_page);
         App.setContext(MainPage.this);
-        //Creates the toolbar
-        toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
-        setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
 
-
-
+        //Finds the toolbar and sets it up as an actionbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        //Sets the toolbar title and font.
         TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTypeface(Typeface.SERIF);
 
