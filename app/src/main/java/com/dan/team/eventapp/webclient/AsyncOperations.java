@@ -98,6 +98,11 @@ public class AsyncOperations {
     public void login(JSONObject user) {
         String restUrl = FORM_URL + "user/login";
 
+        if (ServiceClass.getCookieStore().getCookies().size() != 0) {
+            Toast.makeText(context, "A user is already logged in. Please logout before logging in as a new user", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         StringEntity entity = null;
         try {
             entity = new StringEntity(user.toString());
@@ -114,18 +119,24 @@ public class AsyncOperations {
                 if (object != null && object.length() != 0) {
                     try {
                         BasicClientCookie id = new BasicClientCookie("id", String.valueOf(object.getInt("userId")));
+                        id.setDomain("");
                         BasicClientCookie email = new BasicClientCookie("email", object.getString("email"));
+                        email.setDomain("");
                         BasicClientCookie firstName = new BasicClientCookie("first_name", object.getString("firstName"));
+                        firstName.setDomain("");
                         BasicClientCookie lastName = new BasicClientCookie("last_name", object.getString("lastName"));
+                        lastName.setDomain("");
                         BasicClientCookie password = new BasicClientCookie("password", object.getString("password"));
+                        password.setDomain("");
                         BasicClientCookie isAdmin = new BasicClientCookie("is_admin", object.getString("isAdmin"));
+                        isAdmin.setDomain("");
                         cookieStore.addCookie(id);
                         cookieStore.addCookie(email);
                         cookieStore.addCookie(firstName);
                         cookieStore.addCookie(lastName);
                         cookieStore.addCookie(password);
                         cookieStore.addCookie(isAdmin);
-                        Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Welcome, " + firstName.getValue() + "!", Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         e.printStackTrace();
                         Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show();

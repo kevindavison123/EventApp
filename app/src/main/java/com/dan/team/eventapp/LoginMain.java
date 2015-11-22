@@ -1,12 +1,8 @@
 package com.dan.team.eventapp;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Bundle;
-
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -25,7 +21,7 @@ public class LoginMain extends AppCompatActivity {
 
     Button loginButton;
     Button registerButton;
-    Button forgotpassButton;
+    Button logoutButton;
     EditText inputEmail;
     EditText inputPassword;
     private TextView loginErrorMessage;
@@ -37,7 +33,6 @@ public class LoginMain extends AppCompatActivity {
     private static String KEY_LASTNAME = "lname";
     private static String KEY_EMAIL = "email";
     private static String KEY_CREATED_AT = "created_at";
-
 
 
     @Override
@@ -61,42 +56,42 @@ public class LoginMain extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.password);
         loginButton = (Button) findViewById(R.id.login);
         registerButton = (Button) findViewById(R.id.lRegister);
-        forgotpassButton = (Button) findViewById(R.id.forgotPass);
+        logoutButton = (Button) findViewById(R.id.logout);
         loginErrorMessage = (TextView) findViewById(R.id.loginErrorMessage);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent forgetIntent = new Intent(v.getContext(),Registration.class);
-                startActivityForResult(forgetIntent,0);
+                Intent forgetIntent = new Intent(v.getContext(), Registration.class);
+                startActivityForResult(forgetIntent, 0);
                 finish();
-            }});
+            }
+        });
 
 
         /* Checks to see if the username and/or password fields are empty. */
         loginButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
-                if((!email.equals("")) && (!password.equals("")))
-                {
+                if ((!email.equals("")) && (!password.equals(""))) {
                     ServiceClass.login(email, password);
                     //Toast.makeText(getApplicationContext(),"implement later! ", Toast.LENGTH_SHORT).show();
-                }
-                else if(email.equals("") && password.equals(""))
-                {
-                    Toast.makeText(getApplicationContext(),"Email and password fields are empty", Toast.LENGTH_SHORT).show();
-                }
-                else if (password.equals(""))
-                {
-                    Toast.makeText(getApplicationContext(),"Password field is empty", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),"Email field is empty", Toast.LENGTH_SHORT).show();
+                } else if (email.equals("") && password.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Email and password fields are empty", Toast.LENGTH_SHORT).show();
+                } else if (password.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Password field is empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Email field is empty", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ServiceClass.getCookieStore().clear();
+                Toast.makeText(getApplicationContext(), "Logout successful", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -140,7 +135,6 @@ public class LoginMain extends AppCompatActivity {
 
         }
     }
-
 
 
 }
