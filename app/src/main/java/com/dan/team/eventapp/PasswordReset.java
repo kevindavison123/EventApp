@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-/*This class is not finish. This will represent a future feature of the app */
 public class PasswordReset extends AppCompatActivity {
 
     @Override

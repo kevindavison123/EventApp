@@ -205,7 +205,6 @@ public class AsyncOperations {
                     imageButtons.get(i).setLayoutParams(tableRowParams);
                     getImage("events/getImageThumb/" + id, imageButtons.get(i));
 
-
                     final String ID = String.valueOf(id);
                     imageButtons.get(i).setOnClickListener(new View.OnClickListener()
                     {

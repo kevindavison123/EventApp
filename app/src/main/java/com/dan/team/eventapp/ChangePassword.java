@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-/*This class is not finish. This will represent a future feature of the app */
 public class ChangePassword extends AppCompatActivity {
 
     @Override
@@ -59,6 +58,7 @@ public class ChangePassword extends AppCompatActivity {
         }
 
     }
+
 
 
     public void addEvent() {
