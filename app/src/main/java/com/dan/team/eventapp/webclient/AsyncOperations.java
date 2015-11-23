@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.CookieStore;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -42,6 +43,7 @@ import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.impl.cookie.BasicClientCookie;
 
 /**
  * Created by Kevin on 10/28/2015.
@@ -71,6 +73,81 @@ public class AsyncOperations {
             }
         });
     }
+
+    public void postEvent(JSONObject jsonObject, String url) {
+        String restUrl = FORM_URL + url;
+
+        client.setBasicAuth("ee","qqq");
+
+        StringEntity entity = null;
+        try {
+            entity = new StringEntity(jsonObject.toString());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        client.post(context, restUrl, entity, "application/json", new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject object) {
+
+            }
+        });
+    }
+
+    public void login(JSONObject user) {
+        String restUrl = FORM_URL + "user/login";
+
+        if (ServiceClass.getCookieStore().getCookies().size() != 0) {
+            Toast.makeText(context, "A user is already logged in. Please logout before logging in as a new user", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        StringEntity entity = null;
+        try {
+            entity = new StringEntity(user.toString());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        client.post(context, restUrl, entity, "application/json", new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject object) {
+                PersistentCookieStore cookieStore = ServiceClass.getCookieStore();
+                client.setCookieStore(cookieStore);
+                if (object != null && object.length() != 0) {
+                    try {
+                        BasicClientCookie id = new BasicClientCookie("id", String.valueOf(object.getInt("userId")));
+                        id.setDomain("");
+                        BasicClientCookie email = new BasicClientCookie("email", object.getString("email"));
+                        email.setDomain("");
+                        BasicClientCookie firstName = new BasicClientCookie("first_name", object.getString("firstName"));
+                        firstName.setDomain("");
+                        BasicClientCookie lastName = new BasicClientCookie("last_name", object.getString("lastName"));
+                        lastName.setDomain("");
+                        BasicClientCookie password = new BasicClientCookie("password", object.getString("password"));
+                        password.setDomain("");
+                        BasicClientCookie isAdmin = new BasicClientCookie("is_admin", object.getString("isAdmin"));
+                        isAdmin.setDomain("");
+                        cookieStore.addCookie(id);
+                        cookieStore.addCookie(email);
+                        cookieStore.addCookie(firstName);
+                        cookieStore.addCookie(lastName);
+                        cookieStore.addCookie(password);
+                        cookieStore.addCookie(isAdmin);
+                        Toast.makeText(context, "Welcome, " + firstName.getValue() + "!", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     private void getImage(String url, final ImageButton imgButton)
     {
         client.get(FORM_URL + url, null, new AsyncHttpResponseHandler() {
