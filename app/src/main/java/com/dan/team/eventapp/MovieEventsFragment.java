@@ -13,7 +13,9 @@ import android.widget.TableLayout;
 
 import com.dan.team.eventapp.webclient.ServiceClass;
 
-
+/*
+Another fragment for the main page. This is to get the movie events (future feature)
+ */
 public class MovieEventsFragment extends Fragment {
     private static final String ARG_PAGE_NUMBER = "movieEvents";
 

@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
+/*
+Another fragment for the main page, to display only the events posted for this week.
+ */
 public class ThisWeekEventsFragment extends Fragment {
     private static final String ARG_PAGE_NUMBER = "weeklyEvents";
 

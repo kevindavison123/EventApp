@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
+/*
+    This class is a fragment for the main page activity that retrieves All events from the database on the server
+ */
 public class AllEventsFragment extends Fragment {
     private static final String ARG_PAGE_NUMBER = "allEvents";
 

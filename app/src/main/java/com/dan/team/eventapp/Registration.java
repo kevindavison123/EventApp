@@ -16,7 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.dan.team.eventapp.webclient.ServiceClass;
 
-
+/*
+The Registration for users. This will take in user input and send it to the server. The user will be
+able to login and view the main page.
+ */
 public class Registration extends AppCompatActivity {
 
     EditText firstName;

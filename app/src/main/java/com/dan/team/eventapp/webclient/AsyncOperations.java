@@ -47,6 +47,9 @@ import cz.msebera.android.httpclient.impl.cookie.BasicClientCookie;
 
 /**
  * Created by Kevin on 10/28/2015.
+ * This class is the work horse of the app. It connects the database on the server to the android client.
+ * It can GET and POST using JSONObjects or arrays.
+ * posting an image cannot happen at this moment as we ran into issues in the backend, but that is for future designs.
  */
 public class AsyncOperations {
 
@@ -55,6 +58,9 @@ public class AsyncOperations {
     private AsyncHttpClient client = new AsyncHttpClient();
     private Context context = App.getContext();
 
+    /*
+        This will post information to the server in a JSONObject
+     */
     public void postJSON(JSONObject jsonObject, String url) {
         String restUrl = FORM_URL + url;
 
@@ -73,7 +79,9 @@ public class AsyncOperations {
             }
         });
     }
-
+    /*
+    this will post an event to the database that a user made, it first goes through authentication first.
+     */
     public void postEvent(JSONObject jsonObject, String url) {
         String restUrl = FORM_URL + url;
 
@@ -94,6 +102,10 @@ public class AsyncOperations {
             }
         });
     }
+
+    /*
+        This checks if a user is logged in using cookies to keep track
+     */
 
     public void login(JSONObject user) {
         String restUrl = FORM_URL + "user/login";
@@ -148,6 +160,9 @@ public class AsyncOperations {
         });
     }
 
+    /*
+    this retrieves an image from the database, and creates a bitmap of the contents from the path
+     */
     private void getImage(String url, final ImageButton imgButton)
     {
         client.get(FORM_URL + url, null, new AsyncHttpResponseHandler() {
@@ -163,6 +178,9 @@ public class AsyncOperations {
             }
         });
     }
+    /*
+        Not yet implemented!
+     */
     public void postImage(RequestParams params, String url)
     {
         client.post(FORM_URL + url, params, new AsyncHttpResponseHandler() {
@@ -182,7 +200,9 @@ public class AsyncOperations {
 
 
 
-
+    /*
+    Also not really used, but able to delete events
+     */
     public void deleteEvent(int eventId, String url) {
         String restUrl = FORM_URL + url + "/" + eventId;
 
@@ -191,6 +211,10 @@ public class AsyncOperations {
         });
 
     }
+
+    /*
+        The workhorse method, gets all the event info, and creates image buttons and sets the right contents to be displayed
+     */
 
     public void get(final TableLayout tableLayout, String url, final int width) {
         final String restUrl = FORM_URL + url;

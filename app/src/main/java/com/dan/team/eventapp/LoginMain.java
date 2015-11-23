@@ -15,7 +15,9 @@ import android.widget.Toast;
 
 import com.dan.team.eventapp.webclient.ServiceClass;
 
-
+/*
+Login page for the EventApp, checks login authentication
+ */
 public class LoginMain extends AppCompatActivity {
 
 
@@ -26,13 +28,7 @@ public class LoginMain extends AppCompatActivity {
     EditText inputPassword;
     private TextView loginErrorMessage;
 
-    private static String KEY_SUCCESS = "success";
-    private static String KEY_UID = "uid";
-    private static String KEY_USERNAME = "uname";
-    private static String KEY_FIRSTNAME = "fname";
-    private static String KEY_LASTNAME = "lname";
-    private static String KEY_EMAIL = "email";
-    private static String KEY_CREATED_AT = "created_at";
+
 
 
     @Override

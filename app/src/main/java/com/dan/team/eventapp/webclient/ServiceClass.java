@@ -15,7 +15,8 @@ import cz.msebera.android.httpclient.cookie.Cookie;
 
 /**
  * Created by kevin on 10/27/2015.
- * This is
+ * This is the class the customizes the calls to the async class GETs and POSTs. This will be a singleton class call in each Activity
+ * See AsyncOperations for more details on POST and GET
  */
 public final class ServiceClass {
 
