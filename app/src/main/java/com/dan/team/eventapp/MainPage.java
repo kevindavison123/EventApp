@@ -84,7 +84,7 @@ public class MainPage extends AppCompatActivity {
         int id = item.getItemId();
 
         //This is used to navigate between each supplementary
-        //activity via the action bar.
+        //activity via the action bar and overflow menu.
         Intent intent;
         switch (id) {
             case R.id.action_settings:

@@ -9,7 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-/*This class is not finish. This will represent a future feature of the app */
+/*This class is not finish. In the future it will be used for a page that
+ *allows the user to change their password
+ */
 public class ChangePassword extends AppCompatActivity {
 
     @Override

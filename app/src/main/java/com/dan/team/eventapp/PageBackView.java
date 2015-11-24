@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+/*If an event is clicked the user will see the PAgeView, a large image of the event. If
+  the PageVIew is clicked a transparent overlay will provide more information. This is that overlay*/
 public class PageBackView extends AppCompatActivity {
 
     private String time;
@@ -33,7 +35,7 @@ public class PageBackView extends AppCompatActivity {
         toolbar.setNavigationIcon(R.drawable.ic_back);
 
 
-
+        /* Currently unimplemented dynamic functionality*/
 //        Bundle extras = getIntent().getExtras();
 //        time = extras.getString("Time");
 //        date = extras.getString("Date");
@@ -44,8 +46,7 @@ public class PageBackView extends AppCompatActivity {
 //        eventTime.setText(time);
 //        TextView eventDate = (TextView) findViewById(R.id.eventDate);
 //        eventDate.setText(date);
-//
-        Intent intent = getIntent();
+//          Intent intent = getIntent();
     }
 
     @Override
@@ -86,6 +87,7 @@ public class PageBackView extends AppCompatActivity {
 
     }
 
+    //If the overlay is pressed the viewer will return to the original PageView
     public void onImageClick(View v) {
         Intent intent = new Intent(PageBackView.this, PageView.class);
 //        intent.putExtra("Time",time);

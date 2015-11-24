@@ -39,7 +39,7 @@ import java.util.Date;
 import cz.msebera.android.httpclient.cookie.Cookie;
 import cz.msebera.android.httpclient.impl.cookie.BasicClientCookie;
 
-
+/*This page is used for submitting events*/
 public class SubmitForm extends AppCompatActivity {
 
     Button buttonLoadImage;
@@ -106,6 +106,7 @@ public class SubmitForm extends AppCompatActivity {
 
         submitForm.setOnClickListener(new View.OnClickListener() {
 
+            //Creates the event.
             @Override
             public void onClick(View v) {
                 Cookie authorId = ServiceClass.getCookieValue("id");

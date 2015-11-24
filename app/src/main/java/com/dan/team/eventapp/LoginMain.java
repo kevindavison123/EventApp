@@ -83,6 +83,7 @@ public class LoginMain extends AppCompatActivity {
             }
         });
 
+        //Allows the user to log out and remove the local cookie
         logoutButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 ServiceClass.getCookieStore().clear();

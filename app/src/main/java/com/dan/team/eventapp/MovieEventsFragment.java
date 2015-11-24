@@ -42,8 +42,6 @@ public class MovieEventsFragment extends Fragment {
 //        int page = getArguments().getInt(ARG_PAGE_NUMBER, -1);
 //        txt.setText(String.format("Page %d", page));
 
-
-
         return rootView;
     }
 }

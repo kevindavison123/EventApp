@@ -15,8 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/* this is for demonstrating what a click on an image tile should do. This is a concept,
- * the final should be dynamic and probably a fragment. */
+/* This page provides a larger image for the selected event. */
 public class PageView extends AppCompatActivity {
 
     ImageView eventPicture;

@@ -47,7 +47,7 @@ public class Registration extends AppCompatActivity {
         toolbar.setNavigationIcon(R.drawable.ic_back);
 
 
-
+        //THis is used to get user info and verify the correct forms are filled out accurately.
         App.setContext(Registration.this);
         firstName = (EditText) findViewById(R.id.firstName);
         lastName = (EditText) findViewById(R.id.lastName);
