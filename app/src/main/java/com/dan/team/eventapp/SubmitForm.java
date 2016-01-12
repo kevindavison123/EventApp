@@ -184,7 +184,8 @@ public class SubmitForm extends AppCompatActivity {
     private void sendImageToServer(String name)
     {
         Bitmap image = ((BitmapDrawable)uploadImage.getDrawable()).getBitmap();
-        Bitmap thumbnail = resizeImage(image,150,150);
+        Bitmap thumbnail = resizeImage(image,200,200);
+        //Teessttingggg permissions
         thumbView.setImageBitmap(thumbnail);
 //        serviceClass.postImage(name,image,thumbnail);
 
