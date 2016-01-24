@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context="com.dan.team.eventapp.ThisWeekEventsFragment">
+
+    <View android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:visibility="invisible"/>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/tabs">
+
+        <TableLayout
+            android:id="@+id/weeklyTableLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+
+        </TableLayout>
+    </ScrollView>
+
+</LinearLayout>

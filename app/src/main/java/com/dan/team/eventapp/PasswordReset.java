@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/*This class is not finish. TIN the future this form will be used for reseting user passwords */
 public class PasswordReset extends AppCompatActivity {
 
     @Override

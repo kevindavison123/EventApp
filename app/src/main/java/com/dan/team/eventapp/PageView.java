@@ -7,33 +7,43 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-/*This class is not finish. In the future it will be used for a page that
- *allows the user to change their password
- */
-public class ChangePassword extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.Arrays;
+
+/* This page provides a larger image for the selected event. */
+public class PageView extends AppCompatActivity {
+
+    ImageView eventPicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_password);
+        setContentView(R.layout.activity_page_view);
 
-        //Creates the toolbar and gives the toolbar its title.
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
-        setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
+        //Finds the toolbar and sets it up as an actionbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        //Sets the toolbar title and font.
         TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTypeface(Typeface.SERIF);
-        // Not needed for some reason getSupportActionBar().setHomeButtonEnabled(true);
+        //Used to navigate back on the toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
 
+        eventPicture = (ImageView) findViewById(R.id.eventPicture);
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_change_password, menu);
+        getMenuInflater().inflate(R.menu.menu_page_view, menu);
         return true;
     }
 
@@ -44,17 +54,22 @@ public class ChangePassword extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        Intent intent;
+
         switch (id) {
             case R.id.action_settings:
                 return true;
             case R.id.adding_button:
-                addEvent();
+                intent = new Intent(PageView.this, SubmitForm.class);
+                PageView.this.startActivity(intent);
                 return true;
             case R.id.login_button:
-                loginPage();
+                intent = new Intent(PageView.this, LoginMain.class);
+                PageView.this.startActivity(intent);
                 return true;
             case R.id.register_button:
-                registerPage();
+                intent = new Intent(PageView.this, Registration.class);
+                PageView.this.startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -62,20 +77,8 @@ public class ChangePassword extends AppCompatActivity {
 
     }
 
-
-    public void addEvent() {
-        Intent intent = new Intent(ChangePassword.this, SubmitForm.class);
-        ChangePassword.this.startActivity(intent);
-    }
-
-    public void loginPage() {
-        Intent intent = new Intent(ChangePassword.this, LoginMain.class);
-        ChangePassword.this.startActivity(intent);
-    }
-
-    public void registerPage()
-    {
-        Intent intent = new Intent(ChangePassword.this, Registration.class);
-        ChangePassword.this.startActivity(intent);
+    public void onImageClick(View v) {
+            Intent intent = new Intent(PageView.this, PageBackView.class);
+            PageView.this.startActivity(intent);
     }
 }

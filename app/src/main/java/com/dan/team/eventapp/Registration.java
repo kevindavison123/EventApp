@@ -16,7 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.dan.team.eventapp.webclient.ServiceClass;
 
-
+/*
+The Registration for users. This will take in user input and send it to the server. The user will be
+able to login and view the main page.
+ */
 public class Registration extends AppCompatActivity {
 
     EditText firstName;
@@ -33,15 +36,26 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        //Finds the toolbar and sets it up as an actionbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        //Sets the toolbar title and font.
+        TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        toolbarTitle.setTypeface(Typeface.SERIF);
+        //Used to navigate back on the toolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+
+
+        //THis is used to get user info and verify the correct forms are filled out accurately.
         App.setContext(Registration.this);
-        final ServiceClass serviceClass = new ServiceClass();
         firstName = (EditText) findViewById(R.id.firstName);
         lastName = (EditText) findViewById(R.id.lastName);
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.rPassword);
         cPassword = (EditText) findViewById(R.id.cPassword);
         register = (Button) findViewById(R.id.rRegister);
-        register.setOnClickListener(new View.OnClickListener(){
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String fName = firstName.getText().toString();
@@ -59,26 +73,15 @@ public class Registration extends AppCompatActivity {
                 }
                 else if(passName.equals(confirmPassName))
                 {
-                    serviceClass.postUser(fName,lName,eName, passName);
+                    ServiceClass.postUser(fName,lName,eName, passName);
                 }
                 else
                 {
                     Toast.makeText(Registration.this,"Passwords do not match",Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
-
-
-
-        //Creates the toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
-        setSupportActionBar(toolbar);                   // Setting toolbar as the ActionBar with setSupportActionBar() call
-        TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        toolbarTitle.setTypeface(Typeface.SERIF);
-        // Not needed for some reason getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationIcon(R.drawable.ic_back);
-
 
     }
 
@@ -96,36 +99,27 @@ public class Registration extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        //This is used to navigate between each supplementary
+        //activity via the action bar.
+        Intent intent;
         switch (id) {
             case R.id.action_settings:
                 return true;
             case R.id.adding_button:
-                addEvent();
+                intent = new Intent(Registration.this, SubmitForm.class);
+                Registration.this.startActivity(intent);
                 return true;
             case R.id.login_button:
-                loginPage();
+                intent = new Intent(Registration.this, LoginMain.class);
+                Registration.this.startActivity(intent);
                 return true;
             case R.id.register_button:
-                registerPage();
+                intent = new Intent(Registration.this, Registration.class);
+                Registration.this.startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    public void addEvent() {
-        Intent intent = new Intent(Registration.this, SubmitForm.class);
-        Registration.this.startActivity(intent);
-    }
-
-    public void loginPage() {
-        Intent intent = new Intent(Registration.this, LoginMain.class);
-        Registration.this.startActivity(intent);
-    }
-
-    public void registerPage()
-    {
-        Intent intent = new Intent(Registration.this, Registration.class);
-        Registration.this.startActivity(intent);
-    }
 }

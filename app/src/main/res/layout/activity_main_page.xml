@@ -12,24 +12,6 @@
         layout="@layout/tool_bar">
     </include>
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/ColorPrimary"
-        android:elevation="4dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/titleForApp"
-            android:layout_gravity="center"
-            android:id="@+id/toolbar_title"
-            android:textColor="@color/ColorTitle"
-            android:textSize="30sp"
-            android:textStyle=""/>
-
-    </android.support.v7.widget.Toolbar>
-
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
@@ -50,188 +32,21 @@
     </android.support.v4.view.ViewPager>
 
 
+
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/tabs">
 
         <TableLayout
+            android:id="@+id/tableLayout"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <TableRow
-                android:id="@+id/row1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:id="@+id/event1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="left"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="0.5"
-                    android:adjustViewBounds="true"
-                    android:background="@null"
-                    android:cropToPadding="true"
-                    android:onClick="onUserClickConcept"
-                    android:scaleType="fitStart"
-                    android:src="@drawable/insideout" />
-
-                <ImageButton
-                    android:id="@+id/event2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="right"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="2.5dp"
-                    android:layout_weight="0.5"
-                    android:adjustViewBounds="true"
-                    android:background="@null"
-                    android:cropToPadding="true"
-                    android:scaleType="fitEnd"
-                    android:src="@drawable/jurrasic" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/row2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/event3"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="left"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="0.5"
-                    android:adjustViewBounds="true"
-                    android:background="@null"
-                    android:cropToPadding="true"
-                    android:onClick="onUserClickConcept"
-                    android:scaleType="fitStart"
-                    android:src="@drawable/uncle2" />
-
-                <ImageButton
-                    android:id="@+id/event4"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="right"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="2.5dp"
-                    android:layout_weight="0.5"
-                    android:adjustViewBounds="true"
-                    android:background="@null"
-                    android:cropToPadding="true"
-                    android:scaleType="fitEnd"
-                    android:src="@drawable/antman" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/row3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/event5"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="left"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="0.5"
-                    android:adjustViewBounds="true"
-                    android:background="@null"
-                    android:cropToPadding="true"
-                    android:onClick="onUserClickConcept"
-                    android:scaleType="fitStart"
-                    android:src="@drawable/amy" />
-
-                <ImageButton
-                    android:id="@+id/event6"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="right"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="2.5dp"
-                    android:layout_weight="0.5"
-                    android:adjustViewBounds="true"
-                    android:background="@null"
-                    android:cropToPadding="true"
-                    android:scaleType="fitEnd"
-                    android:src="@drawable/compton" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/row4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/event7"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="left"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="0.5"
-                    android:adjustViewBounds="true"
-                    android:background="@null"
-                    android:cropToPadding="true"
-                    android:onClick="onUserClickConcept"
-                    android:scaleType="fitStart"
-                    android:src="@drawable/americanultra" />
-
-                <ImageButton
-                    android:id="@+id/event8"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="right"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="2.5dp"
-                    android:layout_weight="0.5"
-                    android:adjustViewBounds="true"
-                    android:background="@null"
-                    android:cropToPadding="true"
-                    android:scaleType="fitEnd"
-                    android:src="@drawable/uncle2" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/row5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/event9"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="left"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_weight="0.5"
-                    android:adjustViewBounds="true"
-                    android:background="@null"
-                    android:cropToPadding="true"
-                    android:onClick="onUserClickConcept"
-                    android:scaleType="fitStart"
-                    android:src="@drawable/uncle2" />
-
-                <ImageButton
-                    android:id="@+id/event10"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="right"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginLeft="2.5dp"
-                    android:layout_marginRight="0dp"
-                    android:layout_weight="0.5"
-                    android:adjustViewBounds="true"
-                    android:background="@null"
-                    android:cropToPadding="true"
-                    android:scaleType="fitEnd"
-                    android:src="@drawable/uncle2" />
-            </TableRow>
         </TableLayout>
     </ScrollView>
+
 
 </RelativeLayout>
 
