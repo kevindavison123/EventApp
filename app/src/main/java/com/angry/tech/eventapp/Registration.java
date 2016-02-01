@@ -1,9 +1,8 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp;
 
 import android.content.Intent;
 
 import android.graphics.Typeface;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,7 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.dan.team.eventapp.webclient.ServiceClass;
+
+import com.dan.team.eventapp.R;
+import com.angry.tech.eventapp.webclient.ServiceClass;
 
 /*
 The Registration for users. This will take in user input and send it to the server. The user will be

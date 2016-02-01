@@ -1,10 +1,9 @@
-package com.dan.team.eventapp.webclient;
+package com.angry.tech.eventapp.webclient;
 
 import android.graphics.Bitmap;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 
-import com.dan.team.eventapp.App;
+import com.angry.tech.eventapp.App;
 import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
 

@@ -1,12 +1,12 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp;
 
-import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.dan.team.eventapp.R;
 
 /*
     This class is a fragment for the main page activity that retrieves All events from the database on the server

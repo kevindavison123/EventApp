@@ -1,4 +1,4 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -24,20 +24,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.LinearLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.dan.team.eventapp.webclient.ServiceClass;
-import com.loopj.android.http.PersistentCookieStore;
-
-import java.util.List;
-import java.util.Random;
-
-import java.util.Date;
+import com.angry.tech.eventapp.webclient.ServiceClass;
+import com.dan.team.eventapp.R;
 
 import cz.msebera.android.httpclient.cookie.Cookie;
-import cz.msebera.android.httpclient.impl.cookie.BasicClientCookie;
 
 /*This page is used for submitting events*/
 public class SubmitForm extends AppCompatActivity {

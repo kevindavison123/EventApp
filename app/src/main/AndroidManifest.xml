@@ -16,7 +16,7 @@
         android:icon="@drawable/klogo"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainPage"
+            android:name="com.angry.tech.eventapp.MainPage"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,24 +25,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PageView"
+            android:name="com.angry.tech.eventapp.PageView"
             android:label=""
-            android:parentActivityName=".MainPage" >
+            android:parentActivityName="com.angry.tech.eventapp.MainPage" >
         </activity>
         <activity
-            android:name=".SubmitForm"
+            android:name="com.angry.tech.eventapp.SubmitForm"
             android:label=""
-            android:parentActivityName=".MainPage" >
+            android:parentActivityName="com.angry.tech.eventapp.MainPage" >
         </activity>
         <activity
-            android:name=".LoginMain"
+            android:name="com.angry.tech.eventapp.LoginMain"
             android:label=""
-            android:parentActivityName=".MainPage" >
+            android:parentActivityName="com.angry.tech.eventapp.MainPage" >
         </activity>
         <activity
-            android:name=".Registration"
+            android:name="com.angry.tech.eventapp.Registration"
             android:label=""
-            android:parentActivityName=".MainPage" >
+            android:parentActivityName="com.angry.tech.eventapp.MainPage" >
         </activity>
         <!-- <activity -->
         <!-- android:name=".PasswordReset" -->
@@ -50,14 +50,14 @@
         <!-- android:parentActivityName=".MainPage"> -->
         <!-- </activity> -->
         <activity
-            android:name=".ChangePassword"
+            android:name="com.angry.tech.eventapp.ChangePassword"
             android:label=""
-            android:parentActivityName=".MainPage" >
+            android:parentActivityName="com.angry.tech.eventapp.MainPage" >
         </activity>
         <activity
-            android:name=".PageBackView"
+            android:name="com.angry.tech.eventapp.PageBackView"
             android:label=""
-            android:parentActivityName=".MainPage">
+            android:parentActivityName="com.angry.tech.eventapp.MainPage">
         </activity>
     </application>
 

@@ -1,24 +1,27 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp;
 
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.dan.team.eventapp.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /* This page provides a larger image for the selected event. */
 public class PageView extends AppCompatActivity {
-
     ImageView eventPicture;
+    Intent intent = getIntent();
+    ArrayList<String> data = getIntent().getStringArrayListExtra("dataPacket");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,12 @@ public class PageView extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
 
-        eventPicture = (ImageView) findViewById(R.id.eventPicture);
+        for(String dataString: data)
+        {
+            Log.d("IN PAGEVIEW", dataString);
+        }
+
+//        eventPicture = (ImageView) findViewById(R.id.eventPicture);
 
     }
 

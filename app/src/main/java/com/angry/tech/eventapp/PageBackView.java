@@ -1,4 +1,4 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import com.dan.team.eventapp.R;
 
 /*If an event is clicked the user will see the PAgeView, a large image of the event. If
   the PageVIew is clicked a transparent overlay will provide more information. This is that overlay*/

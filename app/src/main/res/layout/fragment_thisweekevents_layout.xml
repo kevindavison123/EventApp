@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context="com.dan.team.eventapp.ThisWeekEventsFragment">
+    tools:context="com.angry.tech.eventapp.ThisWeekEventsFragment">
 
     <View android:layout_width="match_parent"
         android:layout_height="48dp"

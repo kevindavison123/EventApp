@@ -1,4 +1,4 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.dan.team.eventapp.R;
 
 /*This class is not finish. In the future it will be used for a page that
  *allows the user to change their password

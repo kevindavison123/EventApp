@@ -1,11 +1,12 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 /*
-    Designates what tab is where and what happens when clicked.
+    Designates what tabs are created, and their title of the text.
+    Manages all the tabs.
  */
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 

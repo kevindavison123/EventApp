@@ -16,14 +16,6 @@
             android:id="@+id/tool_bar"
             layout="@layout/tool_bar"></include>
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/amybig" />
 
         <ImageView
             android:id="@+id/imageView2"

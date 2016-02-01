@@ -1,17 +1,12 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp;
 
-import android.app.Service;
-import android.content.Context;
-import android.graphics.Point;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
 
-import com.dan.team.eventapp.webclient.ServiceClass;
+import com.dan.team.eventapp.R;
 
 /*
 Another fragment for the main page. This is to get the movie events (future feature)

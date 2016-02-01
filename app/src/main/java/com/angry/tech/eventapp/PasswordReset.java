@@ -1,9 +1,11 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.dan.team.eventapp.R;
 
 /*This class is not finish. TIN the future this form will be used for reseting user passwords */
 public class PasswordReset extends AppCompatActivity {

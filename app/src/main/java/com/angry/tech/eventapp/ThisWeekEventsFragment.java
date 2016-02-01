@@ -1,10 +1,12 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.dan.team.eventapp.R;
 
 /*
 Another fragment for the main page, to display only the events posted for this week.

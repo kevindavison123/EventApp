@@ -1,8 +1,5 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp;
 
-import android.app.Fragment;
-import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Typeface;
@@ -15,12 +12,11 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.dan.team.eventapp.webclient.ServiceClass;
+import com.angry.tech.eventapp.webclient.ServiceClass;
+import com.dan.team.eventapp.R;
 
 
 public class MainPage extends AppCompatActivity {

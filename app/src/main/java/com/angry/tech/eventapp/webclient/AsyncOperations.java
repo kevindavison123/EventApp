@@ -1,45 +1,31 @@
-package com.dan.team.eventapp.webclient;
+package com.angry.tech.eventapp.webclient;
 
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dan.team.eventapp.App;
-import com.dan.team.eventapp.PageView;
-import com.dan.team.eventapp.R;
+import com.angry.tech.eventapp.App;
+import com.angry.tech.eventapp.PageView;
 import com.loopj.android.http.*;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.net.CookieStore;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
@@ -308,13 +294,15 @@ public class AsyncOperations {
 
 
                     final String ID = String.valueOf(id);
+                    //When a button is pressed, sent the json packet to the next activity
                     imageButtons.get(i).setOnClickListener(new View.OnClickListener()
                     {
                         @Override
                         public void onClick(View v)
                         {
                             Intent intent = new Intent(tableLayout.getContext(), PageView.class);
-                            intent.putStringArrayListExtra(ID, (ArrayList<String>) jsonPacket.get(ID));
+                            intent.putStringArrayListExtra("dataPacket", (ArrayList<String>) jsonPacket.get(ID));
+                            Log.d("THIS IS THE ID", ID);
                             Log.d("THIS IS THE DATA", jsonPacket.get(ID).toString());
                             
                             tableLayout.getContext().startActivity(intent);

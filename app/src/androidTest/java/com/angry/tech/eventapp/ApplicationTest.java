@@ -1,4 +1,4 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
