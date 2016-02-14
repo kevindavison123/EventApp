@@ -3,8 +3,6 @@ package com.dan.team.eventapp.webclient;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -46,14 +44,16 @@ public class AsyncOperations {
             e.printStackTrace();
         }
 
-        client.post(context, restUrl, entity, "application/json", new JsonHttpResponseHandler() {
-
+        client.post(context, restUrl, entity, "application/json", new JsonHttpResponseHandler()
+        {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject object) {
+            public void onSuccess(int statusCode, Header[] headers, JSONObject object)
+            {
 
             }
         });
     }
+
     private void getImage(String url, final ImageButton imgButton)
     {
         client.get(FORM_URL + url, null, new AsyncHttpResponseHandler() {
@@ -69,6 +69,7 @@ public class AsyncOperations {
             }
         });
     }
+
     public void postImage(RequestParams params, String url)
     {
         client.post(FORM_URL + url, params, new AsyncHttpResponseHandler() {
@@ -83,11 +84,6 @@ public class AsyncOperations {
             }
         });
     }
-
-
-
-
-
 
     public void deleteEvent(int eventId, String url) {
         String restUrl = FORM_URL + url + "/" + eventId;
