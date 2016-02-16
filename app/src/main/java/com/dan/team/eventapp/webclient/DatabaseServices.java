@@ -29,9 +29,9 @@ import java.util.ArrayList;
 
 public class DatabaseServices extends Service
 {
-    private final IBinder mBinder;
+    private final IBinder mBinder = new DatabaseBinder();
     int eventsDBVersion;//TODO:Implement versioning
-    private boolean debug = false;//if true, service will generate dummy info. True for development
+    private boolean debug = true;
 
     public class DatabaseBinder extends Binder
     {
@@ -45,7 +45,6 @@ public class DatabaseServices extends Service
     public DatabaseServices()
     {
         super();
-        mBinder = new DatabaseBinder();
     }
 
     @Override

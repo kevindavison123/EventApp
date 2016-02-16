@@ -17,8 +17,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainPage"
-            android:label="" >
+            android:name=".BindingClassExample"
+            android:label="" > <!-- Set to main to stop db testing -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,11 +55,18 @@
             android:label=""
             android:parentActivityName=".MainPage" >
         </activity>
-        <activity
+        <service
+            android:name=".webclient.DatabaseServices"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+        <!--  <activity
             android:name=".BindingClassExample"
             android:label="@string/title_activity_binding_class_example"
             android:theme="@style/AppTheme" >
-        </activity>
+        </activity> -->
+
+
     </application>
 
 </manifest>

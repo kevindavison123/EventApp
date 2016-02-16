@@ -1,24 +1,18 @@
 package com.dan.team.eventapp;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dan.team.eventapp.webclient.DatabaseServices;
-
-import java.util.ArrayList;
 
 /*
  * Author: Jakob Rodseth
@@ -33,44 +27,49 @@ import java.util.ArrayList;
  *
  */
 
-
 public class BindingClassExample extends Activity
 {
 
-
-    DatabaseServices dbServices; //The database service instance the activity binds to.
+    DatabaseServices dbService; //The database service instance the activity binds to.
     boolean dbBound = false; //Is the activity bound to the service
 
     /* When the activity binds to a service, the ServiceConnection moderates the communication.
-    *  This is where you should put all of your async data requests through DatabaseServices methods
     */
-    private ServiceConnection dbConnection = new ServiceConnection()
-    {
+    private ServiceConnection dbConnection;
 
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service)
-        {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance
-            DatabaseServices.DatabaseBinder binder = (DatabaseServices.DatabaseBinder) service;
-            dbServices = binder.getService(); //Store reference to the instance of the service that we bound to.
-            dbBound = true;
-
-            Toast.makeText(getApplicationContext(), "Database Services Requested", Toast.LENGTH_SHORT).show(); //TODO:Debug
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0)
-        {
-            dbBound = false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_binding_class_example);
+
+        dbConnection = new ServiceConnection()
+        {
+
+            @Override
+            public void onServiceConnected(ComponentName className,
+                                           IBinder service)
+            {
+                // We've bound to LocalService, cast the IBinder and get LocalService instance
+                DatabaseServices.DatabaseBinder binder = (DatabaseServices.DatabaseBinder) service;
+                dbService = binder.getService(); //Store reference to the instance of the service that we bound to.
+                dbBound = true;
+
+                testDBServices();
+
+                Toast.makeText(getApplicationContext(), "Database Services Requested", Toast.LENGTH_SHORT).show(); //TODO:Debug
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName arg0)
+            {
+                dbBound = false;
+            }
+        };
+
+        Log.d(BindingClassExample.class.getSimpleName(), "created");
+
 
         /*
         * The LocalBroadcastManager will register your activity as a listener for a specific message from DatabaseServices.
@@ -138,21 +137,20 @@ public class BindingClassExample extends Activity
     protected void onStop()
     {
         super.onStop();
-        if(dbBound)
+        if (dbBound)
         {
             unbindService(dbConnection);
             dbBound = false;
         }
     }
 
-    public void testDBServices(View view) //Example situation in which you would bind to the service
+    public void testDBServices() //Example situation in which you would bind to the service
     {
-        if(dbBound)
+        if (dbBound)
         {
-            dbServices.post(new User("Bob","Ross","Bob_Ross@Email.com", "LittleFriend"));
+            dbService.post(new User("Bob", "Ross", "Bob_Ross@Email.com", "LittleFriend"));
+            Toast.makeText(getApplicationContext(), "Testing", Toast.LENGTH_SHORT).show();//TODO:Debug
         }
-
-        Toast.makeText(getApplicationContext(), "Testing", Toast.LENGTH_SHORT).show();//TODO:Debug
     }
 
     @Override
