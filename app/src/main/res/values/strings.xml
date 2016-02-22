@@ -15,5 +15,15 @@
     <string name="title_activity_registration">Registration</string>
     <string name="title_activity_password_reset">Password Reset</string>
     <string name="title_activity_change_password">Change Password</string>
+<<<<<<< HEAD
     <string name="title_activity_page_back_view">PageBackView</string>
+=======
+
+    <string name="post">post</string>
+
+    <string name="backend_URL">"http://146.113.112.18:8080/"</string>
+
+
+    <string name="title_activity_binding_class_example">BindingClassExample</string>
+>>>>>>> 460f8f46f854ef06afcb353778fcffa6e4cee67c
 </resources>

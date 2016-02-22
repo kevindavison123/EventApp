@@ -1,8 +1,15 @@
 package com.angry.tech.eventapp;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 
+import android.content.ServiceConnection;
 import android.graphics.Typeface;
+<<<<<<< HEAD:app/src/main/java/com/angry/tech/eventapp/Registration.java
+=======
+import android.os.IBinder;
+>>>>>>> 460f8f46f854ef06afcb353778fcffa6e4cee67c:app/src/main/java/com/dan/team/eventapp/Registration.java
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +20,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+<<<<<<< HEAD:app/src/main/java/com/angry/tech/eventapp/Registration.java
+=======
+
+import com.dan.team.eventapp.webclient.DatabaseServices;
+import com.dan.team.eventapp.webclient.ServiceClass;
+>>>>>>> 460f8f46f854ef06afcb353778fcffa6e4cee67c:app/src/main/java/com/dan/team/eventapp/Registration.java
 
 import com.dan.team.eventapp.R;
 import com.angry.tech.eventapp.webclient.ServiceClass;
@@ -31,6 +44,42 @@ public class Registration extends AppCompatActivity {
     Button register;
     Button backToLogin;
 
+
+    DatabaseServices dbServices; //The database service instance the activity binds to.
+    boolean dbBound = false; //Is the activity bound to the service
+
+    /* When the activity binds to a service, the ServiceConnection moderates the communication.
+    *  This is where you should put all of your async data requests through DatabaseServices methods
+    */
+    private ServiceConnection dbConnection = new ServiceConnection()
+    {
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service)
+        {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            DatabaseServices.DatabaseBinder binder = (DatabaseServices.DatabaseBinder) service;
+            dbServices = binder.getService(); //Store reference to the instance of the service that we bound to.
+            dbBound = true;
+
+            Toast.makeText(getApplicationContext(), "Database Services Requested", Toast.LENGTH_SHORT).show(); //TODO:Debug
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0)
+        {
+            dbBound = false;
+        }
+    };
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        Intent intent = new Intent(this, DatabaseServices.class);
+        bindService(intent, dbConnection, Context.BIND_AUTO_CREATE);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +123,14 @@ public class Registration extends AppCompatActivity {
                 }
                 else if(passName.equals(confirmPassName))
                 {
+<<<<<<< HEAD:app/src/main/java/com/angry/tech/eventapp/Registration.java
                     ServiceClass.postUser(fName,lName,eName, passName);
+=======
+                    if(dbBound)
+                    {
+                        dbServices.post(new User(fName,lName,eName,passName));
+                    }
+>>>>>>> 460f8f46f854ef06afcb353778fcffa6e4cee67c:app/src/main/java/com/dan/team/eventapp/Registration.java
                 }
                 else
                 {
