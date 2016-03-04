@@ -12,7 +12,7 @@ import android.os.Parcelable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Toast;
 
-import com.dan.team.eventapp.BackendParcelable;
+import com.angry.tech.eventapp.webclient.BackendParcelable;
 import com.dan.team.eventapp.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -77,10 +77,11 @@ public class DatabaseServices extends Service
     public void post(BackendParcelable postObject)
     {
         RequestParams params = new RequestParams();
-        params.add("type", postObject.getClass().toString());
-        ArrayList<String> parameters = postObject.getParameters();
-        params.put("Parameters", parameters);
-        invokeWebServices(params, getResources().getString(R.string.post));
+//        params.add("type", postObject.getClass().toString());
+//        ArrayList<String> parameters = postObject.getParameters();
+//        params.put("Parameters", parameters);
+        params.add("test","test");
+        invokeWebServices(params, getResources().getString(R.string.backend_URL)+getResources().getString(R.string.post));
     }
 
     /*
@@ -173,7 +174,7 @@ public class DatabaseServices extends Service
             @Override
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] bytes)
             {
-                //Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -181,17 +182,17 @@ public class DatabaseServices extends Service
             {
                 if (statusCode == 404)
                 {
-                    //Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_SHORT).show();//TODO:Debug
+                    Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_SHORT).show();//TODO:Debug
                 }
                 // When Http response code is '500'
                 else if (statusCode == 500)
                 {
-                    //Toast.makeText(getApplicationContext(), "Something went wrong at server end", Toast.LENGTH_SHORT).show();//TODO:Debug
+                    Toast.makeText(getApplicationContext(), "Something went wrong at server end", Toast.LENGTH_SHORT).show();//TODO:Debug
                 }
                 // When Http response code other than 404, 500
                 else
                 {
-                    //Toast.makeText(getApplicationContext(), "Unexpected Error occurred! [Most common Error: Device might not be connected to Internet or remote server is not up and running]", Toast.LENGTH_LONG).show();//TODO:Debug
+                    Toast.makeText(getApplicationContext(), "Unexpected Error occurred! [Most common Error: Device might not be connected to Internet or remote server is not up and running]", Toast.LENGTH_LONG).show();//TODO:Debug
                 }
             }
         });

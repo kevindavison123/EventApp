@@ -1,11 +1,9 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp.webclient;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Jakob on 2/14/2016.

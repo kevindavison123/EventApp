@@ -1,4 +1,4 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp.webclient;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.dan.team.eventapp.R;
 import com.dan.team.eventapp.webclient.DatabaseServices;
 
 /*
@@ -91,18 +92,10 @@ public class BindingClassExample extends Activity
         *  LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseGPSUpdateMessageReceiver,
         *        new IntentFilter(getApplicationContext().getResources().getString(R.string.EventGPSUpdateMessageEnumeratedMessage)));
         *
-        LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseProfileEnumerationMessageReceiver,
-                new IntentFilter(getApplicationContext().getResources().getString(R.string.EventArrayMessage)));
-        LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseScheduleElementMessageReceiver,
-                new IntentFilter(getApplicationContext().getResources().getString(R.string.ScheduleElementMessage)));
-        LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseImageArrayMessageReceiver,
-                new IntentFilter(getApplicationContext().getResources().getString(R.string.ImageArrayMessage)));
-        LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseEventAddedMessageReceiver,
-                new IntentFilter(getApplicationContext().getResources().getString(R.string.AddedEventMessage)));
-        LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseEventRemovedMessageReceiver,
-                new IntentFilter(getApplicationContext().getResources().getString(R.string.RemovedEventMessage)));
-        LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseEventUpdatedMessageReceiver,
-                new IntentFilter(getApplicationContext().getResources().getString(R.string.UpdatedEventMessage)));
+        LocalBroadcastManager.getInstance(this).registerReceiver(NAME OF RECEIVER,
+                new IntentFilter(getApplicationContext().getResources().getString(String for get or post)));
+
+
 
        /* setListAdapter(new ArrayAdapter<String>(this, R.layout., currentProfiles));
 

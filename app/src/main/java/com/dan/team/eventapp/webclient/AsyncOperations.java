@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dan.team.eventapp.App;
+import com.angry.tech.eventapp.App;
 import com.loopj.android.http.*;
 
 import org.json.JSONArray;

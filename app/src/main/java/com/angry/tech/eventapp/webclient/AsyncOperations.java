@@ -39,7 +39,8 @@ import cz.msebera.android.httpclient.impl.cookie.BasicClientCookie;
  */
 public class AsyncOperations {
 
-    private static final String FORM_URL = "http://146.113.112.18:8080/";
+//    private static final String FORM_URL = "http://146.113.112.18:8080/";
+    private static final String FORM_URL = "http://10.0.2.2:8080/";
 
     private AsyncHttpClient client = new AsyncHttpClient();
     private Context context = App.getContext();

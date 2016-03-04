@@ -1,4 +1,4 @@
-package com.dan.team.eventapp;
+package com.angry.tech.eventapp.webclient;
 
 import android.os.Parcelable;
 

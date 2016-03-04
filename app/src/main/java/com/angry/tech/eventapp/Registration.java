@@ -6,10 +6,9 @@ import android.content.Intent;
 
 import android.content.ServiceConnection;
 import android.graphics.Typeface;
-<<<<<<< HEAD:app/src/main/java/com/angry/tech/eventapp/Registration.java
-=======
+
 import android.os.IBinder;
->>>>>>> 460f8f46f854ef06afcb353778fcffa6e4cee67c:app/src/main/java/com/dan/team/eventapp/Registration.java
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -20,12 +19,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-<<<<<<< HEAD:app/src/main/java/com/angry/tech/eventapp/Registration.java
-=======
 
+import com.angry.tech.eventapp.webclient.User;
 import com.dan.team.eventapp.webclient.DatabaseServices;
-import com.dan.team.eventapp.webclient.ServiceClass;
->>>>>>> 460f8f46f854ef06afcb353778fcffa6e4cee67c:app/src/main/java/com/dan/team/eventapp/Registration.java
+//import com.dan.team.eventapp.webclient.ServiceClass;
+
 
 import com.dan.team.eventapp.R;
 import com.angry.tech.eventapp.webclient.ServiceClass;
@@ -123,14 +121,14 @@ public class Registration extends AppCompatActivity {
                 }
                 else if(passName.equals(confirmPassName))
                 {
-<<<<<<< HEAD:app/src/main/java/com/angry/tech/eventapp/Registration.java
+
                     ServiceClass.postUser(fName,lName,eName, passName);
-=======
                     if(dbBound)
                     {
                         dbServices.post(new User(fName,lName,eName,passName));
+
                     }
->>>>>>> 460f8f46f854ef06afcb353778fcffa6e4cee67c:app/src/main/java/com/dan/team/eventapp/Registration.java
+
                 }
                 else
                 {
