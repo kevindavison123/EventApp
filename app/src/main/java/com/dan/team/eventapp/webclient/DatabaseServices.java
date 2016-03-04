@@ -10,6 +10,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.os.Parcelable;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.dan.team.eventapp.BackendParcelable;
@@ -18,7 +19,10 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.entity.StringEntity;
 
 /*
 * Author: Jakob Rodseth
@@ -32,6 +36,11 @@ public class DatabaseServices extends Service
     private final IBinder mBinder = new DatabaseBinder();
     int eventsDBVersion;//TODO:Implement versioning
     private boolean debug = true;
+    private static String url;
+    private static String createUserAppend;
+    private static Context applicationContext;
+
+    public Users users;
 
     public class DatabaseBinder extends Binder
     {
@@ -45,12 +54,22 @@ public class DatabaseServices extends Service
     public DatabaseServices()
     {
         super();
+        users = new Users();
     }
 
     @Override
     public IBinder onBind(Intent intent)
     {
         return mBinder;
+    }
+
+    @Override
+    public void onCreate()
+    {
+        super.onCreate();
+        applicationContext = getApplicationContext();
+        url = applicationContext.getResources().getString(R.string.backend_URL);
+        createUserAppend = applicationContext.getResources().getString(R.string.createUserAppend);
     }
 
     @Override
@@ -73,14 +92,123 @@ public class DatabaseServices extends Service
     /*
         * Public methods
         * */
-
-    public void post(BackendParcelable postObject)
+    public final class Users implements supportedDBDataType
     {
-        RequestParams params = new RequestParams();
-        params.add("type", postObject.getClass().toString());
-        ArrayList<String> parameters = postObject.getParameters();
-        params.put("Parameters", parameters);
-        invokeWebServices(params, getResources().getString(R.string.post));
+        @Override
+        public <User extends BackendParcelable> void create(User user)
+        {
+            DatabaseServices.create(user, createUserAppend, new OnJSONResponseCallback()
+            {
+                @Override
+                public void onJSONResponse(boolean success, Context context, JSONObject response)
+                {
+                    if(success)
+                    Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                    else
+                        Toast.makeText(context, "FAIL", Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                }
+            });
+            Toast.makeText(getApplicationContext(), "Asked DBServices to create user", Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+        }
+
+        @Override
+        public <User extends BackendParcelable> void read(User user)
+        {
+            DatabaseServices.read(user, "temp", new OnJSONResponseCallback()
+            {
+                @Override
+                public void onJSONResponse(boolean success, Context context, JSONObject response)
+                {
+                    //do something
+                }
+            });
+        }
+
+        @Override
+        public <User extends BackendParcelable> void update(User user)
+        {
+            DatabaseServices.update(user, "temp", new OnJSONResponseCallback()
+            {
+                @Override
+                public void onJSONResponse(boolean success, Context context, JSONObject response)
+                {
+                    //do something
+                }
+            });
+        }
+
+        @Override
+        public <User extends BackendParcelable> void delete(User user)
+        {
+            DatabaseServices.remove(user, "temp", new OnJSONResponseCallback()
+            {
+                @Override
+                public void onJSONResponse(boolean success, Context context, JSONObject response)
+                {
+                    //do something
+                }
+            });
+        }
+    }
+
+    public final class Events implements supportedDBDataType
+    {
+
+        @Override
+        public <T extends BackendParcelable> void create(T object)
+        {
+
+        }
+
+        @Override
+        public <T extends BackendParcelable> void read(T object)
+        {
+
+        }
+
+        @Override
+        public <T extends BackendParcelable> void update(T object)
+        {
+
+        }
+
+        @Override
+        public <T extends BackendParcelable> void delete(T object)
+        {
+
+        }
+
+        public void getAllEvents()
+        {
+
+        }
+    }
+
+    public final class Groups implements supportedDBDataType
+    {
+        @Override
+        public <T extends BackendParcelable> void create(T object)
+        {
+
+        }
+
+        @Override
+        public <T extends BackendParcelable> void read(T object)
+        {
+
+        }
+
+        @Override
+        public <T extends BackendParcelable> void update(T object)
+        {
+
+        }
+
+        @Override
+        public <T extends BackendParcelable> void delete(T object)
+        {
+
+        }
     }
 
     /*
@@ -111,10 +239,11 @@ public class DatabaseServices extends Service
     }
 
 
-    private void invokeWebServices(RequestParams params, String HTTPSrequest, final OnJSONResponseCallback callback)
+    private static void invokeWebServices(RequestParams params, String HTTPSrequest, final OnJSONResponseCallback callback)
     {
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
+        Log.d(DatabaseServices.class.getSimpleName(), HTTPSrequest);
         client.get(HTTPSrequest, params, new AsyncHttpResponseHandler()
         {
             @Override
@@ -126,15 +255,15 @@ public class DatabaseServices extends Service
                     String response = new String(bytes);
                     JSONObject obj = new JSONObject(response);
                     // When the JSON response has validation status set to true
-                    Toast.makeText(getApplicationContext(), "Data Received", Toast.LENGTH_SHORT).show();//TODO:Debug
-                    callback.onJSONResponse(true, getApplicationContext(), obj);
+                    Toast.makeText(applicationContext, "Data Received", Toast.LENGTH_SHORT).show();//TODO:Debug
+                    callback.onJSONResponse(true, applicationContext, obj);
 
-                       /* Toast.makeText(getApplicationContext(), obj.getString("error_msg"), Toast.LENGTH_SHORT).show();
+                       Toast.makeText(applicationContext, obj.getString("error_msg"), Toast.LENGTH_SHORT).show();
                         //TODO: catch callback error*/
 
                 } catch (JSONException e)
                 {
-                    //Toast.makeText(getApplicationContext(), "Error Occured [Server's JSON response might be invalid]!", Toast.LENGTH_SHORT).show();//TODO:Debug
+                    Toast.makeText(applicationContext, "Error Occured [Server's JSON response might be invalid]!", Toast.LENGTH_SHORT).show();//TODO:Debug
                     e.printStackTrace();
 
                 }
@@ -148,26 +277,27 @@ public class DatabaseServices extends Service
                 // When Http response code is '404'
                 if (statusCode == 404)
                 {
-                    //Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_SHORT).show();//TODO:Debug
+                    Toast.makeText(applicationContext, "Requested resource not found", Toast.LENGTH_SHORT).show();//TODO:Debug
                 }
                 // When Http response code is '500'
                 else if (statusCode == 500)
                 {
-                    //Toast.makeText(getApplicationContext(), "Something went wrong at server end", Toast.LENGTH_SHORT).show();//TODO:Debug
+                    Toast.makeText(applicationContext, "Something went wrong at server end", Toast.LENGTH_SHORT).show();//TODO:Debug
                 }
                 // When Http response code other than 404, 500
                 else
                 {
-                    //Toast.makeText(getApplicationContext(), "Unexpected Error occurred! [Most common Error: Device might not be connected to Internet or remote server is not up and running]", Toast.LENGTH_LONG).show();//TODO:Debug
+                    Toast.makeText(applicationContext, "Unexpected Error occurred! [Most common Error: Device might not be connected to Internet or remote server is not up and running]", Toast.LENGTH_LONG).show();//TODO:Debug
                 }
             }
         });
     }
 
-    private void invokeWebServices(RequestParams params, String HTTPSrequest)
+    private static void invokeWebServices(RequestParams params, String HTTPSrequest)
     {
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
+        Log.d(DatabaseServices.class.getSimpleName(), HTTPSrequest);
         client.post(HTTPSrequest, params, new AsyncHttpResponseHandler()
         {
             @Override
@@ -200,5 +330,42 @@ public class DatabaseServices extends Service
     public interface OnJSONResponseCallback
     {
         public void onJSONResponse(boolean success, Context context, JSONObject response);
+    }
+
+    private interface supportedDBDataType
+    {
+        public <T extends BackendParcelable> void create(T object);
+        public <T extends BackendParcelable> void read(T object);
+        public <T extends BackendParcelable> void update(T object);
+        public <T  extends BackendParcelable> void delete(T object);
+    }
+
+    private static void create(BackendParcelable obj, String httpAppend, final OnJSONResponseCallback callback)
+    {
+        RequestParams params = new RequestParams();
+        try
+        {
+            params.put(obj.getClass().toString(), new StringEntity(obj.makeJSON().toString()));
+        }
+        catch(UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+        }
+        invokeWebServices(params, url + httpAppend);
+    }
+
+    private static void read(BackendParcelable obj, String httpAppend, final OnJSONResponseCallback callback)
+    {
+
+    }
+
+    private static void update(BackendParcelable obj, String httpAppend, final OnJSONResponseCallback callback)
+    {
+
+    }
+
+    private static void remove(BackendParcelable obj, String httpAppend, final OnJSONResponseCallback callback)
+    {
+
     }
 }

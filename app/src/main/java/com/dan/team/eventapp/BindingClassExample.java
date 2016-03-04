@@ -91,18 +91,8 @@ public class BindingClassExample extends Activity
         *  LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseGPSUpdateMessageReceiver,
         *        new IntentFilter(getApplicationContext().getResources().getString(R.string.EventGPSUpdateMessageEnumeratedMessage)));
         *
-        LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseProfileEnumerationMessageReceiver,
+        LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseAllEventsMessageReceiver,
                 new IntentFilter(getApplicationContext().getResources().getString(R.string.EventArrayMessage)));
-        LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseScheduleElementMessageReceiver,
-                new IntentFilter(getApplicationContext().getResources().getString(R.string.ScheduleElementMessage)));
-        LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseImageArrayMessageReceiver,
-                new IntentFilter(getApplicationContext().getResources().getString(R.string.ImageArrayMessage)));
-        LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseEventAddedMessageReceiver,
-                new IntentFilter(getApplicationContext().getResources().getString(R.string.AddedEventMessage)));
-        LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseEventRemovedMessageReceiver,
-                new IntentFilter(getApplicationContext().getResources().getString(R.string.RemovedEventMessage)));
-        LocalBroadcastManager.getInstance(this).registerReceiver(DatabaseEventUpdatedMessageReceiver,
-                new IntentFilter(getApplicationContext().getResources().getString(R.string.UpdatedEventMessage)));
 
        /* setListAdapter(new ArrayAdapter<String>(this, R.layout., currentProfiles));
 
@@ -148,7 +138,7 @@ public class BindingClassExample extends Activity
     {
         if (dbBound)
         {
-            dbService.post(new User("Bob", "Ross", "Bob_Ross@Email.com", "LittleFriend"));
+            dbService.users.create(new User("Bob", "Ross", "Bob_Ross@Email.com", "LittleFriend"));
             Toast.makeText(getApplicationContext(), "Testing", Toast.LENGTH_SHORT).show();//TODO:Debug
         }
     }
@@ -182,7 +172,7 @@ public class BindingClassExample extends Activity
     /*
     * Example BroadcastReceiver. You should make your own BroadcastReceiver to get info in a way that makes sense for your activity
     *
-    private BroadcastReceiver DatabaseProfileEnumerationMessageReceiver = new BroadcastReceiver()
+    private BroadcastReceiver DatabaseAllEventsMessageReceiver = new BroadcastReceiver()
     {
         @Override
         public void onReceive(Context context, Intent intent)

@@ -3,6 +3,8 @@ package com.dan.team.eventapp;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONObject;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.List;
  */
 public class User implements BackendParcelable
 {
-    String firstName,lastName, email, password;
+    String firstName, lastName, email, password;
 
     public User(String firstName, String lastName, String email, String password)
     {
@@ -59,7 +61,6 @@ public class User implements BackendParcelable
         {
             return new User[size];
         }
-
     };
 
     public String getFirstName()
@@ -91,6 +92,19 @@ public class User implements BackendParcelable
         parameters.add(getEmail());
         parameters.add(getPassword());
 
-        return  parameters;
+        return parameters;
+    }
+
+    public JSONObject makeJSON()
+    {
+        JSONObject jsonObject = new JSONObject();
+        try
+        {
+            jsonObject.put("Parameters", getParameters());
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return jsonObject;
     }
 }

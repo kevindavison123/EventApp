@@ -102,7 +102,7 @@ public class Registration extends AppCompatActivity {
                 {
                     if(dbBound)
                     {
-                        dbServices.post(new User(fName,lName,eName,passName));
+                        dbServices.users.create(new User(fName,lName,eName,passName));
                     }
                 }
                 else
