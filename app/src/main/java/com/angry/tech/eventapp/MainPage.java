@@ -172,7 +172,7 @@ public class MainPage extends AppCompatActivity {
             //setup RowParams (needed for imageButtons layout)
             TableRow.LayoutParams tableRowParams = setupTableRowParams(phoneWidth);
             //Make image buttons
-            ArrayList<ImageButton> imageButtons = createImageButtons(size, tableRowParams);
+            ArrayList<ImageButton> imageButtons = createImageButtons(size, tableRowParams, allEvents);
             //put buttons in correct spot in table
             setupTableLayoutWithRows(size,imageButtons,context);
 
@@ -197,11 +197,12 @@ public class MainPage extends AppCompatActivity {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    private ArrayList<ImageButton> createImageButtons(int size,TableRow.LayoutParams tableRowParams)
+    private ArrayList<ImageButton> createImageButtons(int size,TableRow.LayoutParams tableRowParams, JSONArray jsonArray)
     {
         ArrayList<ImageButton> imageButtons = new ArrayList<>();
         for(int id = 0; id<size; id++)
         {
+            Intent sendingToPage = new Intent(this,PageView.class);
             ImageButton imageButton = new ImageButton(this);
             imageButton.setId(id);
             imageButton.setCropToPadding(true);
@@ -211,6 +212,22 @@ public class MainPage extends AppCompatActivity {
             imageButton.setLayoutParams(tableRowParams);
             getImage(imageButton);
             imageButtons.add(imageButton);
+//TODO: get or iterate through to get the correct JSONshit, create an event class, set all the right shit and then put it into the intent and send it through for the next activitiy/fragment
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    /*
+                    Event event = new Event()
+                    event.setTitle(jsonArray.get(i).getJSONObject("Title").opt("val").toString()
+                    event.setTime(jsonArray.get(i).getJSONObject("Time").opt("val").toString()
+                    event.setDescription(jsonArray.get(i).getJSONObject("Description").opt("val").toString()
+                    event.setLocation(jsonArray.get(i).getJSONObject("Location").opt("val").toString()
+                    sendingToPage.putExtra("event",event);
+                    startActivity(sendingToPage);
+                     */
+                }
+            });
         }
         return imageButtons;
     }
