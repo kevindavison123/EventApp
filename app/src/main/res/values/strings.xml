@@ -14,9 +14,34 @@
     <string name="title_activity_password_reset">Password Reset</string>
     <string name="title_activity_change_password">Change Password</string>
 
-    <string name="createUserAppend">user/create</string>
+    <string name="createAppend">/create</string>
+    <string name="readAppend">/id</string> <!-- Should probably be get, not ID -->
+    <string name="updateAppend">/update</string>
+    <string name="deleteAppend">/delete</string>
+    <string name="userAppend">/user</string>
 
-    <string name="backend_URL">"http://146.113.112.18:8080/"</string>
+    <string name="lookupID">/id</string>
+    <string name="stringLookup">/string</string>
+
+    <string name="backend_URL">"http://146.113.112.18:8080"</string>
+
+    <string name="User_FirstName">firstname</string>
+    <string name="User_LastName">lastname</string>
+    <string name="User_Email">email</string>
+    <string name="User_Password">password</string>
+    <string name="User_ID">id</string>
+
+    <string name="Event_ID">id</string>
+    <string name="Event_autherID">authorid</string>
+    <string name="Event_Description">description</string>
+    <string name="Event_Title">title</string>
+    <string name="Event_Location">location</string>
+    <string name="Event_Date">date</string>
+    <string name="Event_Time">time</string>
+    <string name="Event_ImageEXT">imageext</string>
+
+    <string name="Message_Event">message_event</string>
+    <string name="Message_User">message_user</string>
 
 
     <string name="title_activity_binding_class_example">BindingClassExample</string>

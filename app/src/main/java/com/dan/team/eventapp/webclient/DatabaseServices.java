@@ -14,7 +14,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.dan.team.eventapp.BackendParcelable;
+import com.dan.team.eventapp.Event;
 import com.dan.team.eventapp.R;
+import com.dan.team.eventapp.User;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -34,13 +36,16 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 public class DatabaseServices extends Service
 {
     private final IBinder mBinder = new DatabaseBinder();
-    int eventsDBVersion;//TODO:Implement versioning
+    private int DBVersion;//TODO:Implement versioning
     private boolean debug = true;
     private static String url;
-    private static String createUserAppend;
+    private static String userAppend, createAppend, readAppend, updateAppend, deleteAppend;
     private static Context applicationContext;
 
     public Users users;
+    public Events events;
+
+    private static AsyncHttpClient client = new AsyncHttpClient();
 
     public class DatabaseBinder extends Binder
     {
@@ -55,6 +60,7 @@ public class DatabaseServices extends Service
     {
         super();
         users = new Users();
+        client = new AsyncHttpClient();
     }
 
     @Override
@@ -69,7 +75,11 @@ public class DatabaseServices extends Service
         super.onCreate();
         applicationContext = getApplicationContext();
         url = applicationContext.getResources().getString(R.string.backend_URL);
-        createUserAppend = applicationContext.getResources().getString(R.string.createUserAppend);
+        userAppend = applicationContext.getResources().getString(R.string.userAppend);
+        createAppend = applicationContext.getResources().getString(R.string.createAppend);
+        updateAppend = applicationContext.getResources().getString(R.string.updateAppend);
+        readAppend = applicationContext.getResources().getString(R.string.readAppend);
+        deleteAppend = applicationContext.getResources().getString(R.string.deleteAppend);
     }
 
     @Override
@@ -92,18 +102,29 @@ public class DatabaseServices extends Service
     /*
         * Public methods
         * */
-    public final class Users implements supportedDBDataType
+    public final class Users implements supportedDBDataType<User>
     {
         @Override
-        public <User extends BackendParcelable> void create(User user)
+        public void create(User user)
         {
-            DatabaseServices.create(user, createUserAppend, new OnJSONResponseCallback()
+            DatabaseServices.create(user, userAppend, new OnJSONResponseCallback()
             {
                 @Override
                 public void onJSONResponse(boolean success, Context context, JSONObject response)
                 {
                     if(success)
-                    Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                    {
+                        Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                        try
+                        {
+
+                        }
+                        catch (Exception e)
+                        {
+                            //Do something
+                        }
+                    }
+
                     else
                         Toast.makeText(context, "FAIL", Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
                 }
@@ -112,104 +133,233 @@ public class DatabaseServices extends Service
         }
 
         @Override
-        public <User extends BackendParcelable> void read(User user)
+        public void read(int id)
         {
-            DatabaseServices.read(user, "temp", new OnJSONResponseCallback()
+            RequestParams params = new RequestParams();
+            params.put("id", id);
+            DatabaseServices.read(params, userAppend, new OnJSONResponseCallback()
             {
                 @Override
                 public void onJSONResponse(boolean success, Context context, JSONObject response)
                 {
-                    //do something
+                    if(success)
+                    {
+                        Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                        try
+                        {
+                            User user = com.dan.team.eventapp.User.makeFromJSON(response, context);
+                            sendMessage(context.getString(R.string.Message_User),"User Broadcast",user);
+                        }
+                        catch (Exception e)
+                        {
+                            //Do something
+                        }
+                    }
+
+                    else
+                        Toast.makeText(context, "FAIL", Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
                 }
             });
         }
 
         @Override
-        public <User extends BackendParcelable> void update(User user)
+        public void update(User user)
         {
-            DatabaseServices.update(user, "temp", new OnJSONResponseCallback()
+            RequestParams params = new RequestParams();
+            DatabaseServices.update(user, params, userAppend, new OnJSONResponseCallback()
             {
                 @Override
                 public void onJSONResponse(boolean success, Context context, JSONObject response)
                 {
-                    //do something
+                    if(success)
+                    {
+                        Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                        try
+                        {
+                            //Do something
+                        }
+                        catch (Exception e)
+                        {
+                            //Do something
+                        }
+                    }
                 }
             });
         }
 
         @Override
-        public <User extends BackendParcelable> void delete(User user)
+        public void delete(int id)
         {
-            DatabaseServices.remove(user, "temp", new OnJSONResponseCallback()
+            RequestParams params = new RequestParams();
+            params.put("id", id);
+            DatabaseServices.delete(params, userAppend, new OnJSONResponseCallback()
             {
                 @Override
                 public void onJSONResponse(boolean success, Context context, JSONObject response)
                 {
-                    //do something
+                    Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                    try
+                    {
+                        //Do something
+                    } catch (Exception e)
+                    {
+                        //Do something
+                    }
                 }
             });
         }
     }
-
-    public final class Events implements supportedDBDataType
+//
+    public final class Events implements supportedDBDataType<Event>
     {
 
-        @Override
-        public <T extends BackendParcelable> void create(T object)
-        {
-
-        }
-
-        @Override
-        public <T extends BackendParcelable> void read(T object)
-        {
-
-        }
-
-        @Override
-        public <T extends BackendParcelable> void update(T object)
-        {
-
-        }
-
-        @Override
-        public <T extends BackendParcelable> void delete(T object)
-        {
-
-        }
 
         public void getAllEvents()
         {
+            //DatabaseServices.read();
+        }
 
+        @Override
+        public void create(Event event)
+        {
+            DatabaseServices.create(event, createAppend, new OnJSONResponseCallback()
+            {
+                @Override
+                public void onJSONResponse(boolean success, Context context, JSONObject response)
+                {
+                    if(success)
+                    {
+                        Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                        try
+                        {
+
+                        }
+                        catch (Exception e)
+                        {
+                            //Do something
+                        }
+                    }
+
+                    else
+                        Toast.makeText(context, "FAIL", Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                }
+            });
+        }
+
+        @Override
+        public void read(int id)
+        {
+            RequestParams params = new RequestParams();
+            params.put("id", id);
+            DatabaseServices.read(params, readAppend, new OnJSONResponseCallback()
+            {
+                @Override
+                public void onJSONResponse(boolean success, Context context, JSONObject response)
+                {
+                    if(success)
+                    {
+                        Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                        try
+                        {
+                            Event event = com.dan.team.eventapp.Event.makeFromJSON(response, context);
+                            sendMessage(context.getString(R.string.Message_Event), "Sending Event", event);
+                        }
+                        catch (Exception e)
+                        {
+                            //Do something
+                        }
+                    }
+
+                    else
+                        Toast.makeText(context, "FAIL", Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                }
+            });
+        }
+
+        @Override
+        public void update(Event event)
+        {
+            RequestParams params = new RequestParams();
+            DatabaseServices.update(event, params, updateAppend, new OnJSONResponseCallback()
+            {
+                @Override
+                public void onJSONResponse(boolean success, Context context, JSONObject response)
+                {
+                    if(success)
+                    {
+                        Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                        try
+                        {
+
+                        }
+                        catch (Exception e)
+                        {
+                            //Do something
+                        }
+                    }
+
+                    else
+                        Toast.makeText(context, "FAIL", Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                }
+            });
+        }
+
+        @Override
+        public void delete(int id)
+        {
+            RequestParams params = new RequestParams();
+            params.put("id", id);
+            DatabaseServices.delete(params, deleteAppend, new OnJSONResponseCallback()
+            {
+                @Override
+                public void onJSONResponse(boolean success, Context context, JSONObject response)
+                {
+                    if(success)
+                    {
+                        Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                        try
+                        {
+
+                        }
+                        catch (Exception e)
+                        {
+                            //Do something
+                        }
+                    }
+
+                    else
+                        Toast.makeText(context, "FAIL", Toast.LENGTH_SHORT).show(); //TODO:Debug //do something
+                }
+            });
         }
     }
 
-    public final class Groups implements supportedDBDataType
-    {
-        @Override
-        public <T extends BackendParcelable> void create(T object)
-        {
-
-        }
-
-        @Override
-        public <T extends BackendParcelable> void read(T object)
-        {
-
-        }
-
-        @Override
-        public <T extends BackendParcelable> void update(T object)
-        {
-
-        }
-
-        @Override
-        public <T extends BackendParcelable> void delete(T object)
-        {
-
-        }
-    }
+//    public final class Groups implements supportedDBDataType
+//    {
+//        @Override
+//        public <T extends BackendParcelable> void create(T object)
+//        {
+//
+//        }
+//
+//        @Override
+//        public <T extends BackendParcelable> void read(T object)
+//        {
+//
+//        }
+//
+//        @Override
+//        public <T extends BackendParcelable> void update(T object)
+//        {
+//
+//        }
+//
+//        @Override
+//        public <T extends BackendParcelable> void delete(T object)
+//        {
+//
+//        }
+//    }
 
     /*
         * Private methods
@@ -239,11 +389,8 @@ public class DatabaseServices extends Service
     }
 
 
-    private static void invokeWebServices(RequestParams params, String HTTPSrequest, final OnJSONResponseCallback callback)
+    private static void invokeGetRequest(RequestParams params, String HTTPSrequest, final OnJSONResponseCallback callback)
     {
-        // Make RESTful webservice call using AsyncHttpClient object
-        AsyncHttpClient client = new AsyncHttpClient();
-        Log.d(DatabaseServices.class.getSimpleName(), HTTPSrequest);
         client.get(HTTPSrequest, params, new AsyncHttpResponseHandler()
         {
             @Override
@@ -293,12 +440,19 @@ public class DatabaseServices extends Service
         });
     }
 
-    private static void invokeWebServices(RequestParams params, String HTTPSrequest)
+    private static void invokePostRequest(JSONObject obj, String HTTPSrequest, OnJSONResponseCallback callback)
     {
-        // Make RESTful webservice call using AsyncHttpClient object
-        AsyncHttpClient client = new AsyncHttpClient();
-        Log.d(DatabaseServices.class.getSimpleName(), HTTPSrequest);
-        client.post(HTTPSrequest, params, new AsyncHttpResponseHandler()
+        StringEntity entityObj;
+        try
+        {
+            entityObj = new StringEntity(obj.toString());
+        }
+        catch(UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+            return;
+        }
+        client.post(applicationContext, HTTPSrequest, entityObj, "application/json", new AsyncHttpResponseHandler()
         {
             @Override
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] bytes)
@@ -332,40 +486,31 @@ public class DatabaseServices extends Service
         public void onJSONResponse(boolean success, Context context, JSONObject response);
     }
 
-    private interface supportedDBDataType
+    private interface supportedDBDataType <T extends BackendParcelable>
     {
-        public <T extends BackendParcelable> void create(T object);
-        public <T extends BackendParcelable> void read(T object);
-        public <T extends BackendParcelable> void update(T object);
-        public <T  extends BackendParcelable> void delete(T object);
+        public void create(T object);
+        public void read(int id);
+        public void update(T object);
+        public void delete(int id);
     }
 
     private static void create(BackendParcelable obj, String httpAppend, final OnJSONResponseCallback callback)
     {
-        RequestParams params = new RequestParams();
-        try
-        {
-            params.put(obj.getClass().toString(), new StringEntity(obj.makeJSON().toString()));
-        }
-        catch(UnsupportedEncodingException e)
-        {
-            e.printStackTrace();
-        }
-        invokeWebServices(params, url + httpAppend);
+        invokePostRequest(obj.makeJSON(), httpAppend + createAppend, callback);
     }
 
-    private static void read(BackendParcelable obj, String httpAppend, final OnJSONResponseCallback callback)
+    private static void read(RequestParams params, String httpAppend, final OnJSONResponseCallback callback)
     {
-
+        invokeGetRequest(params, httpAppend + readAppend, callback);
     }
 
-    private static void update(BackendParcelable obj, String httpAppend, final OnJSONResponseCallback callback)
+    private static void update(BackendParcelable obj, RequestParams params, String httpAppend, final OnJSONResponseCallback callback)
     {
-
+        //invokePutRequest(obj, httpAppend + updateAppend, callback);
     }
 
-    private static void remove(BackendParcelable obj, String httpAppend, final OnJSONResponseCallback callback)
+    private static void delete(RequestParams params, String httpAppend, final OnJSONResponseCallback callback)
     {
-
+        //invokeDeleteRequest(id, httpAppend + deleteAppend, callback);
     }
 }
